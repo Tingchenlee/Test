@@ -1,0 +1,162 @@
+ELEMENTS
+	H
+	D /2.014/
+	T /3.016/
+	C
+	CI /13.003/
+	O
+	OI /18.000/
+	N
+	Ne
+	Ar
+	He
+	Si
+	S
+	F
+	Cl
+	Br
+	I
+	X /195.083/
+END
+
+SPECIES
+    Ar                  ! Ar
+    He                  ! He
+    Ne                  ! Ne
+    H2(1)               ! H2(1)
+    N2(2)               ! N2(2)
+    NH3(6)              ! NH3(6)
+    H(10)               ! H(10)
+    NNHJ(11)            ! NNHJ(11)
+    N4(13)              ! 1_N4(T)(13)
+END
+
+
+
+THERM ALL
+   300.000  1000.000  5000.000
+
+! Thermo library: primaryThermoLibrary
+Ar                      Ar  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 4.37967000E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 4.37967000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+He                      He  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 9.28724000E-01 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 9.28724000E-01                   4
+
+! Thermo library: primaryThermoLibrary
+Ne                      Ne  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 3.35532000E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 3.35532000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+H2(1)                   H   2               G   100.000  5000.000 1959.08      1
+ 2.78815464E+00 5.87655486E-04 1.59003608E-07-5.52725361E-11 4.34301024E-15    2
+-5.96137665E+02 1.12799013E-01 3.43536422E+00 2.12709424E-04-2.78622934E-07    3
+ 3.40265512E-10-7.76027902E-14-1.03135985E+03-3.90841773E+00                   4
+
+! Thermo library: primaryThermoLibrary
+N2(2)                   N   2               G   200.000  6000.000 1000.00      1
+ 2.95258000E+00 1.39690000E-03-4.92632000E-07 7.86010000E-11-4.60755000E-15    2
+-9.23949000E+02 5.87189000E+00 3.53101000E+00-1.23661000E-04-5.02999000E-07    3
+ 2.43531000E-09-1.40881000E-12-1.04698000E+03 2.96747000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+NH3(6)                  H   3N   1          G   100.000  5000.000  993.33      1
+ 2.12302067E+00 6.45658953E-03-2.31618467E-06 3.93870042E-10-2.58108324E-14    2
+-6.32928862E+03 9.35177287E+00 4.09068772E+00-2.07163708E-03 1.14752156E-05    3
+-9.47500324E-09 2.61222190E-12-6.69036403E+03 2.22530808E-02                   4
+
+! Thermo library: primaryThermoLibrary
+H(10)                   H   1               G   100.000  5000.000 3459.60      1
+ 2.49999999E+00 9.20455546E-12-3.58608293E-15 6.15198922E-19-3.92041801E-23    2
+ 2.54742178E+04-4.44972842E-01 2.50000000E+00 9.24384602E-15-1.36779837E-17    3
+ 6.66184769E-21-1.00106912E-24 2.54742178E+04-4.44972896E-01                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+NNHJ(11)                H   1N   2          G   100.000  5000.000 1085.69      1
+ 3.08739385E+00 3.98312407E-03-1.66275704E-06 3.09811390E-10-2.15377742E-14    2
+ 2.88828816E+04 8.20549912E+00 4.05639457E+00-1.73134497E-03 9.19514103E-06    3
+-8.17674566E-09 2.35157297E-12 2.87988555E+04 4.03299590E+00                   4
+
+! Thermo library: primaryNS
+N4(13)                  N   4               G    10.000  3000.000  243.88      1
+ 4.84868000E+00 8.59309000E-03-6.13284000E-06 2.02652000E-09-2.51366000E-13    2
+ 7.71306000E+04 4.12779000E+00 3.87765000E+00 1.27008000E-02 4.12966000E-05    3
+-3.26349000E-07 5.40082000E-10 7.72131000E+04 8.16284000E+00                   4
+
+END
+
+
+
+REACTIONS    KCAL/MOLE   MOLES
+
+! Reaction index: Chemkin #1; RMG #7
+! Template reaction: R_Recombination
+! Flux pairs: H(10), H2(1); H(10), H2(1); 
+! Matched reaction 56 H + H <=> H2 in R_Recombination/training
+! This reaction matched rate rule [Root_1R->H_N-2R->S_2CHNO->H]
+! family: R_Recombination
+H(10)+H(10)=H2(1)                                   5.450000e+10 0.000     1.500    
+DUPLICATE
+
+! Reaction index: Chemkin #2; RMG #14
+! Template reaction: R_Recombination
+! Flux pairs: H(10), H2(1); H(10), H2(1); 
+! Matched reaction 56 H + H <=> H2 in R_Recombination/training
+! This reaction matched rate rule [Root_1R->H_N-2R->S_2CHNO->H]
+! family: R_Recombination
+H(10)+H(10)=H2(1)                                   5.450000e+10 0.000     1.500    
+DUPLICATE
+
+! Reaction index: Chemkin #3; RMG #8
+! Template reaction: Disproportionation
+! Flux pairs: H(10), H2(1); NNHJ(11), N2(2); 
+! Matched reaction 79 H + HN2 <=> H2 + N2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3d/H_d_Nrad]
+! family: Disproportionation
+H(10)+NNHJ(11)=N2(2)+H2(1)                          2.400000e+08 1.500     -0.890   
+DUPLICATE
+
+! Reaction index: Chemkin #4; RMG #13
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: H(10), NNHJ(11); N2(2), NNHJ(11); 
+! Matched reaction 185 N2 + H <=> NNH in R_Addition_MultipleBond/training
+! This reaction matched rate rule [N3t_N3t;HJ]
+! family: R_Addition_MultipleBond
+N2(2)+H(10)=NNHJ(11)                                7.600000e+15 -0.640    15.333   
+
+! Reaction index: Chemkin #5; RMG #27
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(11), N2(2); H(10), H2(1); 
+! Matched reaction 79 H + HN2 <=> H2 + N2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3d/H_d_Nrad]
+! family: Disproportionation
+H(10)+NNHJ(11)=N2(2)+H2(1)                          2.400000e+08 1.500     -0.890   
+DUPLICATE
+
+! Reaction index: Chemkin #6; RMG #10
+! Template reaction: 1,4_Linear_birad_scission
+! Flux pairs: N4(13), N2(2); N4(13), N2(2); 
+! Exact match found for rate rule [RJJ]
+! Euclidian distance = 0
+! family: 1,4_Linear_birad_scission
+N4(13)=N2(2)+N2(2)                                  5.000000e+12 0.000     0.000    
+DUPLICATE
+
+! Reaction index: Chemkin #7; RMG #78
+! Template reaction: 1,4_Linear_birad_scission
+! Flux pairs: N4(13), N2(2); N4(13), N2(2); 
+! Exact match found for rate rule [RJJ]
+! Euclidian distance = 0
+! family: 1,4_Linear_birad_scission
+N4(13)=N2(2)+N2(2)                                  5.000000e+12 0.000     0.000    
+DUPLICATE
+
+END
+

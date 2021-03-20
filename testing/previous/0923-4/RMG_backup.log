@@ -1,0 +1,1466 @@
+Global RMG Settings:
+   database.directory   = /Users/lee.ting/Code/RMG-database/input (Default, relative to RMG-Py source code)
+   test_data.directory  = /Users/lee.ting/Code/RMG-Py/rmgpy/test_data (Default, relative to RMG-Py source code)
+RMG execution initiated at Fri Sep 25 10:40:38 2020
+
+#########################################################
+# RMG-Py - Reaction Mechanism Generator in Python       #
+# Version: 3.0.0                                        #
+# Authors: RMG Developers (rmg_dev@mit.edu)             #
+# P.I.s:   William H. Green (whgreen@mit.edu)           #
+#          Richard H. West (r.west@neu.edu)             #
+# Website: http://reactionmechanismgenerator.github.io/ #
+#########################################################
+
+The current git HEAD for RMG-Py is:
+	b'4fd289eda842fdbf15b1a1cf322269c9d340bf45'
+	b'Mon Sep 14 10:39:38 2020 -0400'
+
+The current git HEAD for RMG-database is:
+	b'c75751d93948ade80393c7359b48f699e0adc6a3'
+	b'Wed Sep 23 10:41:31 2020 -0400'
+
+Reading input file "/Users/lee.ting/Code/Ammonia/testing/0923-4/input.py"...
+#Copy data from 0916-1,revise to easier version for testing new libraries
+database(
+    thermoLibraries=['surfaceThermoPt', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran','primaryNS', 'CHON_G4', 'CHON'],
+    reactionLibraries = ['Surface/Ammonia_Ru'], 
+    seedMechanisms = [],  
+    kineticsDepositories = ['training'],
+    kineticsFamilies = ['surface','default'],
+    kineticsEstimator = 'rate rules',
+
+)
+
+catalystProperties(
+    bindingEnergies = {  # default values for Cu(111)   
+    		            'H':(-2.58383235E+00, 'eV/molecule'),
+                        'C':(-4.96033553E+00, 'eV/molecule'),
+                        'N':(-3.58446699E+00, 'eV/molecule'),
+                        'O':(-4.20763879E+00, 'eV/molecule'),
+                      },
+    surfaceSiteDensity=(2.943E-09, 'mol/cm^2'), # Default for Cu(111)
+)
+
+species(
+    label='H2',
+    reactive=True,
+    structure=SMILES("[H][H]"),
+)
+
+
+species(
+    label='N2',
+    reactive=True,
+    structure=SMILES("N#N"),
+)
+
+species(
+    label='X',
+    reactive=True,
+    structure=adjacencyList("1 X u0"),
+)
+
+
+surfaceReactor(  #1
+    temperature=(725,'K'),
+    initialPressure=(200.0, 'bar'),
+    initialGasMoleFractions={
+        "H2": 0.67,
+        "N2": 0.33,
+    },
+    initialSurfaceCoverages={
+        "X": 1.0,
+    },
+    surfaceVolumeRatio=(1.e5, 'm^-1'),
+    terminationConversion = { "N2":0.80,},
+    terminationTime=(0.1, 's'),
+)
+
+
+simulator(
+    atol=1e-18,
+    rtol=1e-12,
+)
+
+model( #1
+    toleranceKeepInEdge=0.0,
+    toleranceMoveToCore=0.000000000001, 
+    toleranceInterruptSimulation=1,
+    maximumEdgeSpecies=100000,
+    minCoreSizeForPrune=150,
+    toleranceThermoKeepSpeciesInEdge=0.5, 
+    minSpeciesExistIterationsForPrune=4,
+ )
+
+
+options(
+    units='si',
+    saveRestartPeriod=None,
+    generateOutputHTML=True,
+    generatePlots=True, 
+    saveEdgeSpecies=True,
+    saveSimulationProfiles=True,
+)
+
+
+
+Surface reaction system 1
+Gas phase mole fractions:
+  H2                   0.67
+  N2                   0.33
+Total gas phase:          1 moles
+Pressure:                 2e+07 Pa
+Temperature:              725.0 K
+Reactor volume:           0.000301 m3
+Surface/volume ratio:     1e+05 m2/m3
+Surface site density:     2.94e-05 mol/m2
+Surface sites in reactor: 0.000887 moles
+Initial surface coverages (and amounts):
+  X                  1 = 0.00088702 moles
+Warning: Generate Output HTML option was turned on. Note that this will slow down model generation.
+Warning: Edge species saving was turned on. This will slow down model generation for large simulations.
+
+Loading thermodynamics library from surfaceThermoPt.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from primaryThermoLibrary.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from thermo_DFT_CCSDTF12_BAC.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from DFT_QCI_thermo.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from GRI-Mech3.0-N.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from NitrogenCurran.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from primaryNS.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from CHON_G4.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from CHON.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics group database from /Users/lee.ting/Code/RMG-database/input/thermo/groups...
+Loading transport library from GRI-Mech.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from OneDMinN2.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from NOx2018.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from PrimaryTransportLibrary.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport group database from /Users/lee.ting/Code/RMG-database/input/transport/groups...
+Loading kinetics library Surface/Ammonia_Ru from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/Ammonia_Ru/reactions.py...
+Loading frequencies group database from /Users/lee.ting/Code/RMG-database/input/statmech/groups...
+Loading Platts additivity group database from /Users/lee.ting/Code/RMG-database/input/solvation/groups...
+Trimolecular reactions are turned on
+Adding rate rules from training set in kinetics families...
+Filling in rate rules in kinetics families by averaging...
+Adding reaction library Surface/Ammonia_Ru to model edge...
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 6 new edge species
+    N_X(4)
+    H_X(5)
+    NH3(6)
+    NH3_X(7)
+    NH_X(8)
+    NH2_X(9)
+Added 0 new core reactions
+Created 6 new edge reactions
+    X(3) + X(3) + N2(2) <=> N_X(4) + N_X(4)
+    X(3) + X(3) + H2(1) <=> H_X(5) + H_X(5)
+    X(3) + NH3(6) <=> NH3_X(7)
+    N_X(4) + H_X(5) <=> X(3) + NH_X(8)
+    H_X(5) + NH_X(8) <=> X(3) + NH2_X(9)
+    H_X(5) + NH2_X(9) <=> X(3) + NH3_X(7)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 9 species and 6 reactions
+
+NOT generating reactions for unreactive species Ar
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ar
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 1 species and 0 reactions
+    The model edge has 9 species and 6 reactions
+
+
+NOT generating reactions for unreactive species He
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    He
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 2 species and 0 reactions
+    The model edge has 9 species and 6 reactions
+
+
+NOT generating reactions for unreactive species Ne
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ne
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 3 species and 0 reactions
+    The model edge has 9 species and 6 reactions
+
+
+Adding species H2(1) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    H2(1)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 4 species and 0 reactions
+    The model edge has 8 species and 6 reactions
+
+
+Adding species N2(2) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N2(2)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 5 species and 0 reactions
+    The model edge has 7 species and 6 reactions
+
+
+Adding species X(3) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    X(3)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 6 species and 0 reactions
+    The model edge has 6 species and 6 reactions
+
+
+Initialization complete. Starting model generation.
+
+Generating initial reactions...
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [H] renamed H based on thermo library name
+Species N=[N] renamed NNHJ based on thermo library name
+Species [N]=NN=[N] renamed 1_N4(T) based on thermo library name
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 5 new edge species
+    H(10)
+    NNHJ(11)
+    [H][H].[Pt](12)
+    1_N4(T)(13)
+    N#N.[Pt](14)
+Added 0 new core reactions
+Created 5 new edge reactions
+    H(10) + H(10) <=> H2(1)
+    H(10) + NNHJ(11) <=> N2(2) + H2(1)
+    X(3) + H2(1) <=> [H][H].[Pt](12)
+    1_N4(T)(13) <=> N2(2) + N2(2)
+    X(3) + N2(2) <=> N#N.[Pt](14)
+
+After model enlargement:
+    The model core has 6 species and 0 reactions
+    The model edge has 11 species and 11 reactions
+
+
+Completed initial enlarge edge step.
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 0 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 0 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:52
+    Memory used: 696.12 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Beginning model generation stage 1...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+At time 0.0000e+00 s, species [H][H].[Pt](12) was added to model core to avoid singularity
+
+
+Adding species [H][H].[Pt](12) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    [H][H].[Pt](12)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + H2(1) <=> [H][H].[Pt](12)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 7 species and 1 reactions
+    The model edge has 10 species and 10 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 7 species and 1 reactions
+    The model edge has 10 species and 10 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 1 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 1 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:53
+    Memory used: 703.98 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Exceeded max number of objects...removing excess objects
+Reached max number of objects...preparing to terminate
+At time 0.0000e+00 s, species N#N.[Pt](14) at rate ratio 0.07628292165591537 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species N#N.[Pt](14) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N#N.[Pt](14)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + N2(2) <=> N#N.[Pt](14)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 8 species and 2 reactions
+    The model edge has 9 species and 9 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 8 species and 2 reactions
+    The model edge has 9 species and 9 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 2 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 2 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:55
+    Memory used: 715.16 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 0.0000e+00 s, species H_X(5) at rate ratio 4.400492124310448e-06 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species H_X(5) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    H_X(5)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + X(3) + H2(1) <=> H_X(5) + H_X(5)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 9 species and 3 reactions
+    The model edge has 8 species and 8 reactions
+
+
+For reaction generation 1 process is used.
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 1 new edge reactions
+    X(3) + H(10) <=> H_X(5)
+
+After model enlargement:
+    The model core has 9 species and 3 reactions
+    The model edge has 8 species and 9 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 3 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 3 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:56
+    Memory used: 723.48 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 1.5868e-09 s, species N_X(4) at rate ratio 1.000154283054046e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species N_X(4) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N_X(4)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + X(3) + N2(2) <=> N_X(4) + N_X(4)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 10 species and 4 reactions
+    The model edge has 7 species and 8 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 10 species and 4 reactions
+    The model edge has 7 species and 8 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 4 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 4 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:58
+    Memory used: 731.99 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 3.0021e-08 s, species H(10) at rate ratio 1.045161934371202e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species H(10) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    H(10)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    H(10) + H(10) <=> H2(1)
+    X(3) + H(10) <=> H_X(5)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 11 species and 6 reactions
+    The model edge has 6 species and 6 reactions
+
+
+For reaction generation 1 process is used.
+Generating kinetics for new reactions...
+Warning: Marked reaction H(10) + H(10) <=> H2(1) as duplicate of H(10) + H(10) <=> H2(1) for saving to Chemkin file.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 1 new core reactions
+    H(10) + H(10) <=> H2(1)
+Created 1 new edge reactions
+    N2(2) + H(10) <=> NNHJ(11)
+
+After model enlargement:
+    The model core has 11 species and 7 reactions
+    The model edge has 6 species and 7 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 2 reactions.
+Chemkin file contains 5 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 2 reactions.
+Chemkin file contains 5 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 9 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 9 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:59
+    Memory used: 741.21 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 3.8974e-08 s, species NNHJ(11) at rate ratio 1.0404877375126487e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species NNHJ(11) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NNHJ(11)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    H(10) + NNHJ(11) <=> N2(2) + H2(1)
+    N2(2) + H(10) <=> NNHJ(11)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 12 species and 9 reactions
+    The model edge has 5 species and 5 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [N]=[N] renamed N2(T) based on thermo library name
+Species N[N] renamed H2NN(T) based on thermo library name
+Species N=N renamed HNNH based on thermo library name
+Species [NH][NH] renamed N2H2(T) based on thermo library name
+Species [N-]=[NH2+] renamed NNH2(S) based on thermo library name
+Species N=NN=[N] renamed 7_N4H based on thermo library name
+Species N=[N].[Pt] renamed NNHJX based on thermo library name
+Species [N-]=[NH+][Pt] renamed NNHJX based on thermo library name
+Species N=NN=N renamed NDNNDN based on thermo library name
+Species [N-]=[NH+]N=N renamed NHNNHN based on thermo library name
+Removing species N2(T)(15) with Gibbs energy 567593.3259983892 from edge because it's Gibbs number 1.5866221833464031 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species 7_N4H(20) with Gibbs energy 333497.1031848533 from edge because it's Gibbs number 0.7372490471497912 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[NH+]N=[N](21) with Gibbs energy 394023.65800011693 from edge because it's Gibbs number 0.9568580142178581 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [Pt]N=[N](22) with Gibbs energy 543765.719593108 from edge because it's Gibbs number 1.5001682946963815 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species NHNNHN(27) with Gibbs energy 318719.1658575566 from edge because it's Gibbs number 0.683630142823424 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[NH+][NH+]=[N-](28) with Gibbs energy 388105.9659519998 from edge because it's Gibbs number 0.9353868063805638 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction N2(2) + NNHJ(11) <=> 7_N4H(20), Ea raised from 297.3 to 302.9 kJ/mol to match endothermicity of reaction.
+For reaction N2(2) + NNHJ(11) <=> [N-]=[NH+]N=[N](21), Ea raised from 375.3 to 379.1 kJ/mol to match endothermicity of reaction.
+For reaction X(3) + X(3) + NNHJ(11) <=> [Pt]N=[N](22) + H_X(5), Ea raised from 292.1 to 293.6 kJ/mol to match endothermicity of reaction.
+For reaction X(3) + NNHJ(11) <=> NNHJX(24), Ea raised from 0.0 to 26.4 kJ/mol to match endothermicity of reaction.
+For reaction NNHJ(11) + NNHJ(11) <=> NHNNHN(27), Ea raised from 37.5 to 43.3 kJ/mol to match endothermicity of reaction.
+For reaction NNHJ(11) + NNHJ(11) <=> [N-]=[NH+][NH+]=[N-](28), Ea raised from 105.8 to 111.3 kJ/mol to match endothermicity of reaction.
+Warning: Marked reaction H(10) + NNHJ(11) <=> N2(2) + H2(1) as duplicate of H(10) + NNHJ(11) <=> N2(2) + H2(1) for saving to Chemkin file.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 8 new edge species
+    H2NN(T)(16)
+    HNNH(17)
+    N2H2(T)(18)
+    NNH2(S)(19)
+    [Pt]N=N(23)
+    NNHJX(24)
+    NNHJX(25)
+    NDNNDN(26)
+Added 1 new core reactions
+    H(10) + NNHJ(11) <=> N2(2) + H2(1)
+Created 12 new edge reactions
+    H(10) + H2NN(T)(16) <=> NNHJ(11) + H2(1)
+    H(10) + HNNH(17) <=> NNHJ(11) + H2(1)
+    H(10) + N2H2(T)(18) <=> NNHJ(11) + H2(1)
+    H(10) + NNH2(S)(19) <=> NNHJ(11) + H2(1)
+    X(3) + NNHJ(11) <=> [Pt]N=N(23)
+    X(3) + NNHJ(11) <=> NNHJX(24)
+    X(3) + NNHJ(11) <=> NNHJX(25)
+    H(10) + NNHJ(11) <=> HNNH(17)
+    H(10) + NNHJ(11) <=> NNH2(S)(19)
+    NNHJ(11) + NNHJ(11) <=> N2(2) + HNNH(17)
+    NNHJ(11) + NNHJ(11) <=> NDNNDN(26)
+    NNHJ(11) + NNHJ(11) <=> N2(2) + NNH2(S)(19)
+
+After model enlargement:
+    The model core has 12 species and 10 reactions
+    The model edge has 13 species and 17 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 5 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 5 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 15 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 15 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:02
+    Memory used: 752.56 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 2.2248e-05 s, species NH_X(8) at rate ratio 1.0100558803800216e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species NH_X(8) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH_X(8)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    N_X(4) + H_X(5) <=> X(3) + NH_X(8)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 13 species and 11 reactions
+    The model edge has 12 species and 16 reactions
+
+
+For reaction generation 1 process is used.
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 1 new edge reactions
+    N_X(4) + NH2_X(9) <=> NH_X(8) + NH_X(8)
+
+After model enlargement:
+    The model core has 13 species and 11 reactions
+    The model edge has 12 species and 17 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 6 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 6 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 15 reactions.
+Chemkin file contains 13 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 15 reactions.
+Chemkin file contains 13 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:03
+    Memory used: 745.27 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Exceeded max number of objects...removing excess objects
+Reached max number of objects...preparing to terminate
+At time 3.0474e-05 s, species NNHJX(25) at rate ratio 1.0018719826490183e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species NNHJX(25) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NNHJX(25)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + NNHJ(11) <=> NNHJX(25)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 14 species and 12 reactions
+    The model edge has 11 species and 16 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Removing species [N-]=[N+]=[Pt](29) with Gibbs energy 577456.2466284692 from edge because it's Gibbs number 1.6224078945678186 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[NH+]N=[Pt](30) with Gibbs energy 515253.51863524516 from edge because it's Gibbs number 1.3967172553913263 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[NH+]N[Pt](31) with Gibbs energy 287542.7674603677 from edge because it's Gibbs number 0.5705125753391005 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[NH+][NH+]=[N-](32) with Gibbs energy 388105.9659519998 from edge because it's Gibbs number 0.9353868063805638 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 1 new edge reactions
+    X(3) + X(3) + NNH2(S)(19) <=> H_X(5) + NNHJX(25)
+
+After model enlargement:
+    The model core has 14 species and 12 reactions
+    The model edge has 11 species and 17 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 7 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 7 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 15 reactions.
+Chemkin file contains 14 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 15 reactions.
+Chemkin file contains 14 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:05
+    Memory used: 756.53 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 3.0557e-05 s, species [Pt]N=N(23) at rate ratio 1.0155947073362667e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species [Pt]N=N(23) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    [Pt]N=N(23)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + NNHJ(11) <=> [Pt]N=N(23)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 15 species and 13 reactions
+    The model edge has 10 species and 16 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [N-]=[NH+]N=N renamed NHNNHN based on thermo library name
+Removing species NHNNHN(35) with Gibbs energy 318719.1658575566 from edge because it's Gibbs number 0.683630142823424 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 2 new edge species
+    N=NN=[Pt](33)
+    [Pt]NN=N(34)
+Added 0 new core reactions
+Created 4 new edge reactions
+    X(3) + X(3) + HNNH(17) <=> H_X(5) + [Pt]N=N(23)
+    X(3) + N=NN=[Pt](33) <=> N_X(4) + [Pt]N=N(23)
+    X(3) + [Pt]NN=N(34) <=> NH_X(8) + [Pt]N=N(23)
+    X(3) + X(3) + NDNNDN(26) <=> [Pt]N=N(23) + [Pt]N=N(23)
+
+After model enlargement:
+    The model core has 15 species and 13 reactions
+    The model edge has 12 species and 20 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 15 reactions.
+Chemkin file contains 18 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 15 reactions.
+Chemkin file contains 18 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:08
+    Memory used: 728.76 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 3.6632e-05 s, species NH2_X(9) at rate ratio 1.0105637560299076e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species NH2_X(9) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH2_X(9)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    H_X(5) + NH_X(8) <=> X(3) + NH2_X(9)
+    N_X(4) + NH2_X(9) <=> NH_X(8) + NH_X(8)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 16 species and 15 reactions
+    The model edge has 11 species and 18 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [NH2] renamed NH2(D) based on thermo library name
+Species [N-]=[NH+]N renamed NH2NHN based on thermo library name
+Species NN=N renamed HNNNH2 based on thermo library name
+Species NN renamed NH2NH2 based on thermo library name
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 6 new edge species
+    NH2(D)(36)
+    NN=[Pt](37)
+    NN[Pt](38)
+    NH2NHN(39)
+    HNNNH2(40)
+    NH2NH2(41)
+Added 0 new core reactions
+Created 7 new edge reactions
+    X(3) + NH2(D)(36) <=> NH2_X(9)
+    X(3) + X(3) + NH3(6) <=> H_X(5) + NH2_X(9)
+    X(3) + NN=[Pt](37) <=> N_X(4) + NH2_X(9)
+    X(3) + NN[Pt](38) <=> NH_X(8) + NH2_X(9)
+    X(3) + X(3) + NH2NHN(39) <=> NNHJX(25) + NH2_X(9)
+    X(3) + X(3) + HNNNH2(40) <=> [Pt]N=N(23) + NH2_X(9)
+    X(3) + X(3) + NH2NH2(41) <=> NH2_X(9) + NH2_X(9)
+
+After model enlargement:
+    The model core has 16 species and 15 reactions
+    The model edge has 17 species and 25 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 10 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 10 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 15 reactions.
+Chemkin file contains 25 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 15 reactions.
+Chemkin file contains 25 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:10
+    Memory used: 733.27 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 2.1242e-06 s, species NH3(6) at rate ratio 1.0191664789167476e-12 exceeded the minimum rate for moving to model core of 1e-12
+terminating simulation due to interrupt...
+
+
+Adding species NH3(6) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH3(6)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + X(3) + NH3(6) <=> H_X(5) + NH2_X(9)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 17 species and 16 reactions
+    The model edge has 16 species and 24 reactions
+
+
+For reaction generation 1 process is used.
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 9 new edge reactions
+    H(10) + NH2(D)(36) <=> NH3(6)
+    NH2NHN(39) <=> N2(2) + NH3(6)
+    HNNNH2(40) <=> N2(2) + NH3(6)
+    NNHJ(11) + NH2(D)(36) <=> N2(2) + NH3(6)
+    H2(1) + NH2(D)(36) <=> H(10) + NH3(6)
+    NH2(D)(36) + H2NN(T)(16) <=> NNHJ(11) + NH3(6)
+    NH2(D)(36) + HNNH(17) <=> NNHJ(11) + NH3(6)
+    NH2(D)(36) + N2H2(T)(18) <=> NNHJ(11) + NH3(6)
+    NH2(D)(36) + NNH2(S)(19) <=> NNHJ(11) + NH3(6)
+
+After model enlargement:
+    The model core has 17 species and 16 reactions
+    The model edge has 16 species and 33 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 11 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 11 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 24 reactions.
+Chemkin file contains 25 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 24 reactions.
+Chemkin file contains 25 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:12
+    Memory used: 739.82 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.6491e-10 s, species NN=[Pt](37) at rate ratio 356627857387.8541 was added to model core in model resurrection process
+
+
+Adding species NN=[Pt](37) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NN=[Pt](37)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + NN=[Pt](37) <=> N_X(4) + NH2_X(9)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 18 species and 17 reactions
+    The model edge has 15 species and 32 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Removing species [N-]=[N+]=[Pt](42) with Gibbs energy 577456.2466284692 from edge because it's Gibbs number 1.3811731964915348 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 3 new edge species
+    [N-]=[NH+]N([Pt])N(43)
+    NN(N=N)[Pt](44)
+    NN([Pt])N(45)
+Added 0 new core reactions
+Created 8 new edge reactions
+    X(3) + NN[Pt](38) <=> H_X(5) + NN=[Pt](37)
+    N_X(4) + NN[Pt](38) <=> NH_X(8) + NN=[Pt](37)
+    N_X(4) + NN[Pt](38) <=> NH_X(8) + NN=[Pt](37)
+    X(3) + [N-]=[NH+]N([Pt])N(43) <=> NNHJX(25) + NN=[Pt](37)
+    X(3) + NN(N=N)[Pt](44) <=> [Pt]N=N(23) + NN=[Pt](37)
+    NH_X(8) + NN[Pt](38) <=> NH2_X(9) + NN=[Pt](37)
+    X(3) + NN([Pt])N(45) <=> NH2_X(9) + NN=[Pt](37)
+    N_X(4) + NN([Pt])N(45) <=> NN=[Pt](37) + NN=[Pt](37)
+
+After model enlargement:
+    The model core has 18 species and 17 reactions
+    The model edge has 18 species and 40 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 24 reactions.
+Chemkin file contains 33 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 24 reactions.
+Chemkin file contains 33 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:15
+    Memory used: 744.11 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 6.0230e-10 s, species 1_N4(T)(13) at rate ratio 918075389.9001778 was added to model core in model resurrection process
+
+
+Adding species 1_N4(T)(13) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    1_N4(T)(13)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    1_N4(T)(13) <=> N2(2) + N2(2)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 19 species and 18 reactions
+    The model edge has 17 species and 39 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [N]=[N] renamed N2(T) based on thermo library name
+Species N=NN=[N] renamed 7_N4H based on thermo library name
+Removing species [N-]=[NH+]N(N=[N])[N](63) with Gibbs energy 835254.2495166822 from edge because it's Gibbs number 0.6310802524362844 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]NN=NN=[N](64) with Gibbs energy 755300.1064957858 from edge because it's Gibbs number 0.5043069348805556 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]=NN=NN=NN=[N](67) with Gibbs energy 814669.69167484 from edge because it's Gibbs number 0.5984418851243353 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[N+]N(N=NN=[N])[N](69) with Gibbs energy 1024999.1449648857 from edge because it's Gibbs number 0.9319350796707763 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]=NN=N[N-][N+]=N[N](70) with Gibbs energy 844361.5094796857 from edge because it's Gibbs number 0.6455204992543968 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]=[N+](N([N+]=[N-])[N])N=[N](72) with Gibbs energy 838211.2886258223 from edge because it's Gibbs number 0.6357688607290372 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction N2(2) + 1_N4(T)(13) <=> [N]=NN=NN=[N](51), Ea raised from 231.7 to 234.2 kJ/mol to match endothermicity of reaction.
+For reaction X(3) + 1_N4(T)(13) <=> [N]=NN=[N].[Pt](55), Ea raised from 0.0 to 27.0 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + NNHJ(11) <=> [N-]=[N+]N(N=N)[N](59), Ea raised from 100.7 to 106.9 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + NNHJ(11) <=> [N-]=[N+]N(N=N)[N](59), Ea raised from 100.7 to 106.9 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + NNHJ(11) <=> [N-]=[NH+]N(N=[N])[N](63), Ea raised from 202.2 to 207.7 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + NNHJ(11) <=> [N-]=[NH+]N(N=[N])[N](63), Ea raised from 202.2 to 207.7 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + NNHJ(11) <=> [N]NN=NN=[N](64), Ea raised from 122.5 to 127.3 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + 1_N4(T)(13) <=> [N-]=[N+]N(N=NN=[N])[N](69), Ea raised from 39.9 to 44.4 kJ/mol to match endothermicity of reaction.
+For reaction 1_N4(T)(13) + 1_N4(T)(13) <=> [N-]=[N+]N(N=NN=[N])[N](69), Ea raised from 39.9 to 44.4 kJ/mol to match endothermicity of reaction.
+Warning: Marked reaction 1_N4(T)(13) <=> N2(2) + N2(2) as duplicate of 1_N4(T)(13) <=> N2(2) + N2(2) for saving to Chemkin file.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 21 new edge species
+    N2(T)(46)
+    [N]NN=[N](47)
+    7_N4H(48)
+    [NH][N]N=[N](49)
+    [N-]=[NH+]N=[N](50)
+    [N]=NN=NN=[N](51)
+    [N]=N[N+](=[N-])N=[N](52)
+    [Pt]N=[N](53)
+    [Pt]N=NN=[N](54)
+    [N]=NN=[N].[Pt](55)
+    [N-]=[N+](N=[N])[Pt](56)
+    N=NN=NN=[N](57)
+    N=N[N+](=[N-])N=[N](58)
+    [N-]=[N+]N(N=N)[N](59)
+    N=N[N]N=N[N](60)
+    [N-]=[NH+]N=NN=[N](61)
+    [N-2]N([N+]#N)[NH+]=[N](62)
+    [N-]=N[NH+]([N])N(65)
+    NNN=N[N](66)
+    [N]=NN=N[N+](=[N-])N=[N](68)
+    [N]=N[N+](=[N-])[N+](=[N-])N=[N](71)
+Added 1 new core reactions
+    1_N4(T)(13) <=> N2(2) + N2(2)
+Created 38 new edge reactions
+    N2(2) + N2(T)(46) <=> 1_N4(T)(13)
+    N2(T)(46) + N2(T)(46) <=> 1_N4(T)(13)
+    H(10) + [N]NN=[N](47) <=> 1_N4(T)(13) + H2(1)
+    H(10) + 7_N4H(48) <=> 1_N4(T)(13) + H2(1)
+    H(10) + [NH][N]N=[N](49) <=> 1_N4(T)(13) + H2(1)
+    H(10) + [N-]=[NH+]N=[N](50) <=> 1_N4(T)(13) + H2(1)
+    N2(2) + 1_N4(T)(13) <=> [N]=NN=NN=[N](51)
+    N2(2) + 1_N4(T)(13) <=> [N]=N[N+](=[N-])N=[N](52)
+    X(3) + X(3) + 1_N4(T)(13) <=> [Pt]N=[N](53) + [Pt]N=[N](53)
+    X(3) + 1_N4(T)(13) <=> [Pt]N=NN=[N](54)
+    X(3) + 1_N4(T)(13) <=> [N]=NN=[N].[Pt](55)
+    X(3) + 1_N4(T)(13) <=> [N-]=[N+](N=[N])[Pt](56)
+    1_N4(T)(13) + H(10) <=> 7_N4H(48)
+    1_N4(T)(13) + H(10) <=> [N-]=[NH+]N=[N](50)
+    1_N4(T)(13) + H(10) <=> [N]NN=[N](47)
+    1_N4(T)(13) + H(10) <=> [N]NN=[N](47)
+    1_N4(T)(13) + H(10) <=> [NH][N]N=[N](49)
+    1_N4(T)(13) + NNHJ(11) <=> N2(2) + 7_N4H(48)
+    N2(T)(46) + [N]NN=[N](47) <=> 1_N4(T)(13) + NNHJ(11)
+    1_N4(T)(13) + NNHJ(11) <=> N=NN=NN=[N](57)
+    1_N4(T)(13) + NNHJ(11) <=> N2(2) + [N-]=[NH+]N=[N](50)
+    N2(T)(46) + [NH][N]N=[N](49) <=> 1_N4(T)(13) + NNHJ(11)
+    1_N4(T)(13) + NNHJ(11) <=> N=N[N+](=[N-])N=[N](58)
+    1_N4(T)(13) + NNHJ(11) <=> [N-]=[N+]N(N=N)[N](59)
+    1_N4(T)(13) + NNHJ(11) <=> [N-]=[N+]N(N=N)[N](59)
+    1_N4(T)(13) + NNHJ(11) <=> N=N[N]N=N[N](60)
+    N2(T)(46) + 7_N4H(48) <=> 1_N4(T)(13) + NNHJ(11)
+    1_N4(T)(13) + NNHJ(11) <=> [N-]=[NH+]N=NN=[N](61)
+    N2(T)(46) + [N-]=[NH+]N=[N](50) <=> 1_N4(T)(13) + NNHJ(11)
+    1_N4(T)(13) + NNHJ(11) <=> [N-2]N([N+]#N)[NH+]=[N](62)
+    [N]NN=[N](47) + NH2(D)(36) <=> 1_N4(T)(13) + NH3(6)
+    7_N4H(48) + NH2(D)(36) <=> 1_N4(T)(13) + NH3(6)
+    [NH][N]N=[N](49) + NH2(D)(36) <=> 1_N4(T)(13) + NH3(6)
+    [N-]=[NH+]N=[N](50) + NH2(D)(36) <=> 1_N4(T)(13) + NH3(6)
+    [N-]=N[NH+]([N])N(65) <=> 1_N4(T)(13) + NH3(6)
+    NNN=N[N](66) <=> 1_N4(T)(13) + NH3(6)
+    1_N4(T)(13) + 1_N4(T)(13) <=> [N]=NN=N[N+](=[N-])N=[N](68)
+    1_N4(T)(13) + 1_N4(T)(13) <=> [N]=N[N+](=[N-])[N+](=[N-])N=[N](71)
+
+After model enlargement:
+    The model core has 19 species and 19 reactions
+    The model edge has 38 species and 77 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 7 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 7 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:05:16
+    Memory used: 806.67 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 6.2860e-10 s, species NH3_X(7) at rate ratio 16467049668.739613 was added to model core in model resurrection process
+
+
+Adding species NH3_X(7) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH3_X(7)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    X(3) + NH3(6) <=> NH3_X(7)
+    H_X(5) + NH2_X(9) <=> X(3) + NH3_X(7)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 20 species and 21 reactions
+    The model edge has 37 species and 75 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 20 species and 21 reactions
+    The model edge has 37 species and 75 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 7 reactions.
+Chemkin file contains 14 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 7 reactions.
+Chemkin file contains 14 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:05:20
+    Memory used: 810.98 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 7.9832e-10 s, species NNHJX(24) at rate ratio 21166969.610539652 was added to model core in model resurrection process
+
+
+Adding species NNHJX(24) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NNHJX(24)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + NNHJ(11) <=> NNHJX(24)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 21 species and 22 reactions
+    The model edge has 36 species and 74 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 21 species and 22 reactions
+    The model edge has 36 species and 74 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 7 reactions.
+Chemkin file contains 15 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 7 reactions.
+Chemkin file contains 15 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 59 reactions.
+Chemkin file contains 37 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:05:24
+    Memory used: 814.98 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.3948e-10 s, species N=NN=[Pt](33) at rate ratio 15.339221057735063 was added to model core in model resurrection process
+
+
+Adding species N=NN=[Pt](33) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N=NN=[Pt](33)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + N=NN=[Pt](33) <=> N_X(4) + [Pt]N=N(23)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 22 species and 23 reactions
+    The model edge has 35 species and 73 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 3 new edge species
+    [N-]=[N+]=[Pt](73)
+    [N-]=[NH+]N(N=N)[Pt](74)
+    N=NN(N=N)[Pt](75)
+Added 0 new core reactions
+Created 10 new edge reactions
+    X(3) + [Pt]NN=N(34) <=> H_X(5) + N=NN=[Pt](33)
+    N_X(4) + [Pt]NN=N(34) <=> NH_X(8) + N=NN=[Pt](33)
+    N_X(4) + [Pt]NN=N(34) <=> NH_X(8) + N=NN=[Pt](33)
+    [N-]=[N+]=[Pt](73) + [Pt]NN=N(34) <=> NNHJX(25) + N=NN=[Pt](33)
+    X(3) + [N-]=[NH+]N(N=N)[Pt](74) <=> NNHJX(25) + N=NN=[Pt](33)
+    X(3) + N=NN(N=N)[Pt](75) <=> [Pt]N=N(23) + N=NN=[Pt](33)
+    NH_X(8) + [Pt]NN=N(34) <=> N=NN=[Pt](33) + NH2_X(9)
+    X(3) + NN(N=N)[Pt](44) <=> N=NN=[Pt](33) + NH2_X(9)
+    N_X(4) + NN(N=N)[Pt](44) <=> N=NN=[Pt](33) + NN=[Pt](37)
+    N_X(4) + N=NN(N=N)[Pt](75) <=> N=NN=[Pt](33) + N=NN=[Pt](33)
+
+After model enlargement:
+    The model core has 22 species and 23 reactions
+    The model edge has 38 species and 83 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 7 reactions.
+Chemkin file contains 16 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 7 reactions.
+Chemkin file contains 16 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 59 reactions.
+Chemkin file contains 47 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 59 reactions.
+Chemkin file contains 47 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:05:29
+    Memory used: 818.51 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 9.999999999999999e-10 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 6.3314e-10 s, species [Pt]N=NN=[N](54) at rate ratio 1.8595091811068946e-09 was added to model core in model resurrection process
+
+
+Adding species [Pt]N=NN=[N](54) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    [Pt]N=NN=[N](54)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(3) + 1_N4(T)(13) <=> [Pt]N=NN=[N](54)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 23 species and 24 reactions
+    The model edge has 37 species and 82 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...

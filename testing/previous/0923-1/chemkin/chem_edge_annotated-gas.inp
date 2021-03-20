@@ -1,0 +1,524 @@
+ELEMENTS
+	H
+	D /2.014/
+	T /3.016/
+	C
+	CI /13.003/
+	O
+	OI /18.000/
+	N
+	Ne
+	Ar
+	He
+	Si
+	S
+	F
+	Cl
+	Br
+	I
+	X /195.083/
+END
+
+SPECIES
+    Ar                  ! Ar
+    He                  ! He
+    Ne                  ! Ne
+    H2(1)               ! H2(1)
+    N2(2)               ! N2(2)
+    NH3(4)              ! NH3(4)
+    NO(6)               ! NO(6)
+    O(7)                ! O(7)
+    NO2(8)              ! NO2(8)
+    H(9)                ! H(9)
+    NNHJ(10)            ! NNHJ(10)
+    N4(13)              ! 1_N4(T)(13)
+    H2N2(16)            ! H2NN(T)(16)
+    HNNH(17)            ! HNNH(17)
+    H2N2(18)            ! N2H2(T)(18)
+    H2N2(19)            ! NNH2(S)(19)
+    NDNNDN(26)          ! NDNNDN(26)
+    NH2NHJ(32)          ! NH2NHJ(32)
+    H2N4(33)            ! [NH]NN=[N](33)
+    H3N4(36)            ! [NH]NNDN(36)
+    H4N4(38)            ! [NH]NN[NH](38)
+    H3N2(39)            ! [N-][NH3+](39)
+    H3N4(43)            ! [N-]([N+]DN)N(43)
+    H3N4(45)            ! [N-]=[NH+][N]N(45)
+END
+
+
+
+THERM ALL
+   300.000  1000.000  5000.000
+
+! Thermo library: primaryThermoLibrary
+Ar                      Ar  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 4.37967000E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 4.37967000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+He                      He  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 9.28724000E-01 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 9.28724000E-01                   4
+
+! Thermo library: primaryThermoLibrary
+Ne                      Ne  1               G   200.000  6000.000 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 3.35532000E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 3.35532000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+H2(1)                   H   2               G   100.000  5000.000 1959.08      1
+ 2.78815464E+00 5.87655486E-04 1.59003608E-07-5.52725361E-11 4.34301024E-15    2
+-5.96137665E+02 1.12799013E-01 3.43536422E+00 2.12709424E-04-2.78622934E-07    3
+ 3.40265512E-10-7.76027902E-14-1.03135985E+03-3.90841773E+00                   4
+
+! Thermo library: primaryThermoLibrary
+N2(2)                   N   2               G   200.000  6000.000 1000.00      1
+ 2.95258000E+00 1.39690000E-03-4.92632000E-07 7.86010000E-11-4.60755000E-15    2
+-9.23949000E+02 5.87189000E+00 3.53101000E+00-1.23661000E-04-5.02999000E-07    3
+ 2.43531000E-09-1.40881000E-12-1.04698000E+03 2.96747000E+00                   4
+
+! Thermo library: primaryThermoLibrary
+NH3(4)                  H   3N   1          G   100.000  5000.000  993.33      1
+ 2.12302067E+00 6.45658953E-03-2.31618467E-06 3.93870042E-10-2.58108324E-14    2
+-6.32928862E+03 9.35177287E+00 4.09068772E+00-2.07163708E-03 1.14752156E-05    3
+-9.47500324E-09 2.61222190E-12-6.69036403E+03 2.22530808E-02                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+NO(6)                   N   1O   1          G   100.000  5000.000 1407.02      1
+ 2.93798085E+00 1.75424119E-03-7.77004101E-07 1.42651639E-10-9.57838144E-15    2
+ 1.00390907E+04 7.44011605E+00 3.55718148E+00-8.90571060E-04 2.98553150E-06    3
+-2.08687561E-09 4.65949875E-13 9.95239684E+03 4.55251498E+00                   4
+
+! Thermo library: primaryThermoLibrary
+O(7)                    O   1               G   100.000  5000.000 3459.60      1
+ 2.49999999E+00 9.20455546E-12-3.58608293E-15 6.15198922E-19-3.92041801E-23    2
+ 2.92302441E+04 5.12616433E+00 2.50000000E+00 9.24384602E-15-1.36779837E-17    3
+ 6.66184769E-21-1.00106912E-24 2.92302441E+04 5.12616427E+00                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+NO2(8)                  N   1O   2          G   100.000  5000.000 1003.62      1
+ 4.42984125E+00 2.84582332E-03-1.26849815E-06 2.63845835E-10-2.02209363E-14    2
+ 2.58156381E+03 2.40679556E+00 3.95017800E+00-1.10890723E-03 1.34101326E-05    3
+-1.53108002E-08 5.31018790E-12 2.97329517E+03 6.19455359E+00                   4
+
+! Thermo library: primaryThermoLibrary
+H(9)                    H   1               G   100.000  5000.000 3459.60      1
+ 2.49999999E+00 9.20455546E-12-3.58608293E-15 6.15198922E-19-3.92041801E-23    2
+ 2.54742178E+04-4.44972842E-01 2.50000000E+00 9.24384602E-15-1.36779837E-17    3
+ 6.66184769E-21-1.00106912E-24 2.54742178E+04-4.44972896E-01                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+NNHJ(10)                H   1N   2          G   100.000  5000.000 1085.69      1
+ 3.08739385E+00 3.98312407E-03-1.66275704E-06 3.09811390E-10-2.15377742E-14    2
+ 2.88828816E+04 8.20549912E+00 4.05639457E+00-1.73134497E-03 9.19514103E-06    3
+-8.17674566E-09 2.35157297E-12 2.87988555E+04 4.03299590E+00                   4
+
+! Thermo library: primaryNS
+N4(13)                  N   4               G    10.000  3000.000  243.88      1
+ 4.84868000E+00 8.59309000E-03-6.13284000E-06 2.02652000E-09-2.51366000E-13    2
+ 7.71306000E+04 4.12779000E+00 3.87765000E+00 1.27008000E-02 4.12966000E-05    3
+-3.26349000E-07 5.40082000E-10 7.72131000E+04 8.16284000E+00                   4
+
+! Thermo library: primaryNS
+H2N2(16)                H   2N   2          G    10.000  3000.000  653.10      1
+ 2.60416000E+00 8.42517000E-03-4.55014000E-06 1.23097000E-09-1.31549000E-13    2
+ 4.35023000E+04 1.11461000E+01 4.04705000E+00-3.54577000E-03 3.01414000E-05    3
+-4.15281000E-08 1.90485000E-11 4.33807000E+04 5.31138000E+00                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+HNNH(17)                H   2N   2          G   100.000  5000.000 1069.31      1
+ 2.10835239E+00 7.76420277E-03-3.20569837E-06 5.96347165E-10-4.15021724E-14    2
+ 2.29671665E+04 1.19300671E+01 4.14012186E+00-4.11623833E-03 1.94639195E-05    3
+-1.72803794E-08 5.01314833E-12 2.27773498E+04 3.13599892E+00                   4
+
+! Thermo library: primaryNS
+H2N2(18)                H   2N   2          G    10.000  3000.000  654.98      1
+ 2.67760000E+00 9.14612000E-03-5.45436000E-06 1.57544000E-09-1.75989000E-13    2
+ 4.48998000E+04 1.11233000E+01 4.05595000E+00-4.30189000E-03 3.68637000E-05    3
+-5.32232000E-08 2.52157000E-11 4.48272000E+04 5.88046000E+00                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+H2N2(19)                H   2N   2          G   100.000  5000.000 1042.92      1
+ 2.43688193E+00 7.45359477E-03-3.05163025E-06 5.69831911E-10-3.99390902E-14    2
+ 3.49495729E+04 1.00772134E+01 4.10469529E+00-3.70491813E-03 1.98460953E-05    3
+-1.84450617E-08 5.56760145E-12 3.48606596E+04 3.20243319E+00                   4
+
+! Thermo library: CHON_G4
+NDNNDN(26)              H   2N   4          G    10.000  3000.000  881.51      1
+ 3.47382000E+00 1.53938000E-02-8.68526000E-06 2.35051000E-09-2.47052000E-13    2
+ 5.30265000E+04 9.17553000E+00 3.86707000E+00 1.06398000E-02 4.45754000E-06    3
+-1.14107000E-08 4.73947000E-12 5.30726000E+04 7.98241000E+00                   4
+
+! Thermo library: thermo_DFT_CCSDTF12_BAC
+NH2NHJ(32)              H   3N   2          G   100.000  5000.000  955.85      1
+ 3.57341221E+00 6.73338629E-03-2.29910870E-06 4.03432424E-10-2.79691485E-14    2
+ 2.54723953E+04 5.89261277E+00 3.91768692E+00-3.83370445E-04 1.77764479E-05    3
+-1.98109747E-08 6.88392434E-12 2.56658759E+04 5.60359425E+00                   4
+
+! Thermo library: CHON_G4 + radical(NHJ_N) + radical(N3dJ_N3d)
+H2N4(33)                H   2N   4          G   100.000  5000.000  796.24      1
+ 3.88243567E+00 1.36340083E-02-6.59336294E-06 1.29026457E-09-9.07457096E-14    2
+ 6.36370173E+04 1.00493527E+01 3.08203307E+00 2.30031894E-02-3.43188615E-05    3
+ 3.29396791E-08-1.26764974E-11 6.35949396E+04 1.26638288E+01                   4
+
+! Thermo library: CHON_G4
+H3N4(36)                H   3N   4          G    10.000  3000.000  447.50      1
+ 1.22796000E+00 2.58031000E-02-1.73407000E-05 5.58443000E-09-6.84286000E-13    2
+ 5.31379000E+04 1.94242000E+01 3.98104000E+00 1.17685000E-03 6.52649000E-05    3
+-1.17566000E-07 6.81645000E-11 5.28917000E+04 8.35791000E+00                   4
+
+! Thermo library: primaryNS + radical(NHJ_N) + radical(NHJ_N)
+H4N4(38)                H   4N   4          G   100.000  5000.000 1305.42      1
+ 6.01924749E+00 1.62345306E-02-7.34970466E-06 1.41362819E-09-9.89383294E-14    2
+ 6.30815770E+04-4.70290106E+00 3.13818697E+00 1.63781554E-02 2.46410634E-06    3
+-8.69431904E-09 2.81278290E-12 6.45737354E+04 1.27986097E+01                   4
+
+! Thermo library: primaryNS + radical(NHJ_C)
+H3N2(39)                H   3N   2          G   100.000  5000.000 1070.89      1
+ 3.34851998E+00 8.28910007E-03-3.16502074E-06 5.75533013E-10-3.97294257E-14    2
+ 5.66615715E+04 7.58834875E+00 3.82343667E+00 2.55003861E-03 1.04277160E-05    3
+-1.13439970E-08 3.55006756E-12 5.67872169E+04 6.32618124E+00                   4
+
+! Thermo library: CHON_G4
+H3N4(43)                H   3N   4          G    10.000  3000.000  201.36      1
+ 3.20399000E+00 2.15693000E-02-1.35875000E-05 4.11907000E-09-4.80475000E-13    2
+ 5.16416000E+04 1.10584000E+01 3.92722000E+00 7.20274000E-03 9.34320000E-05    3
+-3.50198000E-07 4.39417000E-10 5.16125000E+04 8.72832000E+00                   4
+
+! Thermo group additivity estimation: group(N3s-HNN) + group(N3s-N3sHH) + group(N5dc-HNN) + missing(N1dc-N5dc) + radical(N3sJ-NN)
+H3N4(45)                H   3N   4          G   100.000  5000.000 1294.73      1
+ 6.48363596E+00 1.34897303E-02-6.04697193E-06 1.14639398E-09-7.98778623E-14    2
+ 6.23405632E+04-6.51813895E+00 2.91300520E+00 2.45211175E-02-1.88274348E-05    3
+ 7.72722168E-09-1.35058575E-12 6.32651544E+04 1.16303559E+01                   4
+
+END
+
+
+
+REACTIONS    KCAL/MOLE   MOLES
+
+! Reaction index: Chemkin #1; RMG #3
+! Template reaction: R_Recombination
+! Flux pairs: H(9), H2(1); H(9), H2(1); 
+! Matched reaction 56 H + H <=> H2 in R_Recombination/training
+! This reaction matched rate rule [Root_1R->H_N-2R->S_2CHNO->H]
+! family: R_Recombination
+H(9)+H(9)=H2(1)                                     5.450000e+10 0.000     1.500    
+DUPLICATE
+
+! Reaction index: Chemkin #2; RMG #11
+! Template reaction: R_Recombination
+! Flux pairs: H(9), H2(1); H(9), H2(1); 
+! Matched reaction 56 H + H <=> H2 in R_Recombination/training
+! This reaction matched rate rule [Root_1R->H_N-2R->S_2CHNO->H]
+! family: R_Recombination
+H(9)+H(9)=H2(1)                                     5.450000e+10 0.000     1.500    
+DUPLICATE
+
+! Reaction index: Chemkin #3; RMG #4
+! Template reaction: Disproportionation
+! Flux pairs: H(9), H2(1); NNHJ(10), N2(2); 
+! Matched reaction 79 H + HN2 <=> H2 + N2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3d/H_d_Nrad]
+! family: Disproportionation
+H(9)+NNHJ(10)=N2(2)+H2(1)                           2.400000e+08 1.500     -0.890   
+DUPLICATE
+
+! Reaction index: Chemkin #4; RMG #10
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: H(9), NNHJ(10); N2(2), NNHJ(10); 
+! Matched reaction 185 N2 + H <=> NNH in R_Addition_MultipleBond/training
+! This reaction matched rate rule [N3t_N3t;HJ]
+! family: R_Addition_MultipleBond
+N2(2)+H(9)=NNHJ(10)                                 7.600000e+15 -0.640    15.333   
+
+! Reaction index: Chemkin #5; RMG #24
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), N2(2); H(9), H2(1); 
+! Matched reaction 79 H + HN2 <=> H2 + N2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3d/H_d_Nrad]
+! family: Disproportionation
+H(9)+NNHJ(10)=N2(2)+H2(1)                           2.400000e+08 1.500     -0.890   
+DUPLICATE
+
+! Reaction index: Chemkin #6; RMG #14
+! Template reaction: H_Abstraction
+! Flux pairs: HNNH(17), NNHJ(10); H(9), H2(1); 
+! Matched reaction 636 H + H2N2 <=> H2 + HN2 in H_Abstraction/training
+! This reaction matched rate rule [H2;N3d_rad]
+! family: H_Abstraction
+H(9)+HNNH(17)=NNHJ(10)+H2(1)                        9.600000e+08 1.500     1.580    
+
+! Reaction index: Chemkin #7; RMG #25
+! Template reaction: R_Recombination
+! Flux pairs: NNHJ(10), HNNH(17); H(9), HNNH(17); 
+! BM rule fitted to 2 training reactions at node Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO
+!     Total Standard Deviation in ln(k): 7.12496428854
+! Exact match found for rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO]
+! Euclidian distance = 0
+! family: R_Recombination
+H(9)+NNHJ(10)=HNNH(17)                              8.244740e+18 -1.499    0.000    
+
+! Reaction index: Chemkin #8; RMG #28
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), N2(2); NNHJ(10), HNNH(17); 
+! Estimated using template [N3d_rad;N3d/H_d_Nrad] for rate rule [N3d_rad/N;N3d/H_d_Nrad]
+! Euclidian distance = 1.0
+! family: Disproportionation
+NNHJ(10)+NNHJ(10)=N2(2)+HNNH(17)                    1.200000e+06 2.000     -1.190   
+
+! Reaction index: Chemkin #9; RMG #16
+! Template reaction: H_Abstraction
+! Flux pairs: H2N2(19), NNHJ(10); H(9), H2(1); 
+! From training reaction 3073 used for N5dc_H;H_rad
+! Exact match found for rate rule [N5dc_H;H_rad]
+! Euclidian distance = 0
+! Multiplied by reaction path degeneracy 2.0
+! family: H_Abstraction
+H(9)+H2N2(19)=NNHJ(10)+H2(1)                        4.800000e+08 1.500     4.160    
+
+! Reaction index: Chemkin #10; RMG #27
+! Template reaction: R_Recombination
+! Flux pairs: NNHJ(10), H2N2(19); H(9), H2N2(19); 
+! BM rule fitted to 2 training reactions at node Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO
+!     Total Standard Deviation in ln(k): 7.12496428854
+! Exact match found for rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO]
+! Euclidian distance = 0
+! family: R_Recombination
+H(9)+NNHJ(10)=H2N2(19)                              8.244740e+18 -1.499    0.000    
+
+! Reaction index: Chemkin #11; RMG #31
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), N2(2); NNHJ(10), H2N2(19); 
+! Estimated using template [Y_rad;N3d/H_d_Nrad] for rate rule [N5_rad;N3d/H_d_Nrad]
+! Euclidian distance = 1.0
+! family: Disproportionation
+NNHJ(10)+NNHJ(10)=N2(2)+H2N2(19)                    3.197301e+06 1.938     -1.152   
+
+! Reaction index: Chemkin #12; RMG #51
+! Template reaction: H_Abstraction
+! Flux pairs: H2N2(19), NNHJ(10); NNHJ(10), HNNH(17); 
+! Estimated using template [N5dc_H;N3_rad] for rate rule [N5dc_H;N3d_rad]
+! Euclidian distance = 1.0
+! Multiplied by reaction path degeneracy 2.0
+! family: H_Abstraction
+NNHJ(10)+H2N2(19)=NNHJ(10)+HNNH(17)                 1.840000e+06 1.940     0.870    
+
+! Reaction index: Chemkin #13; RMG #2
+! Library reaction: Surface/Ammonia_Cu_SSZ_13
+! Flux pairs: O(7), NO2(8); NO(6), NO2(8); 
+O(7)+NO(6)=NO2(8)                                   6.922900e+25 0.000     16.252   
+
+! Reaction index: Chemkin #14; RMG #7
+! Template reaction: 1,4_Linear_birad_scission
+! Flux pairs: N4(13), N2(2); N4(13), N2(2); 
+! Exact match found for rate rule [RJJ]
+! Euclidian distance = 0
+! family: 1,4_Linear_birad_scission
+N4(13)=N2(2)+N2(2)                                  5.000000e+12 0.000     0.000    
+
+! Reaction index: Chemkin #15; RMG #13
+! Template reaction: Disproportionation
+! Flux pairs: H(9), H2(1); H2N2(16), NNHJ(10); 
+! Matched reaction 85 H + H2N2 <=> H2 + HN2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3s/H2_s_Nbirad]
+! family: Disproportionation
+H(9)+H2N2(16)=NNHJ(10)+H2(1)                        9.600000e+08 1.500     -0.890   
+
+! Reaction index: Chemkin #16; RMG #15
+! Template reaction: Disproportionation
+! Flux pairs: H(9), H2(1); H2N2(18), NNHJ(10); 
+! Estimated using an average for rate rule [H_rad;NH_s_Rbirad]
+! Euclidian distance = 0
+! family: Disproportionation
+H(9)+H2N2(18)=NNHJ(10)+H2(1)                        4.800000e+08 1.500     -0.890   
+
+! Reaction index: Chemkin #17; RMG #30
+! Template reaction: R_Recombination
+! Flux pairs: NNHJ(10), NDNNDN(26); NNHJ(10), NDNNDN(26); 
+! BM rule fitted to 2 training reactions at node Root_N-1R->H_1CNOS->N_Ext-2R-R_3R!H-u0
+!     Total Standard Deviation in ln(k): 12.7194203157
+! Exact match found for rate rule [Root_N-1R->H_1CNOS->N_Ext-2R-R_3R!H-u0]
+! Euclidian distance = 0
+! family: R_Recombination
+NNHJ(10)+NNHJ(10)=NDNNDN(26)                        5.156200e+36 -7.489    0.000    
+
+! Reaction index: Chemkin #18; RMG #43
+! Template reaction: Disproportionation
+! Flux pairs: H(9), H2(1); NH2NHJ(32), HNNH(17); 
+! Matched reaction 91 H + H3N2 <=> H2 + H2N2-2 in Disproportionation/training
+! This reaction matched rate rule [H_rad;N3s/H2_s_Nrad]
+! family: Disproportionation
+H(9)+NH2NHJ(32)=H2(1)+HNNH(17)                      4.800000e+08 1.500     0.000    
+
+! Reaction index: Chemkin #19; RMG #44
+! Template reaction: 1,4_Linear_birad_scission
+! Flux pairs: H2N4(33), HNNH(17); H2N4(33), N2(2); 
+! Exact match found for rate rule [RJJ]
+! Euclidian distance = 0
+! family: 1,4_Linear_birad_scission
+H2N4(33)=N2(2)+HNNH(17)                             5.000000e+12 0.000     0.000    
+
+! Reaction index: Chemkin #20; RMG #46
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: H(9), NH2NHJ(32); HNNH(17), NH2NHJ(32); 
+! Matched reaction 2841 H + H2N2 <=> H3N2 in R_Addition_MultipleBond/training
+! This reaction matched rate rule [N3d-H_N3d-H;HJ]
+! family: R_Addition_MultipleBond
+H(9)+HNNH(17)=NH2NHJ(32)                            1.982000e+35 -7.670    12.560   
+
+! Reaction index: Chemkin #21; RMG #48
+! Template reaction: Disproportionation
+! Estimated using template [N3_rad;N3s/H2_s_Nbirad] for rate rule [N3d_rad/N;N3s/H2_s_Nbirad]
+! Euclidian distance = 2.0
+! Multiplied by reaction path degeneracy 2.0
+! family: Disproportionation
+NNHJ(10)+H2N2(16)=NNHJ(10)+HNNH(17)                 3.600000e+06 1.940     -1.150   
+
+! Reaction index: Chemkin #22; RMG #49
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: NNHJ(10), H3N4(36); HNNH(17), H3N4(36); 
+! Estimated using template [N3d-H_N3d-H;YJ] for rate rule [N3d-H_N3d-H;N3dJ_N]
+! Euclidian distance = 4.0
+! Multiplied by reaction path degeneracy 2.0
+! family: R_Addition_MultipleBond
+NNHJ(10)+HNNH(17)=H3N4(36)                          1.982000e+35 -7.670    12.560   
+
+! Reaction index: Chemkin #23; RMG #50
+! Template reaction: Disproportionation
+! Estimated using template [N3_rad;NH_s_Rbirad] for rate rule [N3d_rad/N;NH_s_Rbirad]
+! Euclidian distance = 2.0
+! family: Disproportionation
+NNHJ(10)+H2N2(18)=NNHJ(10)+HNNH(17)                 1.800000e+06 1.940     -1.150   
+
+! Reaction index: Chemkin #24; RMG #53
+! Template reaction: 1,4_Linear_birad_scission
+! Flux pairs: H4N4(38), HNNH(17); H4N4(38), HNNH(17); 
+! Exact match found for rate rule [RJJ]
+! Euclidian distance = 0
+! family: 1,4_Linear_birad_scission
+H4N4(38)=HNNH(17)+HNNH(17)                          5.000000e+12 0.000     0.000    
+
+! Reaction index: Chemkin #25; RMG #54
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), HNNH(17); NH2NHJ(32), HNNH(17); 
+! Estimated using template [N3_rad;N3s/H2_s_Nrad] for rate rule [N3d_rad/N;N3s/H2_s_Nrad]
+! Euclidian distance = 2.0
+! Multiplied by reaction path degeneracy 2.0
+! family: Disproportionation
+NNHJ(10)+NH2NHJ(32)=HNNH(17)+HNNH(17)               9.200000e+05 1.940     -1.150   
+
+! Reaction index: Chemkin #26; RMG #55
+! Template reaction: Disproportionation
+! Flux pairs: H(9), H2(1); H3N2(39), H2N2(19); 
+! Estimated using template [H_rad;NH_s_Rrad] for rate rule [H_rad;N5H_s_Rrad]
+! Euclidian distance = 1.0
+! Multiplied by reaction path degeneracy 3.0
+! family: Disproportionation
+H(9)+H3N2(39)=H2(1)+H2N2(19)                        1.075537e+09 1.500     0.223    
+
+! Reaction index: Chemkin #27; RMG #56
+! Template reaction: Disproportionation
+! Estimated using an average for rate rule [H_rad;NH_s_Rrad]
+! Euclidian distance = 0
+! family: Disproportionation
+H(9)+NH2NHJ(32)=H2(1)+H2N2(19)                      3.585124e+08 1.500     0.223    
+
+! Reaction index: Chemkin #28; RMG #58
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: H(9), H3N2(39); H2N2(19), H3N2(39); 
+! Estimated using an average for rate rule [R_R;HJ]
+! Euclidian distance = 0
+! family: R_Addition_MultipleBond
+H(9)+H2N2(19)=H3N2(39)                              9.891740e+15 -1.157    5.132    
+
+! Reaction index: Chemkin #29; RMG #59
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: H(9), NH2NHJ(32); H2N2(19), NH2NHJ(32); 
+! Estimated using template [Nd_R;HJ] for rate rule [N1dc_R;HJ]
+! Euclidian distance = 1.0
+! family: R_Addition_MultipleBond
+H(9)+H2N2(19)=NH2NHJ(32)                            9.884968e+35 -8.040    12.500   
+
+! Reaction index: Chemkin #30; RMG #62
+! Template reaction: Disproportionation
+! Estimated using template [Y_rad;N3s/H2_s_Nbirad] for rate rule [N5_rad;N3s/H2_s_Nbirad]
+! Euclidian distance = 1.0
+! Multiplied by reaction path degeneracy 2.0
+! family: Disproportionation
+NNHJ(10)+H2N2(16)=NNHJ(10)+H2N2(19)                 3.200000e+06 1.870     0.130    
+
+! Reaction index: Chemkin #31; RMG #64
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: NNHJ(10), H3N4(43); H2N2(19), H3N4(43); 
+! Estimated using template [R_R;N3J] for rate rule [N1dc_R;N3dJ_N]
+! Euclidian distance = 2.8284271247461903
+! family: R_Addition_MultipleBond
+NNHJ(10)+H2N2(19)=H3N4(43)                          6.140000e+02 2.756     1.658    
+
+! Reaction index: Chemkin #32; RMG #65
+! Template reaction: Disproportionation
+! Estimated using template [Y_rad;NH_s_Rbirad] for rate rule [N5_rad;NH_s_Rbirad]
+! Euclidian distance = 1.0
+! family: Disproportionation
+NNHJ(10)+H2N2(18)=NNHJ(10)+H2N2(19)                 5.982029e+06 1.927     -1.125   
+
+! Reaction index: Chemkin #33; RMG #67
+! Template reaction: R_Addition_MultipleBond
+! Flux pairs: NNHJ(10), H3N4(45); H2N2(19), H3N4(45); 
+! Estimated using template [Nd_R;YJ] for rate rule [N1dc_R;NJ]
+! Euclidian distance = 1.4142135623730951
+! family: R_Addition_MultipleBond
+NNHJ(10)+H2N2(19)=H3N4(45)                          9.884968e+35 -8.040    12.500   
+
+! Reaction index: Chemkin #34; RMG #68
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), H2N2(19); H3N2(39), HNNH(17); 
+! Estimated using average of templates [N3_rad;NH_s_Rrad] + [N3d_rad;XH_s_Rrad] for rate rule [N3d_rad/N;N5H_s_Rrad]
+! Euclidian distance = 2.23606797749979
+! Multiplied by reaction path degeneracy 3.0
+! family: Disproportionation
+NNHJ(10)+H3N2(39)=HNNH(17)+H2N2(19)                 3.386046e+05 2.315     -1.380   
+
+! Reaction index: Chemkin #35; RMG #69
+! Template reaction: Disproportionation
+! Estimated using template [N3d_rad;XH_s_Rrad] for rate rule [N3d_rad/N;NH_s_Rrad]
+! Euclidian distance = 1.4142135623730951
+! family: Disproportionation
+! Ea raised from -6.7 to 26.5 kJ/mol to match endothermicity of reaction.
+NNHJ(10)+NH2NHJ(32)=HNNH(17)+H2N2(19)               1.400000e+04 2.690     6.326    
+DUPLICATE
+
+! Reaction index: Chemkin #36; RMG #70
+! Template reaction: Disproportionation
+! Estimated using template [Y_rad;N3s/H2_s_Nrad] for rate rule [N5_rad;N3s/H2_s_Nrad]
+! Euclidian distance = 1.0
+! Multiplied by reaction path degeneracy 2.0
+! family: Disproportionation
+! Ea raised from 25.7 to 26.5 kJ/mol to match endothermicity of reaction.
+NNHJ(10)+NH2NHJ(32)=HNNH(17)+H2N2(19)               1.640000e+06 1.870     6.326    
+DUPLICATE
+
+! Reaction index: Chemkin #37; RMG #71
+! Template reaction: Disproportionation
+! Flux pairs: NNHJ(10), H2N2(19); H3N2(39), H2N2(19); 
+! Estimated using template [Y_rad;NH_s_Rrad] for rate rule [N5_rad;N5H_s_Rrad]
+! Euclidian distance = 1.4142135623730951
+! Multiplied by reaction path degeneracy 3.0
+! family: Disproportionation
+NNHJ(10)+H3N2(39)=H2N2(19)+H2N2(19)                 1.286233e+07 1.922     -0.707   
+
+! Reaction index: Chemkin #38; RMG #72
+! Template reaction: Disproportionation
+! Estimated using template [Y_rad;NH_s_Rrad] for rate rule [N5_rad;NH_s_Rrad]
+! Euclidian distance = 1.0
+! family: Disproportionation
+! Ea raised from -3.0 to 126.9 kJ/mol to match endothermicity of reaction.
+NNHJ(10)+NH2NHJ(32)=H2N2(19)+H2N2(19)               4.287443e+06 1.922     30.335   
+
+END
+

@@ -1,0 +1,3300 @@
+Global RMG Settings:
+   database.directory   = /Users/lee.ting/Code/RMG-database/input (Default, relative to RMG-Py source code)
+   test_data.directory  = /Users/lee.ting/Code/RMG-Py/rmgpy/test_data (Default, relative to RMG-Py source code)
+RMG execution initiated at Sat Feb  6 18:33:13 2021
+
+#########################################################
+# RMG-Py - Reaction Mechanism Generator in Python       #
+# Version: 3.0.0                                        #
+# Authors: RMG Developers (rmg_dev@mit.edu)             #
+# P.I.s:   William H. Green (whgreen@mit.edu)           #
+#          Richard H. West (r.west@neu.edu)             #
+# Website: http://reactionmechanismgenerator.github.io/ #
+#########################################################
+
+The current git HEAD for RMG-Py is:
+	b'5bbea1acda288b56c3b2627d3bcf982c0023c83c'
+	b'Mon Jan 18 13:23:09 2021 -0500'
+
+The current git HEAD for RMG-database is:
+	b'db8499605af98626860d6aec0a9877a7f8369f51'
+	b'Sun Jan 24 23:27:22 2021 -0500'
+
+Reading input file "/Users/lee.ting/Code/Ammonia/testing/test_libraries/test_Mechanisms/input.py"...
+database(
+    thermoLibraries=['surfaceThermoPt', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran','primaryNS', 'CHON_G4', 'CHON'],
+    reactionLibraries = ['Surface/CPOX_Pt/Deutschmann2006','Surface/Ammonia_Pt100_oxidation_test','Surface/Ammonia_Pt111_oxidation','Surface/Ammonia_ASC_Pt111','Surface/Ammonia_Pt_Al2O3_oxidation2'], 
+    seedMechanisms = [],  
+    kineticsDepositories = ['training'],
+    kineticsFamilies = ['surface','default'],
+    kineticsEstimator = 'rate rules',
+
+)
+
+catalystProperties(
+    bindingEnergies = {  # default values for Pt(111)    
+                          'H': (-2.754, 'eV/molecule'),
+                          'O': (-3.811, 'eV/molecule'),
+                          'C': (-7.025, 'eV/molecule'),
+                          'N': (-4.632, 'eV/molecule'),
+                      },
+    surfaceSiteDensity=(2.483e-9, 'mol/cm^2'), # Default for Pt(111)
+)
+
+species(
+    label='CH4',
+    reactive=True,
+    structure=SMILES("[CH4]"),
+)
+
+species(
+    label='H2',
+    reactive=True,
+    structure=SMILES("[H][H]"),
+)
+
+species(
+    label='H2O',
+    reactive=True,
+    structure=SMILES("O"),
+)
+
+species(
+    label='N2',
+    reactive=True,
+    structure=SMILES("N#N"),
+)
+
+species(
+    label='X',
+    reactive=True,
+    structure=adjacencyList("1 X u0"),
+)
+
+species(
+    label='O2',
+    reactive=True,
+    structure=SMILES("[O][O]"),
+)
+
+species(
+    label='NO',
+    reactive=True,
+    structure=adjacencyList(
+        """
+        multiplicity 2
+        1 N u1 p1 c0 {2,D}
+        2 O u0 p2 c0 {1,D}
+        """),
+)
+
+species(
+    label='NH3',
+    reactive=True,
+    structure=adjacencyList(
+        """
+        1 N u0 p1 c0 {2,S} {3,S} {4,S}
+        2 H u0 p0 c0 {1,S}
+        3 H u0 p0 c0 {1,S}
+        4 H u0 p0 c0 {1,S}
+        """),
+)
+
+surfaceReactor(  
+    temperature=(723,'K'),
+    initialPressure=(150.0, 'bar'),
+    initialGasMoleFractions={
+        "CH4": 0.0,
+        "H2": 0.0,
+        "H2O": 0.0, 
+        "N2": 0.0,
+        "O2": 0.0,
+        "NO": 0.5,
+        "NH3": 0.5,
+    },
+    initialSurfaceCoverages={
+        "X": 1.0,
+    },
+    surfaceVolumeRatio=(1.e5, 'm^-1'),
+    terminationConversion = { "N2":0.80,},
+    terminationTime=(0.01, 's'),
+)
+
+simulator(
+    atol=1e-18,
+    rtol=1e-12,
+)
+
+model( 
+    toleranceKeepInEdge=0.0,
+    toleranceMoveToCore=1E-6, 
+    toleranceInterruptSimulation=1,
+    maximumEdgeSpecies=100000,
+    minCoreSizeForPrune=150,
+    toleranceThermoKeepSpeciesInEdge=0.5, 
+    minSpeciesExistIterationsForPrune=4,
+)
+
+options(
+    units='si',
+    saveRestartPeriod=None,
+    generateOutputHTML=True,
+    generatePlots=True, 
+    saveEdgeSpecies=True,
+    saveSimulationProfiles=True,
+)
+
+
+
+
+
+Surface reaction system 1
+Gas phase mole fractions:
+  CH4                  0
+  H2                   0
+  H2O                  0
+  N2                   0
+  O2                   0
+  NO                   0.5
+  NH3                  0.5
+Total gas phase:          1 moles
+Pressure:                 1.5e+07 Pa
+Temperature:              723.0 K
+Reactor volume:           0.000401 m3
+Surface/volume ratio:     1e+05 m2/m3
+Surface site density:     2.48e-05 mol/m2
+Surface sites in reactor: 0.000995 moles
+Initial surface coverages (and amounts):
+  X                  1 = 0.00099508 moles
+Warning: Generate Output HTML option was turned on. Note that this will slow down model generation.
+Warning: Edge species saving was turned on. This will slow down model generation for large simulations.
+
+Loading thermodynamics library from surfaceThermoPt.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from primaryThermoLibrary.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from thermo_DFT_CCSDTF12_BAC.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from DFT_QCI_thermo.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from GRI-Mech3.0-N.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from NitrogenCurran.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from primaryNS.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from CHON_G4.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics library from CHON.py in /Users/lee.ting/Code/RMG-database/input/thermo/libraries...
+Loading thermodynamics group database from /Users/lee.ting/Code/RMG-database/input/thermo/groups...
+Loading transport library from GRI-Mech.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from OneDMinN2.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from NOx2018.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport library from PrimaryTransportLibrary.py in /Users/lee.ting/Code/RMG-database/input/transport/libraries...
+Loading transport group database from /Users/lee.ting/Code/RMG-database/input/transport/groups...
+Loading kinetics library Surface/CPOX_Pt/Deutschmann2006 from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/CPOX_Pt/Deutschmann2006/reactions.py...
+Loading kinetics library Surface/Ammonia_Pt100_oxidation_test from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/Ammonia_Pt100_oxidation_test/reactions.py...
+Loading kinetics library Surface/Ammonia_Pt111_oxidation from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/Ammonia_Pt111_oxidation/reactions.py...
+Loading kinetics library Surface/Ammonia_ASC_Pt111 from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/Ammonia_ASC_Pt111/reactions.py...
+Loading kinetics library Surface/Ammonia_Pt_Al2O3_oxidation2 from /Users/lee.ting/Code/RMG-database/input/kinetics/libraries/Surface/Ammonia_Pt_Al2O3_oxidation2/reactions.py...
+Loading frequencies group database from /Users/lee.ting/Code/RMG-database/input/statmech/groups...
+Loading Platts additivity group database from /Users/lee.ting/Code/RMG-database/input/solvation/groups...
+Trimolecular reactions are turned on
+Adding rate rules from training set in kinetics families...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([12.5,14.58,16.07,17.22,18.87,19.96,21.35],'cal/(mol*K)'), H298=(-65.22,'kcal/mol'), S298=(27.26,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), label="""formyloxyX""", comment="""Gas phase thermo for formyloxy from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(O-*R) Binding energy corrected by LSR (0.50O)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([11.54,14.52,16.98,18.92,21.57,23.27,25.39],'cal/(mol*K)'), H298=(-96.43,'kcal/mol'), S298=(26.4,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(103.931,'J/(mol*K)'), label="""formic_acid""", comment="""Gas phase thermo for formic_acid from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111((CR2NR)*) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 2000.0 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.74,13.43,15.43,16.9,18.97,20.26,21.67],'cal/(mol*K)'), H298=(-85.44,'kcal/mol'), S298=(27.52,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(78.9875,'J/(mol*K)'), label="""HOCOX""", comment="""Gas phase thermo for HOCO from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(C-*R3) Binding energy corrected by LSR (0.25C)""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Warning: Cphigh is above the theoretical CpInf value for ThermoData object
+ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([10.09,11.57,12.64,13.46,14.64,15.43,16.43],'cal/(mol*K)'), H298=(-87.45,'kcal/mol'), S298=(28.54,'cal/(mol*K)'), Cp0=(29.1007,'J/(mol*K)'), CpInf=(62.3585,'J/(mol*K)'), label="""CO2""", comment="""Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation: adsorptionPt111(R*vdW) Binding energy corrected by LSR ()""").
+The thermo for this species is probably wrong! Setting CpInf = Cphigh for Entropy calculationat T = 1666.6666666666665 K...
+Filling in rate rules in kinetics families by averaging...
+Adding reaction library Surface/CPOX_Pt/Deutschmann2006 to model edge...
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 12 new edge species
+    HX(9)
+    OX(10)
+    CH3X(11)
+    HOX(12)
+    H2OX(13)
+    CO2(14)
+    CO2X(15)
+    CO(16)
+    OCX(17)
+    CX(18)
+    CH2X(19)
+    CHX(20)
+Added 0 new core reactions
+Created 18 new edge reactions
+    X(5) + X(5) + H2(2) <=> HX(9) + HX(9)
+    X(5) + X(5) + O2(6) <=> OX(10) + OX(10)
+    X(5) + X(5) + CH4(1) <=> HX(9) + CH3X(11)
+    X(5) + OX(10) + CH4(1) <=> HOX(12) + CH3X(11)
+    X(5) + HOX(12) + CH4(1) <=> H2OX(13) + CH3X(11)
+    X(5) + H2O(3) <=> H2OX(13)
+    X(5) + CO2(14) <=> CO2X(15)
+    X(5) + CO(16) <=> OCX(17)
+    OX(10) + CX(18) <=> X(5) + OCX(17)
+    OX(10) + OCX(17) <=> X(5) + CO2X(15)
+    HX(9) + CO2X(15) <=> HOX(12) + OCX(17)
+    HX(9) + CH2X(19) <=> X(5) + CH3X(11)
+    HX(9) + CHX(20) <=> X(5) + CH2X(19)
+    X(5) + CHX(20) <=> HX(9) + CX(18)
+    OX(10) + HX(9) <=> X(5) + HOX(12)
+    OX(10) + H2OX(13) <=> HOX(12) + HOX(12)
+    H2(2) + CX(18) <=> CH2X(19)
+    HX(9) + HOX(12) <=> X(5) + H2OX(13)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 20 species and 18 reactions
+
+Adding reaction library Surface/Ammonia_Pt100_oxidation_test to model edge...
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 8 new edge species
+    NH3_X(21)
+    NH2_X(22)
+    NH_X(23)
+    N_X(24)
+    NO_X(25)
+    N2O_X(26)
+    N2O(27)
+    N2_X(28)
+Added 0 new core reactions
+Created 16 new edge reactions
+    X(5) + NH3(8) <=> NH3_X(21)
+    OX(10) + NH3_X(21) <=> HOX(12) + NH2_X(22)
+    OX(10) + NH2_X(22) <=> HOX(12) + NH_X(23)
+    OX(10) + NH_X(23) <=> N_X(24) + HOX(12)
+    HOX(12) + NH3_X(21) <=> H2OX(13) + NH2_X(22)
+    HOX(12) + NH2_X(22) <=> NH_X(23) + H2OX(13)
+    HOX(12) + NH_X(23) <=> N_X(24) + H2OX(13)
+    N_X(24) + N_X(24) <=> X(5) + X(5) + N2(4)
+    OX(10) + N_X(24) <=> X(5) + NO_X(25)
+    NO_X(25) <=> X(5) + NO(7)
+    N_X(24) + NO_X(25) <=> X(5) + N2O_X(26)
+    N2O_X(26) <=> X(5) + N2O(27)
+    N2_X(28) <=> X(5) + N2(4)
+    X(5) + NH3_X(21) <=> HX(9) + NH2_X(22)
+    X(5) + NH2_X(22) <=> HX(9) + NH_X(23)
+    X(5) + NH_X(23) <=> N_X(24) + HX(9)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 28 species and 34 reactions
+
+Adding reaction library Surface/Ammonia_Pt111_oxidation to model edge...
+This library reaction was not new: X(5) + NH3(8) <=> NH3_X(21)
+This library reaction was not new: OX(10) + NH3_X(21) <=> HOX(12) + NH2_X(22)
+This library reaction was not new: OX(10) + NH2_X(22) <=> HOX(12) + NH_X(23)
+This library reaction was not new: OX(10) + NH_X(23) <=> N_X(24) + HOX(12)
+This library reaction was not new: HOX(12) + NH3_X(21) <=> H2OX(13) + NH2_X(22)
+This library reaction was not new: HOX(12) + NH2_X(22) <=> NH_X(23) + H2OX(13)
+This library reaction was not new: HOX(12) + NH_X(23) <=> N_X(24) + H2OX(13)
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 28 species and 34 reactions
+
+Adding reaction library Surface/Ammonia_ASC_Pt111 to model edge...
+This library reaction was not new: X(5) + NH3(8) <=> NH3_X(21)
+This library reaction was not new: X(5) + X(5) + O2(6) <=> OX(10) + OX(10)
+This library reaction was not new: N_X(24) + N_X(24) <=> X(5) + X(5) + N2(4)
+This library reaction was not new: X(5) + NO(7) <=> NO_X(25)
+This library reaction was not new: OX(10) + N_X(24) <=> X(5) + NO_X(25)
+This library reaction was not new: N_X(24) + NO_X(25) <=> X(5) + N2O_X(26)
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 2 new edge species
+    NO2_X(29)
+    NO2(30)
+Added 0 new core reactions
+Created 2 new edge reactions
+    OX(10) + NO_X(25) <=> X(5) + NO2_X(29)
+    NO2_X(29) <=> X(5) + NO2(30)
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 30 species and 36 reactions
+
+Adding reaction library Surface/Ammonia_Pt_Al2O3_oxidation2 to model edge...
+This library reaction was not new: X(5) + NH3(8) <=> NH3_X(21)
+This library reaction was not new: X(5) + X(5) + O2(6) <=> OX(10) + OX(10)
+This library reaction was not new: N_X(24) + N_X(24) <=> X(5) + X(5) + N2(4)
+This library reaction was not new: X(5) + NO(7) <=> NO_X(25)
+This library reaction was not new: OX(10) + N_X(24) <=> X(5) + NO_X(25)
+This library reaction was not new: N_X(24) + NO_X(25) <=> X(5) + N2O_X(26)
+This library reaction was not new: OX(10) + NO_X(25) <=> X(5) + NO2_X(29)
+This library reaction was not new: NO2_X(29) <=> X(5) + NO2(30)
+
+Summary of Model Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 0 species and 0 reactions
+    The model edge has 30 species and 36 reactions
+
+NOT generating reactions for unreactive species Ar
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ar
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 1 species and 0 reactions
+    The model edge has 30 species and 36 reactions
+
+
+NOT generating reactions for unreactive species He
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    He
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 2 species and 0 reactions
+    The model edge has 30 species and 36 reactions
+
+
+NOT generating reactions for unreactive species Ne
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    Ne
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 3 species and 0 reactions
+    The model edge has 30 species and 36 reactions
+
+
+Adding species CH4(1) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    CH4(1)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 4 species and 0 reactions
+    The model edge has 29 species and 36 reactions
+
+
+Adding species H2(2) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    H2(2)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 5 species and 0 reactions
+    The model edge has 28 species and 36 reactions
+
+
+Adding species H2O(3) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    H2O(3)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 6 species and 0 reactions
+    The model edge has 27 species and 36 reactions
+
+
+Adding species N2(4) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N2(4)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 7 species and 0 reactions
+    The model edge has 26 species and 36 reactions
+
+
+Adding species X(5) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    X(5)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 8 species and 0 reactions
+    The model edge has 25 species and 36 reactions
+
+
+Adding species O2(6) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    O2(6)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 9 species and 0 reactions
+    The model edge has 24 species and 36 reactions
+
+
+Adding species NO(7) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NO(7)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 10 species and 0 reactions
+    The model edge has 23 species and 36 reactions
+
+
+Adding species NH3(8) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH3(8)
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 11 species and 0 reactions
+    The model edge has 22 species and 36 reactions
+
+
+Initialization complete. Starting model generation.
+
+Generating initial reactions...
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [CH2] renamed CH2(S) based on thermo library name
+Species [CH3] renamed CH3 based on thermo library name
+Species [H] renamed H based on thermo library name
+Species [OH] renamed OH(D) based on thermo library name
+Species [NH2] renamed NH2(D) based on thermo library name
+Species N=[N] renamed NNHJ based on thermo library name
+Species [O]O renamed HO2 based on thermo library name
+Species [N]O renamed NOHJJ based on thermo library name
+Species N=O renamed HNO based on thermo library name
+Species [N]=NN=[N] renamed 1_N4(T) based on thermo library name
+Species [N-]=[NH+]N renamed NH2NHN based on thermo library name
+Species NN=N renamed HNNNH2 based on thermo library name
+Species [O]ON=O renamed ONOOJ based on thermo library name
+Species O=NN=O renamed ONNO_cis based on thermo library name
+Generating kinetics for new reactions...
+For reaction O2(6) + CH4(1) <=> HO2(38) + CH3(32), Ea raised from 216.4 to 231.5 kJ/mol to match endothermicity of reaction.
+For reaction X(5) + X(5) + H2O(3) <=> HX(9) + HOX(12), Ea raised from 0.0 to 62.3 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + N2(4) <=> [O]ON=[N](44), Ea raised from 383.7 to 387.0 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + N2(4) <=> [N]=NN=O(45), Ea raised from 328.4 to 331.1 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + NO(7) <=> ONOOJ(48), Ea raised from 13.4 to 51.7 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 19 new edge species
+    CH2(S)(31)
+    H(33)
+    CH3(32)
+    OH(D)(34)
+    NH2(D)(35)
+    NNHJ(36)
+    C.[Pt](37)
+    HO2(38)
+    NOHJJ(39)
+    HNO(40)
+    [H][H].[Pt](41)
+    1_N4(T)(42)
+    [Pt]N=N[Pt](43)
+    [O]ON=[N](44)
+    [N]=NN=O(45)
+    NH2NHN(46)
+    HNNNH2(47)
+    ONOOJ(48)
+    ONNO_cis(49)
+Added 0 new core reactions
+Created 33 new edge reactions
+    H2(2) + CH2(S)(31) <=> CH4(1)
+    H(33) + CH3(32) <=> CH4(1)
+    H(33) + H(33) <=> H2(2)
+    H(33) + OH(D)(34) <=> H2O(3)
+    H(33) + NH2(D)(35) <=> NH3(8)
+    NNHJ(36) + CH3(32) <=> N2(4) + CH4(1)
+    X(5) + CH4(1) <=> C.[Pt](37)
+    O2(6) + CH4(1) <=> HO2(38) + CH3(32)
+    NOHJJ(39) + CH3(32) <=> NO(7) + CH4(1)
+    HNO(40) + CH3(32) <=> NO(7) + CH4(1)
+    H(33) + NNHJ(36) <=> N2(4) + H2(2)
+    X(5) + H2(2) <=> [H][H].[Pt](41)
+    O2(6) + H2(2) <=> H(33) + HO2(38)
+    H(33) + NOHJJ(39) <=> NO(7) + H2(2)
+    H(33) + HNO(40) <=> NO(7) + H2(2)
+    OH(D)(34) + NNHJ(36) <=> N2(4) + H2O(3)
+    X(5) + X(5) + H2O(3) <=> HX(9) + HOX(12)
+    O2(6) + H2O(3) <=> OH(D)(34) + HO2(38)
+    OH(D)(34) + NOHJJ(39) <=> NO(7) + H2O(3)
+    OH(D)(34) + HNO(40) <=> NO(7) + H2O(3)
+    1_N4(T)(42) <=> N2(4) + N2(4)
+    X(5) + X(5) + N2(4) <=> [Pt]N=N[Pt](43)
+    O2(6) + N2(4) <=> [O]ON=[N](44)
+    NO(7) + N2(4) <=> [N]=NN=O(45)
+    NH2NHN(46) <=> N2(4) + NH3(8)
+    HNNNH2(47) <=> N2(4) + NH3(8)
+    NNHJ(36) + NH2(D)(35) <=> N2(4) + NH3(8)
+    X(5) + X(5) + NH3(8) <=> HX(9) + NH2_X(22)
+    O2(6) + NO(7) <=> ONOOJ(48)
+    HO2(38) + NH2(D)(35) <=> O2(6) + NH3(8)
+    NO(7) + NO(7) <=> ONNO_cis(49)
+    NOHJJ(39) + NH2(D)(35) <=> NO(7) + NH3(8)
+    HNO(40) + NH2(D)(35) <=> NO(7) + NH3(8)
+
+After model enlargement:
+    The model core has 11 species and 0 reactions
+    The model edge has 41 species and 69 reactions
+
+
+Completed initial enlarge edge step.
+
+Saving current model core to Chemkin file...
+Chemkin file contains 0 reactions.
+Chemkin file contains 0 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 0 reactions.
+Chemkin file contains 0 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 28 reactions.
+Chemkin file contains 41 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 28 reactions.
+Chemkin file contains 41 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:50
+    Memory used: 703.33 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Beginning model generation stage 1...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+At time 0.0000e+00 s, species ONNO_cis(49) was added to model core to avoid singularity
+
+
+Adding species ONNO_cis(49) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    ONNO_cis(49)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    NO(7) + NO(7) <=> ONNO_cis(49)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 12 species and 1 reactions
+    The model edge has 40 species and 68 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species O[N]N=O renamed [N-]([N+]DO)O based on thermo library name
+Species [O]NN=O renamed [N-]([NH+]DO)[O] based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 1
+1 O u1 p1 c0 {3,T}
+2 O u0 p2 c0 {4,D}
+3 N u1 p0 c0 {1,T} {4,S}
+4 N u0 p1 c0 {2,D} {3,S}
+
+Error: Could not update atomtypes for this molecule:
+1 O u0 p1 c+1 {3,T}
+2 O u0 p2 c0 {4,D}
+3 N u0 p1 c-1 {1,T} {4,S}
+4 N u0 p1 c0 {2,D} {3,S}
+
+Species [Pt]N(N=O)O[Pt] renamed ONNO_cisXX based on thermo library name
+Species O=NN=O.[Pt] renamed ONNO_cis based on thermo library name
+Species [Pt][N+](=O)N([Pt])[O-] renamed ONNO_cisXX based on thermo library name
+Species NONN=O renamed NONNDO based on thermo library name
+Species NN(N=O)O renamed NN(NDO)O based on thermo library name
+Removing species [N]=NN(N=O)[O](52) with Gibbs energy 217455.0812595642 from edge because it's Gibbs number 0.563877590521791 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON=[N](53) with Gibbs energy 275801.818504014 from edge because it's Gibbs number 0.7151749446961483 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]OO[N]N=O(66) with Gibbs energy 254888.72995966813 from edge because it's Gibbs number 0.6609457775857873 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction O2(6) + ONNO_cis(49) <=> [O]OO[N]N=O(57), Ea raised from 222.8 to 227.6 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + ONNO_cis(49) <=> [O]N(N=O)O[O](58), Ea raised from 134.5 to 137.9 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + ONNO_cis(49) <=> O=NO[N]N=O(59), Ea raised from 26.6 to 29.8 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 14 new edge species
+    [N-]([N+]DO)O(50)
+    [N-]([NH+]DO)[O](51)
+    ONNO_cisXX(54)
+    ONNO_cis(55)
+    ONNO_cisXX(56)
+    [O]OO[N]N=O(57)
+    [O]N(N=O)O[O](58)
+    O=NO[N]N=O(59)
+    O=NN(N=O)[O](60)
+    NONNDO(61)
+    NN(NDO)O(62)
+    [O-][NH+](N=O)N(63)
+    O=NN(N(N=O)[O])[O](64)
+    O=N[N]ON(N=O)[O](65)
+Added 0 new core reactions
+Created 21 new edge reactions
+    [N-]([N+]DO)O(50) + CH3(32) <=> ONNO_cis(49) + CH4(1)
+    [N-]([NH+]DO)[O](51) + CH3(32) <=> ONNO_cis(49) + CH4(1)
+    H(33) + [N-]([N+]DO)O(50) <=> ONNO_cis(49) + H2(2)
+    H(33) + [N-]([NH+]DO)[O](51) <=> ONNO_cis(49) + H2(2)
+    OH(D)(34) + [N-]([N+]DO)O(50) <=> ONNO_cis(49) + H2O(3)
+    OH(D)(34) + [N-]([NH+]DO)[O](51) <=> ONNO_cis(49) + H2O(3)
+    X(5) + X(5) + ONNO_cis(49) <=> ONNO_cisXX(54)
+    X(5) + X(5) + ONNO_cis(49) <=> NO_X(25) + NO_X(25)
+    X(5) + ONNO_cis(49) <=> ONNO_cis(55)
+    X(5) + X(5) + ONNO_cis(49) <=> ONNO_cisXX(56)
+    O2(6) + ONNO_cis(49) <=> [O]OO[N]N=O(57)
+    O2(6) + ONNO_cis(49) <=> [O]N(N=O)O[O](58)
+    NO(7) + ONNO_cis(49) <=> O=NO[N]N=O(59)
+    NO(7) + ONNO_cis(49) <=> O=NN(N=O)[O](60)
+    NONNDO(61) <=> ONNO_cis(49) + NH3(8)
+    NN(NDO)O(62) <=> ONNO_cis(49) + NH3(8)
+    [N-]([N+]DO)O(50) + NH2(D)(35) <=> ONNO_cis(49) + NH3(8)
+    [N-]([NH+]DO)[O](51) + NH2(D)(35) <=> ONNO_cis(49) + NH3(8)
+    [O-][NH+](N=O)N(63) <=> ONNO_cis(49) + NH3(8)
+    O=NN(N(N=O)[O])[O](64) <=> ONNO_cis(49) + ONNO_cis(49)
+    O=N[N]ON(N=O)[O](65) <=> ONNO_cis(49) + ONNO_cis(49)
+
+After model enlargement:
+    The model core has 12 species and 1 reactions
+    The model edge has 54 species and 89 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 0 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 0 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 45 reactions.
+Chemkin file contains 45 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 45 reactions.
+Chemkin file contains 45 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:56
+    Memory used: 690.79 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Exceeded max number of objects...removing excess objects
+Reached max number of objects...preparing to terminate
+At time 0.0000e+00 s, species NH3_X(21) at rate ratio 1.0841353700616174e-05 exceeded the minimum rate for moving to model core of 1e-06
+terminating simulation due to interrupt...
+
+
+Adding species NH3_X(21) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH3_X(21)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + NH3(8) <=> NH3_X(21)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 13 species and 2 reactions
+    The model edge has 53 species and 88 reactions
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 13 species and 2 reactions
+    The model edge has 53 species and 88 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 1 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 1 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 45 reactions.
+Chemkin file contains 45 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 45 reactions.
+Chemkin file contains 45 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:00:58
+    Memory used: 706.72 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Reached max number of objects...preparing to terminate
+At time 0.0000e+00 s, species NO_X(25) at rate ratio 3.5841459846684e-06 exceeded the minimum rate for moving to model core of 1e-06
+terminating simulation due to interrupt...
+
+
+Adding species NO_X(25) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NO_X(25)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    NO_X(25) <=> X(5) + NO(7)
+    X(5) + X(5) + ONNO_cis(49) <=> NO_X(25) + NO_X(25)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 14 species and 4 reactions
+    The model edge has 52 species and 86 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Generating kinetics for new reactions...
+For reaction NO_X(25) + N2(4) <=> [Pt]N=NN=O(67), Ea raised from 325.2 to 326.3 kJ/mol to match endothermicity of reaction.
+For reaction X(5) + NO_X(25) <=> [Pt]ON=[Pt](68), Ea raised from 0.0 to 20.1 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 6 new edge species
+    [Pt]N=NN=O(67)
+    [Pt]ON=[Pt](68)
+    [Pt]ON(N=O)N=O(69)
+    O=NON(N=O)[Pt](70)
+    O=NN([N+](=O)[Pt])[O-](71)
+    O=NON=[Pt](72)
+Added 0 new core reactions
+Created 6 new edge reactions
+    NO_X(25) + N2(4) <=> [Pt]N=NN=O(67)
+    X(5) + NO_X(25) <=> [Pt]ON=[Pt](68)
+    NO_X(25) + ONNO_cis(49) <=> [Pt]ON(N=O)N=O(69)
+    NO_X(25) + ONNO_cis(49) <=> O=NON(N=O)[Pt](70)
+    NO_X(25) + ONNO_cis(49) <=> O=NN([N+](=O)[Pt])[O-](71)
+    NO_X(25) + NO_X(25) <=> X(5) + O=NON=[Pt](72)
+
+After model enlargement:
+    The model core has 14 species and 4 reactions
+    The model edge has 58 species and 92 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 3 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 3 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 45 reactions.
+Chemkin file contains 51 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 45 reactions.
+Chemkin file contains 51 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:00
+    Memory used: 721.50 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 3.8269e-30 s, species HX(9) at rate ratio 1419422292.7562795 was added to model core in model resurrection process
+
+
+Adding species HX(9) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    HX(9)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + X(5) + H2(2) <=> HX(9) + HX(9)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 15 species and 5 reactions
+    The model edge has 57 species and 91 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Generating kinetics for new reactions...
+For reaction N2(4) + HX(9) <=> [Pt]N=N(73), Ea raised from 118.7 to 122.5 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 5 new edge species
+    [Pt]N=N(73)
+    [Pt]ONN=O(74)
+    ON(N=O)[Pt](75)
+    [O-]N[N+](=O)[Pt](76)
+    ON=[Pt](77)
+Added 0 new core reactions
+Created 7 new edge reactions
+    X(5) + H(33) <=> HX(9)
+    N2(4) + HX(9) <=> [Pt]N=N(73)
+    ONNO_cis(49) + HX(9) <=> [Pt]ONN=O(74)
+    ONNO_cis(49) + HX(9) <=> ON(N=O)[Pt](75)
+    ONNO_cis(49) + HX(9) <=> [O-]N[N+](=O)[Pt](76)
+    X(5) + X(5) + HNO(40) <=> NO_X(25) + HX(9)
+    NO_X(25) + HX(9) <=> X(5) + ON=[Pt](77)
+
+After model enlargement:
+    The model core has 15 species and 5 reactions
+    The model edge has 62 species and 98 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 4 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 4 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 45 reactions.
+Chemkin file contains 58 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 45 reactions.
+Chemkin file contains 58 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:02
+    Memory used: 731.06 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 3.9612e-30 s, species NH2_X(22) at rate ratio 1419422292.7562795 was added to model core in model resurrection process
+
+
+Adding species NH2_X(22) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH2_X(22)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    X(5) + NH3_X(21) <=> HX(9) + NH2_X(22)
+    X(5) + X(5) + NH3(8) <=> HX(9) + NH2_X(22)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 16 species and 7 reactions
+    The model edge has 61 species and 96 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species NN=O renamed NH2NO based on thermo library name
+Species NN renamed NH2NH2 based on thermo library name
+Generating kinetics for new reactions...
+For reaction N2(4) + NH2_X(22) <=> NN=N[Pt](78), Ea raised from 160.0 to 162.2 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 7 new edge species
+    NN=N[Pt](78)
+    NN(N=O)O[Pt](79)
+    NON(N=O)[Pt](80)
+    [O-]N([N+](=O)[Pt])N(81)
+    NH2NO(82)
+    NON=[Pt](83)
+    NH2NH2(84)
+Added 0 new core reactions
+Created 8 new edge reactions
+    X(5) + NH2(D)(35) <=> NH2_X(22)
+    N2(4) + NH2_X(22) <=> NN=N[Pt](78)
+    ONNO_cis(49) + NH2_X(22) <=> NN(N=O)O[Pt](79)
+    ONNO_cis(49) + NH2_X(22) <=> NON(N=O)[Pt](80)
+    ONNO_cis(49) + NH2_X(22) <=> [O-]N([N+](=O)[Pt])N(81)
+    X(5) + X(5) + NH2NO(82) <=> NO_X(25) + NH2_X(22)
+    NO_X(25) + NH2_X(22) <=> X(5) + NON=[Pt](83)
+    X(5) + X(5) + NH2NH2(84) <=> NH2_X(22) + NH2_X(22)
+
+After model enlargement:
+    The model core has 16 species and 7 reactions
+    The model edge has 68 species and 104 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 6 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 6 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 45 reactions.
+Chemkin file contains 66 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 45 reactions.
+Chemkin file contains 66 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:03
+    Memory used: 742.47 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.0912e-30 s, species NH2(D)(35) at rate ratio 1.655170940400489e-05 was added to model core in model resurrection process
+
+
+Adding species NH2(D)(35) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NH2(D)(35)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + NH2(D)(35) <=> NH2_X(22)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 17 species and 8 reactions
+    The model edge has 67 species and 103 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [NH] renamed NH(T) based on thermo library name
+Species NN=[N] renamed NND[N] based on thermo library name
+Species NO[O] renamed NH2OOJ based on thermo library name
+Species NO[N]N=O renamed NO[N]NDO based on thermo library name
+Species NN(N=O)[O] renamed [N-]([N+](DO)N)[O] based on thermo library name
+Generating kinetics for new reactions...
+For reaction N2(4) + NH2(D)(35) <=> NND[N](86), Ea raised from 138.8 to 167.1 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + NH2(D)(35) <=> NO[N]NDO(88), Ea raised from 6.9 to 15.5 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 5 new edge species
+    NH(T)(85)
+    NND[N](86)
+    NH2OOJ(87)
+    NO[N]NDO(88)
+    [N-]([N+](DO)N)[O](89)
+Added 0 new core reactions
+Created 17 new edge reactions
+    H(33) + NH(T)(85) <=> NH2(D)(35)
+    NH2(D)(35) + CH4(1) <=> NH3(8) + CH3(32)
+    H2(2) + NH2(D)(35) <=> H(33) + NH3(8)
+    OH(D)(34) + NH3(8) <=> H2O(3) + NH2(D)(35)
+    NH(T)(85) + NNHJ(36) <=> N2(4) + NH2(D)(35)
+    N2(4) + NH2(D)(35) <=> NND[N](86)
+    HO2(38) + NH(T)(85) <=> O2(6) + NH2(D)(35)
+    O2(6) + NH2(D)(35) <=> NH2OOJ(87)
+    NH(T)(85) + NOHJJ(39) <=> NO(7) + NH2(D)(35)
+    NH(T)(85) + HNO(40) <=> NO(7) + NH2(D)(35)
+    NO(7) + NH2(D)(35) <=> NH2NO(82)
+    NH(T)(85) + [N-]([N+]DO)O(50) <=> ONNO_cis(49) + NH2(D)(35)
+    NH(T)(85) + [N-]([NH+]DO)[O](51) <=> ONNO_cis(49) + NH2(D)(35)
+    ONNO_cis(49) + NH2(D)(35) <=> NO[N]NDO(88)
+    ONNO_cis(49) + NH2(D)(35) <=> [N-]([N+](DO)N)[O](89)
+    NH2(D)(35) + NH2(D)(35) <=> NH(T)(85) + NH3(8)
+    NH2NH2(84) <=> NH2(D)(35) + NH2(D)(35)
+
+After model enlargement:
+    The model core has 17 species and 8 reactions
+    The model edge has 72 species and 120 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 1 reactions.
+Chemkin file contains 7 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 1 reactions.
+Chemkin file contains 7 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 62 reactions.
+Chemkin file contains 66 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 62 reactions.
+Chemkin file contains 66 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:05
+    Memory used: 755.92 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.2171e-30 s, species HNO(40) at rate ratio 1.655170851912495e-05 was added to model core in model resurrection process
+
+
+Adding species HNO(40) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    HNO(40)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    HNO(40) + NH2(D)(35) <=> NO(7) + NH3(8)
+    X(5) + X(5) + HNO(40) <=> NO_X(25) + HX(9)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 18 species and 10 reactions
+    The model edge has 71 species and 118 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [NH]O renamed HNOHJ based on thermo library name
+Species N[O] renamed NH2OJ based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 1
+1 O u1 p1 c0 {2,T}
+2 N u1 p0 c0 {1,T} {3,S}
+3 H u0 p0 c0 {2,S}
+
+Error: Could not update atomtypes for this molecule:
+1 O u0 p1 c+1 {2,T}
+2 N u0 p1 c-1 {1,T} {3,S}
+3 H u0 p0 c0 {2,S}
+
+Species [Pt]ON[Pt] renamed HNOXX based on thermo library name
+Species [NH]ON=O renamed [NH]ONDO based on thermo library name
+Species NON renamed NON based on thermo library name
+Species NNO renamed NNO based on thermo library name
+Species NNO[Pt] renamed NH2NHOJX based on thermo library name
+Species NO[NH] renamed NO[NH] based on thermo library name
+Species NN[O] renamed NH2NHOJ based on thermo library name
+Generating kinetics for new reactions...
+For reaction O2(6) + HNO(40) <=> [NH]OO[O](96), Ea raised from 233.8 to 238.2 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + HNO(40) <=> [O]ON[O](97), Ea raised from 102.2 to 107.0 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + HNO(40) <=> [NH]ONDO(98), Ea raised from 28.4 to 54.9 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + HNOHJ(90) <=> HNO(40) + HNO(40), Ea raised from -6.7 to 22.6 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + NH2OJ(91) <=> HNO(40) + HNO(40), Ea raised from -4.8 to 51.9 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 25 new edge species
+    HNOHJ(90)
+    NH2OJ(91)
+    [O]NN=[N](92)
+    [NH]ON=[N](93)
+    HNOXX(94)
+    N=O.[Pt](95)
+    [NH]OO[O](96)
+    [O]ON[O](97)
+    [NH]ONDO(98)
+    NON(99)
+    NNO(100)
+    [O]N(N=O)N[O](101)
+    [NH]ON(N=O)[O](102)
+    [O]NO[N]N=O(103)
+    [NH]OO[N]N=O(104)
+    [Pt]NON=O(105)
+    NO[Pt](106)
+    ON[Pt](107)
+    NH2NHOJX(108)
+    NON[Pt](109)
+    NO[NH](110)
+    NH2NHOJ(111)
+    [O]NN[O](112)
+    [NH]ON[O](113)
+    [NH]OO[NH](114)
+Added 0 new core reactions
+Created 43 new edge reactions
+    NO(7) + H(33) <=> HNO(40)
+    HNOHJ(90) + CH3(32) <=> HNO(40) + CH4(1)
+    NH2OJ(91) + CH3(32) <=> HNO(40) + CH4(1)
+    H(33) + HNOHJ(90) <=> HNO(40) + H2(2)
+    H(33) + NH2OJ(91) <=> HNO(40) + H2(2)
+    OH(D)(34) + HNOHJ(90) <=> HNO(40) + H2O(3)
+    OH(D)(34) + NH2OJ(91) <=> HNO(40) + H2O(3)
+    [O]NN=[N](92) <=> N2(4) + HNO(40)
+    [NH]ON=[N](93) <=> N2(4) + HNO(40)
+    NO(7) + NNHJ(36) <=> N2(4) + HNO(40)
+    X(5) + X(5) + HNO(40) <=> HNOXX(94)
+    X(5) + HNO(40) <=> N=O.[Pt](95)
+    O2(6) + HNO(40) <=> NO(7) + HO2(38)
+    O2(6) + HNO(40) <=> [NH]OO[O](96)
+    O2(6) + HNO(40) <=> [O]ON[O](97)
+    NO(7) + NOHJJ(39) <=> NO(7) + HNO(40)
+    NO(7) + HNO(40) <=> [NH]ONDO(98)
+    NO(7) + HNO(40) <=> [N-]([NH+]DO)[O](51)
+    NON(99) <=> HNO(40) + NH3(8)
+    NNO(100) <=> HNO(40) + NH3(8)
+    NH2(D)(35) + HNOHJ(90) <=> HNO(40) + NH3(8)
+    NH2(D)(35) + NH2OJ(91) <=> HNO(40) + NH3(8)
+    [O]N(N=O)N[O](101) <=> ONNO_cis(49) + HNO(40)
+    [NH]ON(N=O)[O](102) <=> ONNO_cis(49) + HNO(40)
+    [O]NO[N]N=O(103) <=> ONNO_cis(49) + HNO(40)
+    [NH]OO[N]N=O(104) <=> ONNO_cis(49) + HNO(40)
+    NO(7) + [N-]([N+]DO)O(50) <=> ONNO_cis(49) + HNO(40)
+    NO(7) + [N-]([NH+]DO)[O](51) <=> ONNO_cis(49) + HNO(40)
+    NO_X(25) + HNO(40) <=> [Pt]ONN=O(74)
+    NO_X(25) + HNO(40) <=> [Pt]NON=O(105)
+    HX(9) + HNO(40) <=> NO[Pt](106)
+    HX(9) + HNO(40) <=> ON[Pt](107)
+    HNO(40) + NH2_X(22) <=> NH2NHOJX(108)
+    HNO(40) + NH2_X(22) <=> NON[Pt](109)
+    NH(T)(85) + HNOHJ(90) <=> HNO(40) + NH2(D)(35)
+    NH(T)(85) + NH2OJ(91) <=> HNO(40) + NH2(D)(35)
+    HNO(40) + NH2(D)(35) <=> NO[NH](110)
+    HNO(40) + NH2(D)(35) <=> NH2NHOJ(111)
+    [O]NN[O](112) <=> HNO(40) + HNO(40)
+    [NH]ON[O](113) <=> HNO(40) + HNO(40)
+    [NH]OO[NH](114) <=> HNO(40) + HNO(40)
+    NO(7) + HNOHJ(90) <=> HNO(40) + HNO(40)
+    NO(7) + NH2OJ(91) <=> HNO(40) + HNO(40)
+
+After model enlargement:
+    The model core has 18 species and 10 reactions
+    The model edge has 96 species and 161 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 2 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 2 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 97 reactions.
+Chemkin file contains 74 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 97 reactions.
+Chemkin file contains 74 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:01:09
+    Memory used: 733.30 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.3393e-30 s, species O=NN(N=O)[O](60) at rate ratio 6.588137822814326e-08 was added to model core in model resurrection process
+
+
+Adding species O=NN(N=O)[O](60) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    O=NN(N=O)[O](60)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    NO(7) + ONNO_cis(49) <=> O=NN(N=O)[O](60)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 19 species and 11 reactions
+    The model edge has 95 species and 160 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [O] renamed O(T) based on thermo library name
+Species [O][N]N=O renamed ONNOJJ_cis based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u1 p1 c0 {5,T}
+2 O u1 p2 c0 {4,S}
+3 O u0 p2 c0 {6,D}
+4 N u0 p1 c0 {2,S} {5,S} {6,S}
+5 N u1 p0 c0 {1,T} {4,S}
+6 N u0 p1 c0 {3,D} {4,S}
+
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p1 c+1 {5,T}
+2 O u1 p2 c0 {4,S}
+3 O u0 p2 c0 {6,D}
+4 N u0 p1 c0 {2,S} {5,S} {6,S}
+5 N u0 p1 c-1 {1,T} {4,S}
+6 N u0 p1 c0 {3,D} {4,S}
+
+Removing species [O]N1[N]OO[N]1(115) with Gibbs energy 396274.85462017683 from edge because it's Gibbs number 0.8463807953551477 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]1OON1N=O(118) with Gibbs energy 325346.5138820943 from edge because it's Gibbs number 0.678894257740644 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species ONNOJJ_cis(120) with Gibbs energy 691418.3158175276 from edge because it's Gibbs number 1.5433173922233128 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N-]1O[N+]1([O])N=O(123) with Gibbs energy 416776.04293487984 from edge because it's Gibbs number 0.8947912475394454 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]=NN(N(N=O)[O])[O](132) with Gibbs energy 309067.6879158116 from edge because it's Gibbs number 0.6404542749474489 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]=NO[N]N(N=O)[O](133) with Gibbs energy 367415.42735008005 from edge because it's Gibbs number 0.7782336273725349 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O][N-][N+](N=O)(O[O])[O](145) with Gibbs energy 337900.6757766183 from edge because it's Gibbs number 0.7085390102681315 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN(O[N]N(N=O)[O])[O](158) with Gibbs energy 256739.21981025138 from edge because it's Gibbs number 0.5168885204060408 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N(N=O)[O])[O](159) with Gibbs energy 256739.23894268874 from edge because it's Gibbs number 0.5168885655843949 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]OO[N]N(N=O)[O](160) with Gibbs energy 346486.77548826404 from edge because it's Gibbs number 0.7288137847426501 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]OO[N]N(N=O)[O](177) with Gibbs energy 325015.35764906113 from edge because it's Gibbs number 0.6781122824356669 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN(N(N(N(N=O)[O])[O])[O])[O](184) with Gibbs energy 278769.1590733954 from edge because it's Gibbs number 0.5689088864916771 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN([N]ON(N(N=O)[O])[O])[O](185) with Gibbs energy 348350.93484781537 from edge because it's Gibbs number 0.7332157148236857 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN([N]OO[N]N(N=O)[O])[O](186) with Gibbs energy 438087.4096575621 from edge because it's Gibbs number 0.9451148133676045 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN([N]OON(N=O)N=O)[O](187) with Gibbs energy 293099.50736521435 from edge because it's Gibbs number 0.6027478342695433 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN([N]OON=[N+](N=O)[O-])[O](193) with Gibbs energy 290145.1683556787 from edge because it's Gibbs number 0.5957716100057643 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O][N-][N+](OON(N=O)N=O)N=O(197) with Gibbs energy 297266.2668574323 from edge because it's Gibbs number 0.612587005934379 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction O=NN(N=O)[O](60) <=> [N]1OON1N=O(118), Ea raised from 288.0 to 290.3 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) <=> [O]N1ON1N=O(119), Ea raised from 199.1 to 200.2 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) <=> O=[N+]1[N-]OO[N]1(122), Ea raised from 77.8 to 88.4 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) <=> [N-]1O[N+]1([O])N=O(123), Ea raised from 342.9 to 349.0 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NN(N=O)[O](60) <=> [N]=NON(N=O)N=O(134), Ea raised from 275.4 to 278.8 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NN(N=O)[O](60) <=> [N]=NO[N-][N+](=O)N=O(135), Ea raised from 165.3 to 173.1 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NN(N=O)[O](60) <=> [N]=N[N+](N=O)(N=O)[O-](136), Ea raised from 173.5 to 176.7 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O]N(N=O)[N]OO[O](141), Ea raised from 287.5 to 292.2 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O]ON(N(N=O)[O])[O](142), Ea raised from 199.2 to 202.5 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O]OON(N=O)N=O(143), Ea raised from 127.9 to 133.6 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O]OO[N+](N=O)[N-][O](144), Ea raised from 287.5 to 292.2 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O][N-][N+](N=O)(O[O])[O](145), Ea raised from 353.6 to 362.6 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [N-]([N+](=O)N=O)OO[O](146), Ea raised from 36.5 to 44.1 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NN(N=O)[O](60) <=> [O]O[N+](N=O)(N=O)[O-](147), Ea raised from 75.1 to 79.4 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NN(N=O)[O](60) <=> O=NO[N]N(N=O)[O](148), Ea raised from 91.3 to 94.4 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NN(N=O)[O](60) <=> O=NN(N(N=O)[O])[O](64), Ea raised from 47.9 to 51.6 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NN(N=O)[O](60) <=> O=NO[N+](N=O)[N-][O](150), Ea raised from 91.3 to 94.4 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NN(N=O)[O](60) <=> [O][N-][N+](N=O)(N=O)[O](151), Ea raised from 131.3 to 138.7 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N]OON(N=O)N=O(161), Ea raised from 111.0 to 115.5 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N]O[N+](N=O)(N=O)[O-](165), Ea raised from 41.5 to 45.3 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + NH2(D)(35) <=> NO[N]N(N=O)[O](167), Ea raised from 27.4 to 32.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + NH2(D)(35) <=> [N-]([N+](N=O)ON)[O](170), Ea raised from 27.4 to 32.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + HNO(40) <=> [NH]OON(N=O)N=O(178), Ea raised from 119.8 to 124.3 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + HNO(40) <=> [N-]([N+](=O)N=O)OO[NH](180), Ea raised from 29.9 to 34.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + HNO(40) <=> [NH]O[N+](N=O)(N=O)[O-](182), Ea raised from 53.5 to 57.7 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN([N]OON(N=O)N=O)[O](187), Ea raised from 175.8 to 180.0 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(ON(N(N=O)[O])[O])N=O(188), Ea raised from 86.9 to 90.6 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN([N]O[N+](N=O)(N=O)[O-])[O](190), Ea raised from 106.2 to 109.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN([N]OON=[N+](N=O)[O-])[O](193), Ea raised from 81.8 to 90.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(O[N+](N=O)([N][O])[O-])N=O(195), Ea raised from 89.2 to 93.2 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> [O][N-][N+](OON(N=O)N=O)N=O(197), Ea raised from 175.8 to 180.0 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(O[N+](N=O)([N][O])[O-])N=O(195), Ea raised from 89.2 to 93.2 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 70 new edge species
+    O(T)(117)
+    O=N[N]N=O(116)
+    [O]N1ON1N=O(119)
+    O=N[N+](=O)[N-](121)
+    O=[N+]1[N-]OO[N]1(122)
+    [N-]1ON([N+]1=O)[O](124)
+    [O]ON=NN=O(125)
+    [O]N(N=O)[N]O(126)
+    O=NN(N=O)O(127)
+    [N-]([N+](N=O)O)[O](128)
+    [N-]([NH+](N=O)[O])[O](129)
+    [N-]([N+](=O)N=O)O(130)
+    O=N[NH+](N=O)[O-](131)
+    [N]=NON(N=O)N=O(134)
+    [N]=NO[N-][N+](=O)N=O(135)
+    [N]=N[N+](N=O)(N=O)[O-](136)
+    [Pt]ON(N(N=O)[O])[Pt](137)
+    [N-]([N+](N=O)(O[Pt])[Pt])[O](138)
+    [N-]([N+](=O)N=O)O[Pt](139)
+    [O-][N+](N([Pt])[O])(N=O)[Pt](140)
+    [O]N(N=O)[N]OO[O](141)
+    [O]ON(N(N=O)[O])[O](142)
+    [O]OON(N=O)N=O(143)
+    [O]OO[N+](N=O)[N-][O](144)
+    [N-]([N+](=O)N=O)OO[O](146)
+    [O]O[N+](N=O)(N=O)[O-](147)
+    O=NO[N]N(N=O)[O](148)
+    O=NON(N=O)N=O(149)
+    O=NO[N+](N=O)[N-][O](150)
+    [O][N-][N+](N=O)(N=O)[O](151)
+    O=NO[N-][N+](=O)N=O(152)
+    O=N[N+](N=O)(N=O)[O-](153)
+    NONN(N=O)[O](154)
+    NN(N(N=O)[O])O(155)
+    [O-]N([NH+]([O])N)N=O(156)
+    O=NN(N(N(N=O)[O])[O])[O](157)
+    O=N[N]OON(N=O)N=O(161)
+    O=NN(ON(N=O)N=O)[O](162)
+    O=N[N]OO[N-][N+](=O)N=O(163)
+    O=N[N+](=O)[N-]ON(N=O)[O](164)
+    O=N[N]O[N+](N=O)(N=O)[O-](165)
+    O=NN([N+](N=O)(N=O)[O-])[O](166)
+    NO[N]N(N=O)[O](167)
+    NN(N(N=O)[O])[O](168)
+    NON(N=O)N=O(169)
+    [N-]([N+](N=O)ON)[O](170)
+    [N-]([N+](N=O)([O])N)[O](171)
+    [N-]([N+](=O)N=O)ON(172)
+    O=N[N+](N=O)(N)[O-](173)
+    [O]NN(N(N=O)[O])[O](174)
+    [O]N(N=O)[N]ON[O](175)
+    [NH]ON(N(N=O)[O])[O](176)
+    [NH]OON(N=O)N=O(178)
+    [O]NON(N=O)N=O(179)
+    [N-]([N+](=O)N=O)OO[NH](180)
+    [N-]([N+](=O)N=O)ON[O](181)
+    [NH]O[N+](N=O)(N=O)[O-](182)
+    [O]N[N+](N=O)(N=O)[O-](183)
+    O=NN(ON(N(N=O)[O])[O])N=O(188)
+    O=NN(OON(N=O)N=O)N=O(189)
+    O=NN([N]O[N+](N=O)(N=O)[O-])[O](190)
+    O=NN(N([N+](N=O)(N=O)[O-])[O])[O](191)
+    O=NN(O[N+](N=O)(N=O)[O-])N=O(192)
+    O=N[N+](=NON(N(N=O)[O])[O])[O-](194)
+    O=NN(O[N+](N=O)([N][O])[O-])N=O(195)
+    O=N[N+](=NOON(N=O)N=O)[O-](196)
+    O=N[N+]([N+](N=O)(N=O)[O-])(N=O)[O-](198)
+    O=N[N+]([N+](N=O)([N][O])[O-])(N=O)[O-](199)
+    O=N[N+](=NO[N+](N=O)(N=O)[O-])[O-](200)
+    O=N[N+](=NOON=[N+](N=O)[O-])[O-](201)
+Added 0 new core reactions
+Created 109 new edge reactions
+    O(T)(117) + O=N[N]N=O(116) <=> O=NN(N=O)[O](60)
+    O=NN(N=O)[O](60) <=> [O]N1ON1N=O(119)
+    O=NO[N]N=O(59) <=> O=NN(N=O)[O](60)
+    O(T)(117) + O=N[N+](=O)[N-](121) <=> O=NN(N=O)[O](60)
+    O=NN(N=O)[O](60) <=> O=[N+]1[N-]OO[N]1(122)
+    O=NN(N=O)[O](60) <=> [N-]1ON([N+]1=O)[O](124)
+    [O]ON=NN=O(125) <=> O=NN(N=O)[O](60)
+    [O]N(N=O)[N]O(126) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    [O]N(N=O)N[O](101) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    O=NN(N=O)O(127) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    [N-]([N+](N=O)O)[O](128) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    [N-]([NH+](N=O)[O])[O](129) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    [N-]([N+](=O)N=O)O(130) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    O=N[NH+](N=O)[O-](131) + CH3(32) <=> O=NN(N=O)[O](60) + CH4(1)
+    H(33) + [O]N(N=O)[N]O(126) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + [O]N(N=O)N[O](101) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + O=NN(N=O)O(127) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + [N-]([N+](N=O)O)[O](128) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + [N-]([NH+](N=O)[O])[O](129) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + [N-]([N+](=O)N=O)O(130) <=> O=NN(N=O)[O](60) + H2(2)
+    H(33) + O=N[NH+](N=O)[O-](131) <=> O=NN(N=O)[O](60) + H2(2)
+    OH(D)(34) + [O]N(N=O)[N]O(126) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + [O]N(N=O)N[O](101) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + O=NN(N=O)O(127) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + [N-]([N+](N=O)O)[O](128) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + [N-]([NH+](N=O)[O])[O](129) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + [N-]([N+](=O)N=O)O(130) <=> O=NN(N=O)[O](60) + H2O(3)
+    OH(D)(34) + O=N[NH+](N=O)[O-](131) <=> O=NN(N=O)[O](60) + H2O(3)
+    N2(4) + O=NN(N=O)[O](60) <=> [N]=NON(N=O)N=O(134)
+    N2(4) + O=NN(N=O)[O](60) <=> [N]=NO[N-][N+](=O)N=O(135)
+    N2(4) + O=NN(N=O)[O](60) <=> [N]=N[N+](N=O)(N=O)[O-](136)
+    X(5) + X(5) + O=NN(N=O)[O](60) <=> [Pt]ON(N(N=O)[O])[Pt](137)
+    X(5) + O=NN(N=O)[O](60) <=> [Pt]ON(N=O)N=O(69)
+    X(5) + X(5) + O=NN(N=O)[O](60) <=> [N-]([N+](N=O)(O[Pt])[Pt])[O](138)
+    X(5) + O=NN(N=O)[O](60) <=> [N-]([N+](=O)N=O)O[Pt](139)
+    X(5) + X(5) + O=NN(N=O)[O](60) <=> [O-][N+](N([Pt])[O])(N=O)[Pt](140)
+    O2(6) + O=NN(N=O)[O](60) <=> [O]N(N=O)[N]OO[O](141)
+    O2(6) + O=NN(N=O)[O](60) <=> [O]ON(N(N=O)[O])[O](142)
+    O2(6) + O=NN(N=O)[O](60) <=> [O]OON(N=O)N=O(143)
+    O2(6) + O=NN(N=O)[O](60) <=> [O]OO[N+](N=O)[N-][O](144)
+    O2(6) + O=NN(N=O)[O](60) <=> [N-]([N+](=O)N=O)OO[O](146)
+    O2(6) + O=NN(N=O)[O](60) <=> [O]O[N+](N=O)(N=O)[O-](147)
+    NO(7) + O=NN(N=O)[O](60) <=> O=NO[N]N(N=O)[O](148)
+    NO(7) + O=NN(N=O)[O](60) <=> O=NN(N(N=O)[O])[O](64)
+    NO(7) + O=NN(N=O)[O](60) <=> O=NON(N=O)N=O(149)
+    NO(7) + O=NN(N=O)[O](60) <=> O=NO[N+](N=O)[N-][O](150)
+    NO(7) + O=NN(N=O)[O](60) <=> [O][N-][N+](N=O)(N=O)[O](151)
+    NO(7) + O=NN(N=O)[O](60) <=> O=NO[N-][N+](=O)N=O(152)
+    NO(7) + O=NN(N=O)[O](60) <=> O=N[N+](N=O)(N=O)[O-](153)
+    NONN(N=O)[O](154) <=> O=NN(N=O)[O](60) + NH3(8)
+    NN(N(N=O)[O])O(155) <=> O=NN(N=O)[O](60) + NH3(8)
+    [O]N(N=O)[N]O(126) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    [O]N(N=O)N[O](101) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    O=NN(N=O)O(127) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    [N-]([N+](N=O)O)[O](128) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    [N-]([NH+](N=O)[O])[O](129) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    [N-]([N+](=O)N=O)O(130) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    [O-]N([NH+]([O])N)N=O(156) <=> O=NN(N=O)[O](60) + NH3(8)
+    O=N[NH+](N=O)[O-](131) + NH2(D)(35) <=> O=NN(N=O)[O](60) + NH3(8)
+    O=NN(N(N(N=O)[O])[O])[O](157) <=> ONNO_cis(49) + O=NN(N=O)[O](60)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N]OON(N=O)N=O(161)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=NN(ON(N=O)N=O)[O](162)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N]OO[N-][N+](=O)N=O(163)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N+](=O)[N-]ON(N=O)[O](164)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=N[N]O[N+](N=O)(N=O)[O-](165)
+    ONNO_cis(49) + O=NN(N=O)[O](60) <=> O=NN([N+](N=O)(N=O)[O-])[O](166)
+    NH(T)(85) + [O]N(N=O)[N]O(126) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    NH(T)(85) + [O]N(N=O)N[O](101) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    NH(T)(85) + O=NN(N=O)O(127) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> NO[N]N(N=O)[O](167)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> NN(N(N=O)[O])[O](168)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> NON(N=O)N=O(169)
+    NH(T)(85) + [N-]([N+](N=O)O)[O](128) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    NH(T)(85) + [N-]([NH+](N=O)[O])[O](129) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> NH(T)(85) + [N-]([N+](=O)N=O)O(130)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> [N-]([N+](N=O)ON)[O](170)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> [N-]([N+](N=O)([O])N)[O](171)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> [N-]([N+](=O)N=O)ON(172)
+    NH(T)(85) + O=N[NH+](N=O)[O-](131) <=> O=NN(N=O)[O](60) + NH2(D)(35)
+    O=NN(N=O)[O](60) + NH2(D)(35) <=> O=N[N+](N=O)(N)[O-](173)
+    [O]NN(N(N=O)[O])[O](174) <=> O=NN(N=O)[O](60) + HNO(40)
+    [O]N(N=O)[N]ON[O](175) <=> O=NN(N=O)[O](60) + HNO(40)
+    [NH]ON(N(N=O)[O])[O](176) <=> O=NN(N=O)[O](60) + HNO(40)
+    NO(7) + [O]N(N=O)[N]O(126) <=> O=NN(N=O)[O](60) + HNO(40)
+    NO(7) + [O]N(N=O)N[O](101) <=> O=NN(N=O)[O](60) + HNO(40)
+    O=NN(N=O)[O](60) + HNO(40) <=> NO(7) + O=NN(N=O)O(127)
+    O=NN(N=O)[O](60) + HNO(40) <=> [NH]OON(N=O)N=O(178)
+    O=NN(N=O)[O](60) + HNO(40) <=> [O]NON(N=O)N=O(179)
+    NO(7) + [N-]([N+](N=O)O)[O](128) <=> O=NN(N=O)[O](60) + HNO(40)
+    NO(7) + [N-]([NH+](N=O)[O])[O](129) <=> O=NN(N=O)[O](60) + HNO(40)
+    O=NN(N=O)[O](60) + HNO(40) <=> NO(7) + [N-]([N+](=O)N=O)O(130)
+    O=NN(N=O)[O](60) + HNO(40) <=> [N-]([N+](=O)N=O)OO[NH](180)
+    O=NN(N=O)[O](60) + HNO(40) <=> [N-]([N+](=O)N=O)ON[O](181)
+    O=NN(N=O)[O](60) + HNO(40) <=> NO(7) + O=N[NH+](N=O)[O-](131)
+    O=NN(N=O)[O](60) + HNO(40) <=> [NH]O[N+](N=O)(N=O)[O-](182)
+    O=NN(N=O)[O](60) + HNO(40) <=> [O]N[N+](N=O)(N=O)[O-](183)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(ON(N(N=O)[O])[O])N=O(188)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(OON(N=O)N=O)N=O(189)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN([N]O[N+](N=O)(N=O)[O-])[O](190)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(N([N+](N=O)(N=O)[O-])[O])[O](191)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(O[N+](N=O)(N=O)[O-])N=O(192)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+](=NON(N(N=O)[O])[O])[O-](194)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(O[N+](N=O)([N][O])[O-])N=O(195)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+](=NOON(N=O)N=O)[O-](196)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+]([N+](N=O)(N=O)[O-])(N=O)[O-](198)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+]([N+](N=O)([N][O])[O-])(N=O)[O-](199)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+](=NO[N+](N=O)(N=O)[O-])[O-](200)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=NN(O[N+](N=O)([N][O])[O-])N=O(195)
+    O=NN(N=O)[O](60) + O=NN(N=O)[O](60) <=> O=N[N+](=NOON=[N+](N=O)[O-])[O-](201)
+
+After model enlargement:
+    The model core has 19 species and 11 reactions
+    The model edge has 165 species and 269 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 8 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 201 reactions.
+Chemkin file contains 79 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 201 reactions.
+Chemkin file contains 79 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:08:00
+    Memory used: 833.25 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.4582e-30 s, species ONNO_cisXX(54) at rate ratio 1.373319543513436e-08 was added to model core in model resurrection process
+
+
+Adding species ONNO_cisXX(54) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    ONNO_cisXX(54)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + X(5) + ONNO_cis(49) <=> ONNO_cisXX(54)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 20 species and 12 reactions
+    The model edge has 164 species and 268 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species O=NN([Pt])[Pt] renamed NNOJJXX based on thermo library name
+Species [Pt]O[Pt] renamed O(T)XX based on thermo library name
+Removing species [O-]N([N+](=[Pt])O[Pt])ON(N=O)[Pt](224) with Gibbs energy 293354.4785471803 from edge because it's Gibbs number 0.6033499101113657 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction N2(4) + ONNO_cisXX(54) <=> [Pt]N=NN(N=O)O[Pt](204), Ea raised from 192.5 to 197.9 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + ONNO_cisXX(54) <=> [Pt]N=NON(N=O)[Pt](205), Ea raised from 255.7 to 260.7 kJ/mol to match endothermicity of reaction.
+For reaction X(5) + ONNO_cisXX(54) <=> [Pt]O[N+](=[Pt])N([Pt])[O-](208), Ea raised from 0.0 to 240.9 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + ONNO_cisXX(54) <=> O=NN(OON(N=O)[Pt])[Pt](211), Ea raised from 91.3 to 97.4 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + ONNO_cisXX(54) <=> X(5) + [Pt]=NON(N=O)O[Pt](214), Ea raised from 213.2 to 215.7 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + ONNO_cisXX(54) <=> X(5) + [Pt]=NOON(N=O)[Pt](215), Ea raised from 298.7 to 301.6 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + HNO(40) <=> [Pt]N(N=O)OON[Pt](222), Ea raised from 100.0 to 106.2 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + ONNO_cisXX(54) <=> X(5) + [Pt]O[N+](=[Pt])N(N(N=O)O[Pt])[O-](223), Ea raised from 225.1 to 228.9 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + ONNO_cisXX(54) <=> X(5) + [O-]N([N+](=[Pt])O[Pt])ON(N=O)[Pt](224), Ea raised from 306.1 to 309.8 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 22 new edge species
+    O=NON([Pt])[Pt](202)
+    [Pt]O[N+](=N[Pt])[O-](203)
+    [Pt]N=NN(N=O)O[Pt](204)
+    [Pt]N=NON(N=O)[Pt](205)
+    NNOJJXX(206)
+    O(T)XX(207)
+    [Pt]O[N+](=[Pt])N([Pt])[O-](208)
+    [Pt]ON(N(N=O)O[Pt])N=O(209)
+    O=NN(ON(N=O)O[Pt])[Pt](210)
+    O=NN(OON(N=O)[Pt])[Pt](211)
+    [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    [Pt]=NON(N=O)O[Pt](214)
+    [Pt]=NOON(N=O)[Pt](215)
+    [O-]N([N+](=[Pt])O[Pt])N=O(216)
+    [O-]N[N+](=[Pt])O[Pt](217)
+    [O-]N([N+](=[Pt])O[Pt])N(218)
+    [Pt]ONN(N=O)O[Pt](219)
+    [Pt]N(N=O)ONO[Pt](220)
+    [Pt]NON(N=O)O[Pt](221)
+    [Pt]N(N=O)OON[Pt](222)
+    [Pt]O[N+](=[Pt])N(N(N=O)O[Pt])[O-](223)
+Added 0 new core reactions
+Created 24 new edge reactions
+    ONNO_cisXX(54) <=> OX(10) + N2O_X(26)
+    ONNO_cisXX(54) <=> O=NON([Pt])[Pt](202)
+    ONNO_cisXX(54) <=> [Pt]O[N+](=N[Pt])[O-](203)
+    N2(4) + ONNO_cisXX(54) <=> [Pt]N=NN(N=O)O[Pt](204)
+    N2(4) + ONNO_cisXX(54) <=> [Pt]N=NON(N=O)[Pt](205)
+    X(5) + ONNO_cisXX(54) <=> OX(10) + NNOJJXX(206)
+    X(5) + ONNO_cisXX(54) <=> O(T)XX(207) + N2O_X(26)
+    X(5) + ONNO_cisXX(54) <=> NO_X(25) + [Pt]ON=[Pt](68)
+    X(5) + ONNO_cisXX(54) <=> [Pt]O[N+](=[Pt])N([Pt])[O-](208)
+    ONNO_cis(49) + ONNO_cisXX(54) <=> [Pt]ON(N(N=O)O[Pt])N=O(209)
+    ONNO_cis(49) + ONNO_cisXX(54) <=> O=NN(ON(N=O)O[Pt])[Pt](210)
+    ONNO_cis(49) + ONNO_cisXX(54) <=> O=NN(OON(N=O)[Pt])[Pt](211)
+    ONNO_cis(49) + ONNO_cisXX(54) <=> [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    ONNO_cis(49) + ONNO_cisXX(54) <=> O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    NO_X(25) + ONNO_cisXX(54) <=> X(5) + [Pt]=NON(N=O)O[Pt](214)
+    NO_X(25) + ONNO_cisXX(54) <=> X(5) + [Pt]=NOON(N=O)[Pt](215)
+    NO_X(25) + ONNO_cisXX(54) <=> X(5) + [O-]N([N+](=[Pt])O[Pt])N=O(216)
+    ONNO_cisXX(54) + HX(9) <=> X(5) + [O-]N[N+](=[Pt])O[Pt](217)
+    ONNO_cisXX(54) + NH2_X(22) <=> X(5) + [O-]N([N+](=[Pt])O[Pt])N(218)
+    ONNO_cisXX(54) + HNO(40) <=> [Pt]ONN(N=O)O[Pt](219)
+    ONNO_cisXX(54) + HNO(40) <=> [Pt]N(N=O)ONO[Pt](220)
+    ONNO_cisXX(54) + HNO(40) <=> [Pt]NON(N=O)O[Pt](221)
+    ONNO_cisXX(54) + HNO(40) <=> [Pt]N(N=O)OON[Pt](222)
+    ONNO_cisXX(54) + ONNO_cisXX(54) <=> X(5) + [Pt]O[N+](=[Pt])N(N(N=O)O[Pt])[O-](223)
+
+After model enlargement:
+    The model core has 20 species and 12 reactions
+    The model edge has 186 species and 292 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 9 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 201 reactions.
+Chemkin file contains 103 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 201 reactions.
+Chemkin file contains 103 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:08:08
+    Memory used: 838.42 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.5741e-30 s, species ONNO_cisXX(56) at rate ratio 1.4089961104326133e-08 was added to model core in model resurrection process
+
+
+Adding species ONNO_cisXX(56) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    ONNO_cisXX(56)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + X(5) + ONNO_cis(49) <=> ONNO_cisXX(56)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 21 species and 13 reactions
+    The model edge has 185 species and 291 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Removing species [O-]N([N+](=[Pt])ON)[Pt](231) with Gibbs energy 255798.05673990108 from edge because it's Gibbs number 0.5146661063139687 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [Pt]ON(O[N+](=[Pt])N([Pt])[O-])N=O(234) with Gibbs energy 338095.3333956439 from edge because it's Gibbs number 0.7089986647629584 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NN(OO[N+](=[Pt])N([Pt])[O-])[Pt](235) with Gibbs energy 427849.68220293656 from edge because it's Gibbs number 0.9209399700458357 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [Pt][N+](=O)N(O[N+](=[Pt])N([Pt])[O-])[O-](237) with Gibbs energy 338095.3333956439 from edge because it's Gibbs number 0.7089986647629584 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction ONNO_cisXX(56) <=> [Pt]N([N+](=O)[O-])[Pt](225), Ea raised from 60.5 to 61.1 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + ONNO_cisXX(56) <=> [Pt]N=NN([N+](=O)[Pt])[O-](226), Ea raised from 202.8 to 207.8 kJ/mol to match endothermicity of reaction.
+For reaction X(5) + ONNO_cisXX(56) <=> [Pt]O[N+](=[Pt])N([Pt])[O-](208), Ea raised from 0.0 to 250.8 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + ONNO_cisXX(56) <=> X(5) + [O-]N([N+](=O)[Pt])ON=[Pt](228), Ea raised from 223.4 to 225.6 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + ONNO_cisXX(56) <=> X(5) + [O-]N([N+](=[Pt])ON=O)[Pt](229), Ea raised from 225.6 to 225.8 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + ONNO_cisXX(56) <=> X(5) + [Pt]ON(O[N+](=[Pt])N([Pt])[O-])N=O(234), Ea raised from 364.3 to 367.3 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + ONNO_cisXX(56) <=> X(5) + O=NN(OO[N+](=[Pt])N([Pt])[O-])[Pt](235), Ea raised from 453.1 to 456.7 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + ONNO_cisXX(56) <=> X(5) + [Pt]O[N+](=[Pt])N(N([N+](=O)[Pt])[O-])[O-](236), Ea raised from 235.4 to 238.8 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(56) + ONNO_cisXX(56) <=> X(5) + [Pt][N+](=O)N(O[N+](=[Pt])N([Pt])[O-])[O-](237), Ea raised from 374.5 to 377.2 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 9 new edge species
+    [Pt]N([N+](=O)[O-])[Pt](225)
+    [Pt]N=NN([N+](=O)[Pt])[O-](226)
+    [O-]N(N([N+](=O)[Pt])[O-])[N+](=O)[Pt](227)
+    [O-]N([N+](=O)[Pt])ON=[Pt](228)
+    [O-]N([N+](=[Pt])ON=O)[Pt](229)
+    [O-]N([N+](=[Pt])O)[Pt](230)
+    [Pt]ONN([N+](=O)[Pt])[O-](232)
+    [Pt]NON([N+](=O)[Pt])[O-](233)
+    [Pt]O[N+](=[Pt])N(N([N+](=O)[Pt])[O-])[O-](236)
+Added 0 new core reactions
+Created 12 new edge reactions
+    ONNO_cisXX(56) <=> [Pt]N([N+](=O)[O-])[Pt](225)
+    N2(4) + ONNO_cisXX(56) <=> [Pt]N=NN([N+](=O)[Pt])[O-](226)
+    X(5) + ONNO_cisXX(56) <=> [Pt]O[N+](=[Pt])N([Pt])[O-](208)
+    ONNO_cis(49) + ONNO_cisXX(56) <=> [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    ONNO_cis(49) + ONNO_cisXX(56) <=> O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    ONNO_cis(49) + ONNO_cisXX(56) <=> [O-]N(N([N+](=O)[Pt])[O-])[N+](=O)[Pt](227)
+    NO_X(25) + ONNO_cisXX(56) <=> X(5) + [O-]N([N+](=O)[Pt])ON=[Pt](228)
+    NO_X(25) + ONNO_cisXX(56) <=> X(5) + [O-]N([N+](=[Pt])ON=O)[Pt](229)
+    ONNO_cisXX(56) + HX(9) <=> X(5) + [O-]N([N+](=[Pt])O)[Pt](230)
+    ONNO_cisXX(56) + HNO(40) <=> [Pt]ONN([N+](=O)[Pt])[O-](232)
+    ONNO_cisXX(56) + HNO(40) <=> [Pt]NON([N+](=O)[Pt])[O-](233)
+    ONNO_cisXX(54) + ONNO_cisXX(56) <=> X(5) + [Pt]O[N+](=[Pt])N(N([N+](=O)[Pt])[O-])[O-](236)
+
+After model enlargement:
+    The model core has 21 species and 13 reactions
+    The model edge has 194 species and 303 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 10 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 10 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 201 reactions.
+Chemkin file contains 115 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 201 reactions.
+Chemkin file contains 115 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:08:19
+    Memory used: 843.30 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.6870e-30 s, species ONNO_cis(55) at rate ratio 7.21895684573279e-09 was added to model core in model resurrection process
+
+
+Adding species ONNO_cis(55) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    ONNO_cis(55)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + ONNO_cis(49) <=> ONNO_cis(55)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 22 species and 14 reactions
+    The model edge has 193 species and 302 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Generating kinetics for new reactions...
+For reaction ONNO_cis(55) + NH3_X(21) <=> HX(9) + NON(N=O)[Pt](80), Ea raised from 128.0 to 129.4 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + ONNO_cis(55) <=> X(5) + O=NON(N=O)[Pt](70), Ea raised from 101.9 to 102.9 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(ON(N=O)O[Pt])[Pt](210), Ea raised from 81.0 to 85.8 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(OON(N=O)[Pt])[Pt](211), Ea raised from 169.8 to 175.3 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(54) <=> N2O_X(26) + [Pt]N(N=O)OO[Pt](241), Ea raised from 47.9 to 51.4 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213), Ea raised from 81.0 to 85.8 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213), Ea raised from 91.2 to 95.7 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213), Ea raised from 91.2 to 95.7 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 6 new edge species
+    [Pt]ON(N(N=O)[Pt])N=O(238)
+    O=NN(ON(N=O)[Pt])[Pt](239)
+    [Pt]ON(N=O)O[Pt](240)
+    [Pt]N(N=O)OO[Pt](241)
+    [O-]N([N+](=O)N(N=O)[Pt])[Pt](242)
+    [Pt]O[N+](=O)N([Pt])[O-](243)
+Added 1 new core reactions
+    X(5) + ONNO_cis(55) <=> NO_X(25) + NO_X(25)
+Created 43 new edge reactions
+    X(5) + ONNO_cis(55) <=> OX(10) + N2O_X(26)
+    ONNO_cis(55) + NH3_X(21) <=> [Pt]ONN=O(74) + NH2_X(22)
+    ONNO_cis(55) + NH3_X(21) <=> ON(N=O)[Pt](75) + NH2_X(22)
+    ONNO_cis(55) + NH3_X(21) <=> HX(9) + NN(N=O)O[Pt](79)
+    ONNO_cis(55) + NH3_X(21) <=> HX(9) + NON(N=O)[Pt](80)
+    ONNO_cis(55) + NH3_X(21) <=> [O-]N[N+](=O)[Pt](76) + NH2_X(22)
+    ONNO_cis(55) + NH3_X(21) <=> HX(9) + [O-]N([N+](=O)[Pt])N(81)
+    NO_X(25) + ONNO_cis(55) <=> X(5) + [Pt]ON(N=O)N=O(69)
+    NO_X(25) + ONNO_cis(55) <=> X(5) + O=NON(N=O)[Pt](70)
+    NO_X(25) + ONNO_cis(55) <=> X(5) + O=NN([N+](=O)[Pt])[O-](71)
+    ONNO_cis(55) + HX(9) <=> X(5) + [Pt]ONN=O(74)
+    ONNO_cis(55) + HX(9) <=> X(5) + ON(N=O)[Pt](75)
+    ONNO_cis(55) + HX(9) <=> X(5) + [O-]N[N+](=O)[Pt](76)
+    ONNO_cis(55) + NH2_X(22) <=> X(5) + NN(N=O)O[Pt](79)
+    ONNO_cis(55) + NH2_X(22) <=> X(5) + NON(N=O)[Pt](80)
+    ONNO_cis(55) + NH2_X(22) <=> NH_X(23) + [Pt]ONN=O(74)
+    ONNO_cis(55) + NH2_X(22) <=> NH_X(23) + ON(N=O)[Pt](75)
+    ONNO_cis(55) + NH2_X(22) <=> X(5) + [O-]N([N+](=O)[Pt])N(81)
+    ONNO_cis(55) + NH2_X(22) <=> NH_X(23) + [O-]N[N+](=O)[Pt](76)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + [Pt]ON(N(N=O)O[Pt])N=O(209)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(ON(N=O)O[Pt])[Pt](210)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(ON(N=O)O[Pt])[Pt](210)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(OON(N=O)[Pt])[Pt](211)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> OX(10) + [Pt]ON(N(N=O)[Pt])N=O(238)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> OX(10) + O=NN(ON(N=O)[Pt])[Pt](239)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> N2O_X(26) + [Pt]ON(N=O)O[Pt](240)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> N2O_X(26) + [Pt]N(N=O)OO[Pt](241)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + [Pt]ON(N=O)N=O(69)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + O=NON(N=O)[Pt](70)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> OX(10) + [O-]N([N+](=O)N(N=O)[Pt])[Pt](242)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> N2O_X(26) + [Pt]O[N+](=O)N([Pt])[O-](243)
+    ONNO_cis(55) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + O=NN([N+](=O)[Pt])[O-](71)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + [Pt]ON(N([N+](=O)[Pt])[O-])N=O(212)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + O=NN(ON([N+](=O)[Pt])[O-])[Pt](213)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + [O-]N(N([N+](=O)[Pt])[O-])[N+](=O)[Pt](227)
+    ONNO_cis(55) + ONNO_cisXX(56) <=> X(5) + [O-]N(N([N+](=O)[Pt])[O-])[N+](=O)[Pt](227)
+    ONNO_cis(55) + ONNO_cis(55) <=> NO_X(25) + [Pt]ON(N=O)N=O(69)
+    ONNO_cis(55) + ONNO_cis(55) <=> NO_X(25) + O=NON(N=O)[Pt](70)
+    ONNO_cis(55) + ONNO_cis(55) <=> NO_X(25) + O=NN([N+](=O)[Pt])[O-](71)
+
+After model enlargement:
+    The model core has 22 species and 15 reactions
+    The model edge has 199 species and 345 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 3 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 3 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 201 reactions.
+Chemkin file contains 159 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 201 reactions.
+Chemkin file contains 159 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:00:08:27
+    Memory used: 817.59 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.7973e-30 s, species O=NO[N]N=O(59) at rate ratio 4.740992181399403e-09 was added to model core in model resurrection process
+
+
+Adding species O=NO[N]N=O(59) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    O=NO[N]N=O(59)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    NO(7) + ONNO_cis(49) <=> O=NO[N]N=O(59)
+    O=NO[N]N=O(59) <=> O=NN(N=O)[O](60)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 23 species and 17 reactions
+    The model edge has 198 species and 343 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [N]N=O renamed NNOJJ based on thermo library name
+Species [O][N]N=O renamed ONNOJJ_cis based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p2 c0 {5,S} {6,S}
+2 O u1 p1 c0 {4,T}
+3 O u0 p2 c0 {6,D}
+4 N u1 p0 c0 {2,T} {5,S}
+5 N u1 p1 c0 {1,S} {4,S}
+6 N u0 p1 c0 {1,S} {3,D}
+
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p2 c0 {5,S} {6,S}
+2 O u0 p1 c+1 {4,T}
+3 O u0 p2 c0 {6,D}
+4 N u0 p1 c-1 {2,T} {5,S}
+5 N u1 p1 c0 {1,S} {4,S}
+6 N u0 p1 c0 {1,S} {3,D}
+
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p2 c0 {4,S} {5,S}
+2 O u1 p1 c0 {4,T}
+3 O u0 p2 c0 {6,D}
+4 N u1 p0 c0 {1,S} {2,T}
+5 N u1 p1 c0 {1,S} {6,S}
+6 N u0 p1 c0 {3,D} {5,S}
+
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p2 c0 {4,S} {5,S}
+2 O u0 p1 c+1 {4,T}
+3 O u0 p2 c0 {6,D}
+4 N u0 p1 c-1 {1,S} {2,T}
+5 N u1 p1 c0 {1,S} {6,S}
+6 N u0 p1 c0 {3,D} {5,S}
+
+Error: Could not update atomtypes for this molecule:
+multiplicity 2
+1 O u0 p2 c0 {4,S} {6,S}
+2 O u1 p2 c0 {5,S}
+3 O u0 p2 c0 {6,D}
+4 N u1 p0 c0 {1,S} {5,T}
+5 N u1 p0 c0 {2,S} {4,T}
+6 N u0 p1 c0 {1,S} {3,D}
+
+Removing species O=NN1O[N]O1(247) with Gibbs energy 272356.57995692233 from edge because it's Gibbs number 0.553766551816696 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species ONNOJJ_cis(248) with Gibbs energy 691418.3158175276 from edge because it's Gibbs number 1.5433173922233128 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O]N1[N]O[N]O1(249) with Gibbs energy 368567.1116192129 from edge because it's Gibbs number 0.7809531554011752 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O1[N]ON=NO1(251) with Gibbs energy 253194.0373147524 from edge because it's Gibbs number 0.5085171087079259 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(N=[N])[O](261) with Gibbs energy 345100.8569740312 from edge because it's Gibbs number 0.7255411480088816 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N=[N])[O](262) with Gibbs energy 382769.26794604573 from edge because it's Gibbs number 0.8144893972628715 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [N]=NO[N][N]ON=O(263) with Gibbs energy 377085.3660291352 from edge because it's Gibbs number 0.801067723467919 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON=[N](264) with Gibbs energy 421970.4264368285 from edge because it's Gibbs number 0.9070569977139192 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NON(N=[N])[N][O](266) with Gibbs energy 345100.8569740312 from edge because it's Gibbs number 0.7255411480088816 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O]OO[N]O[N]N=O(274) with Gibbs energy 274535.9935552261 from edge because it's Gibbs number 0.5589129070508861 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N(N=O)[O])[O](293) with Gibbs energy 256739.2359379729 from edge because it's Gibbs number 0.5168885584892133 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]ON(N=O)[O](294) with Gibbs energy 266409.30504785274 from edge because it's Gibbs number 0.5397229625772417 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON(N=O)[O](295) with Gibbs energy 311294.19250131823 from edge because it's Gibbs number 0.6457118284180196 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(O[N]N=O)[O](296) with Gibbs energy 292771.61649773864 from edge because it's Gibbs number 0.6019735696309312 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(O[N]N=O)[O](297) with Gibbs energy 313919.8789325022 from edge because it's Gibbs number 0.651911989378281 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OO[N]N=O(298) with Gibbs energy 368056.54020416195 from edge because it's Gibbs number 0.779747518308555 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]OO[N]O[N]N=O(299) with Gibbs energy 401070.59975795774 from edge because it's Gibbs number 0.8577052213892288 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(ON=O)[N][O](303) with Gibbs energy 281764.6167796863 from edge because it's Gibbs number 0.5759822063321901 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O]NO[N]O[N]N=O(319) with Gibbs energy 262878.30478537985 from edge because it's Gibbs number 0.5313850400751302 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]ON([N]ON=O)[O](320) with Gibbs energy 271437.2614398694 from edge because it's Gibbs number 0.5515957203298201 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]ON(O[N]N=O)[O](321) with Gibbs energy 288418.80416453595 from edge because it's Gibbs number 0.5916950623517895 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]OO[N][N]ON=O(322) with Gibbs energy 346559.4126341179 from edge because it's Gibbs number 0.7289853063648206 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]OO[N]O[N]N=O(323) with Gibbs energy 379577.3831398563 from edge because it's Gibbs number 0.8069522445663616 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [NH]ON(ON=O)[N][O](327) with Gibbs energy 260432.88812963833 from edge because it's Gibbs number 0.5256105588954926 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(N(N(N=O)[O])[O])[O](332) with Gibbs energy 310639.1097672699 from edge because it's Gibbs number 0.6441649497255948 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N(N(N=O)[O])[O])[O](333) with Gibbs energy 348350.93484781537 from edge because it's Gibbs number 0.7332157148236857 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]ON(N(N=O)[O])[O](334) with Gibbs energy 358024.2242572521 from edge because it's Gibbs number 0.7560577231615423 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON(N(N=O)[O])[O](335) with Gibbs energy 402908.31949086796 from edge because it's Gibbs number 0.8620447182950927 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(O[N]N(N=O)[O])[O](336) with Gibbs energy 384384.42057791876 from edge because it's Gibbs number 0.8183033356578258 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(O[N]N(N=O)[O])[O](337) with Gibbs energy 401365.7472281741 from edge because it's Gibbs number 0.8584021674527883 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OO[N]N(N=O)[O](338) with Gibbs energy 459670.8757173611 from edge because it's Gibbs number 0.9960809005826545 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OO[N]N(N=O)[O](339) with Gibbs energy 492649.1483050009 from edge because it's Gibbs number 1.0739540981611433 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OON(N=O)N=O(342) with Gibbs energy 318855.59896003717 from edge because it's Gibbs number 0.6635669449213556 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OON(N=O)N=O(343) with Gibbs energy 347680.8964907146 from edge because it's Gibbs number 0.7316335206918065 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(ON(N=O)N=O)[O](345) with Gibbs energy 256380.9064399551 from edge because it's Gibbs number 0.5160424176331941 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NON(N(N(N=O)[O])[O])[N][O](347) with Gibbs energy 310639.1097672699 from edge because it's Gibbs number 0.6441649497255948 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NON(O[N]N(N=O)[O])[N][O](348) with Gibbs energy 373376.215503875 from edge because it's Gibbs number 0.7923091260934099 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NON=NOO[N]N(N=O)[O](349) with Gibbs energy 285150.55021650775 from edge because it's Gibbs number 0.5839775754896406 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]O[N+](N=O)(N=O)[O-](357) with Gibbs energy 286527.79303027893 from edge because it's Gibbs number 0.5872297258703295 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OON=[N+](N=O)[O-](364) with Gibbs energy 344724.0989070256 from edge because it's Gibbs number 0.7246514908774095 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(N([N]ON=O)[O])[O](369) with Gibbs energy 350844.24769397633 from edge because it's Gibbs number 0.7391032956051864 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(N(O[N]N=O)[O])[O](370) with Gibbs energy 384384.42057791876 from edge because it's Gibbs number 0.8183033356578258 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]ON([N]ON=O)[O](371) with Gibbs energy 394056.01405673556 from edge because it's Gibbs number 0.8411413393122987 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(O[N]O[N]N=O)[O](372) with Gibbs energy 438940.4252598677 from edge because it's Gibbs number 0.947129080560022 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N(O[N]N=O)[O])[O](373) with Gibbs energy 426221.9513532905 from edge because it's Gibbs number 0.9170963300940392 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]ON(O[N]N=O)[O](374) with Gibbs energy 411037.35530503164 from edge because it's Gibbs number 0.8812402055783243 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON(O[N]N=O)[O](375) with Gibbs energy 455921.79015171714 from edge because it's Gibbs number 0.9872280026567191 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OO[N][N]ON=O(376) with Gibbs energy 481205.49796735344 from edge because it's Gibbs number 1.0469316505361346 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OO[N]O[N]N=O(377) with Gibbs energy 514225.21846067836 from edge because it's Gibbs number 1.124902721068401 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OO[N]O[N]N=O(378) with Gibbs energy 547241.1596953433 from edge because it's Gibbs number 1.2028648674535478 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON(ON=O)N=O(380) with Gibbs energy 282967.8773319856 from edge because it's Gibbs number 0.578823523944524 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N]N(N(ON=O)[N][O])[O](384) with Gibbs energy 346677.48820175824 from edge because it's Gibbs number 0.7292641239403506 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]ON(N(ON=O)[N][O])[O](385) with Gibbs energy 384384.42057791876 from edge because it's Gibbs number 0.8183033356578258 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]ON(ON=O)[N][O](386) with Gibbs energy 383071.0443583764 from edge because it's Gibbs number 0.8152019965695666 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]ON(ON=O)[N][O](387) with Gibbs energy 427953.152335029 from edge because it's Gibbs number 0.9211842990966826 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=NO[N][N]OON=NON=O(388) with Gibbs energy 306719.47184363013 from edge because it's Gibbs number 0.6349093182290516 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OON=NON=O(389) with Gibbs energy 339732.64284581214 from edge because it's Gibbs number 0.7128649231296222 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O][N]N(N(ON=O)[N][O])ON=O(398) with Gibbs energy 350844.24769397633 from edge because it's Gibbs number 0.7391032956051864 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction O=NO[N]N=O(59) <=> [N]1ON1ON=O(246), Ea raised from 189.1 to 190.0 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) <=> [O]N1ON1N=O(119), Ea raised from 155.7 to 157.4 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) <=> O1[N]ON=NO1(251), Ea raised from 153.3 to 156.6 kJ/mol to match endothermicity of reaction.
+For reaction NO2(30) + N2O(27) <=> O=NO[N]N=O(59), Ea raised from 178.4 to 180.3 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NO[N]N=O(59) <=> O=NON(N=O)N=[N](265), Ea raised from 212.3 to 216.0 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NO[N]N=O(59) <=> [N]=NON=NON=O(267), Ea raised from 223.6 to 226.2 kJ/mol to match endothermicity of reaction.
+For reaction N2(4) + O=NO[N]N=O(59) <=> O=NON=[N+](N=[N])[O-](268), Ea raised from 98.8 to 108.5 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> [O]OO[N][N]ON=O(273), Ea raised from 274.7 to 278.1 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> [O]OO[N]O[N]N=O(274), Ea raised from 301.6 to 306.5 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> [O]N(O[O])[N]ON=O(275), Ea raised from 199.2 to 202.5 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> [O]N(O[O])O[N]N=O(276), Ea raised from 211.3 to 215.6 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> O=NON(N=O)O[O](277), Ea raised from 29.6 to 33.7 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> O=NON(O[O])[N][O](278), Ea raised from 189.2 to 192.3 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + O=NO[N]N=O(59) <=> [O]OON=NON=O(279), Ea raised from 91.0 to 95.1 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NO[N]N=O(59) <=> O=NO[N][N]ON=O(281), Ea raised from 63.6 to 66.2 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NO[N]N=O(59) <=> O=NO[N]O[N]N=O(282), Ea raised from 105.4 to 108.7 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NO[N]N=O(59) <=> O=NO[N]N(N=O)[O](148), Ea raised from 47.9 to 51.6 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + O=NO[N]N=O(59) <=> O=N[N]ON(N=O)[O](65), Ea raised from 85.5 to 89.7 kJ/mol to match endothermicity of reaction.
+For reaction [O-][NH+]=NON=O(260) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8), Ea raised from 3.6 to 4.7 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + O=NO[N]N=O(59) <=> O=N[N]ON(ON=O)N=O(300), Ea raised from 12.2 to 15.8 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cis(49) + O=NO[N]N=O(59) <=> O=N[N]OON=NON=O(304), Ea raised from 74.1 to 76.9 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + NH2(D)(35) <=> NO[N]O[N]N=O(309), Ea raised from 41.5 to 46.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + HNO(40) <=> O=NON(N=O)O[NH](324), Ea raised from 24.2 to 28.2 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + HNO(40) <=> [NH]OON=NON=O(328), Ea raised from 82.8 to 85.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(O[N]N(N=O)[O])N=O(340), Ea raised from 76.9 to 80.4 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N][N]OON(N=O)N=O(342), Ea raised from 162.9 to 166.0 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]O[N]OON(N=O)N=O(343), Ea raised from 189.9 to 194.3 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N]N(ON(N=O)N=O)[O](344), Ea raised from 86.9 to 90.6 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]ON(ON(N=O)N=O)[O](345), Ea raised from 99.0 to 103.7 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=NOO[N]N(N=O)[O](349), Ea raised from 138.8 to 141.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(ON(N=O)N=O)[N][O](351), Ea raised from 76.9 to 80.4 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N][N]O[N+](N=O)(N=O)[O-](356), Ea raised from 78.5 to 81.7 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]O[N]O[N+](N=O)(N=O)[O-](357), Ea raised from 120.3 to 124.1 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]O[N]OON=[N+](N=O)[O-](364), Ea raised from 95.9 to 104.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N][N]ON(ON=O)N=O(379), Ea raised from 49.2 to 52.2 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=N[N]O[N]ON(ON=O)N=O(380), Ea raised from 91.0 to 94.7 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N]N(N(ON=O)N=O)[O](381), Ea raised from 6.9 to 9.6 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N][N]OON=NON=O(388), Ea raised from 126.0 to 127.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=N[N]O[N]OON=NON=O(389), Ea raised from 152.9 to 155.8 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NON([N]ON=O)[O](390), Ea raised from 35.1 to 37.9 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 100 new edge species
+    NNOJJ(244)
+    [N]ON=O(245)
+    [N]1ON1ON=O(246)
+    [N]=NON=O(250)
+    [O]N1ON=NO1(252)
+    [O-][N+]1=NO[N]O1(253)
+    O[N][N]ON=O(254)
+    O[N]O[N]N=O(255)
+    [O]N[N]ON=O(256)
+    O=NONN=O(257)
+    [O][N]NON=O(258)
+    O=NON=NO(259)
+    [O-][NH+]=NON=O(260)
+    O=NON(N=O)N=[N](265)
+    [N]=NON=NON=O(267)
+    O=NON=[N+](N=[N])[O-](268)
+    [Pt]N(O[Pt])[N]ON=O(269)
+    [Pt]N(O[Pt])O[N]N=O(270)
+    [O]N(N(ON=O)[Pt])[Pt](271)
+    [Pt]ON=NON=O(272)
+    [O]OO[N][N]ON=O(273)
+    [O]N(O[O])[N]ON=O(275)
+    [O]N(O[O])O[N]N=O(276)
+    O=NON(N=O)O[O](277)
+    O=NON(O[O])[N][O](278)
+    [O]OON=NON=O(279)
+    [O-][N+](=NON=O)O[O](280)
+    O=NO[N][N]ON=O(281)
+    O=NO[N]O[N]N=O(282)
+    O=NON=NON=O(283)
+    NON[N]ON=O(284)
+    NONO[N]N=O(285)
+    NN([N]ON=O)O(286)
+    NN(O[N]N=O)O(287)
+    [N-]([NH+](ON=O)N)[O](288)
+    [N-]([NH+]([O])N)ON=O(289)
+    NN(ON=O)N[O](290)
+    NN(NON=O)[O](291)
+    O=NO[N]N(N(N=O)[O])[O](292)
+    O=N[N]ON(ON=O)N=O(300)
+    O=NON(N(N=O)[O])N=O(301)
+    O=NON(N(N=O)[O])[N][O](302)
+    O=N[N]OON=NON=O(304)
+    O=NON=NON(N=O)[O](305)
+    O=N[N]O[N+](=NON=O)[O-](306)
+    O=NON=[N+](N(N=O)[O])[O-](307)
+    NO[N][N]ON=O(308)
+    NO[N]O[N]N=O(309)
+    NN([N]ON=O)[O](310)
+    NN(O[N]N=O)[O](311)
+    O=NON(N=O)N(312)
+    NN(ON=O)[N][O](313)
+    NON=NON=O(314)
+    [O-][N+](=NON=O)N(315)
+    [O]N(N[O])[N]ON=O(316)
+    [O]N(O[N]N=O)N[O](317)
+    [O]NO[N][N]ON=O(318)
+    O=NON(N=O)O[NH](324)
+    O=NON(N=O)N[O](325)
+    [O][N]N(ON=O)N[O](326)
+    [NH]OON=NON=O(328)
+    [O]NON=NON=O(329)
+    [O-][N+](=NON=O)O[NH](330)
+    [O-][N+](=NON=O)N[O](331)
+    O=NON(O[N]N(N=O)[O])N=O(340)
+    O=NON(N(N(N=O)[O])[O])N=O(341)
+    O=NO[N]N(ON(N=O)N=O)[O](344)
+    O=NON(ON(N=O)N=O)N=O(346)
+    O=NON=NON(N(N=O)[O])[O](350)
+    O=NON(ON(N=O)N=O)[N][O](351)
+    O=NON=NOON(N=O)N=O(352)
+    O=NON=[N+](O[N]N(N=O)[O])[O-](353)
+    O=NON=[N+](N(N(N=O)[O])[O])[O-](354)
+    O=NON=[N+](ON(N=O)N=O)[O-](355)
+    O=NO[N][N]O[N+](N=O)(N=O)[O-](356)
+    O=NO[N]N([N+](N=O)(N=O)[O-])[O](358)
+    O=N[N]ON([N+](N=O)(N=O)[O-])[O](359)
+    O=NON([N+](N=O)(N=O)[O-])N=O(360)
+    O=NON([N+](N=O)(N=O)[O-])[N][O](361)
+    O=NON=NO[N+](N=O)(N=O)[O-](362)
+    O=NON=[N+]([N+](N=O)(N=O)[O-])[O-](363)
+    O=N[N]ON(ON=[N+](N=O)[O-])[O](365)
+    O=NON(ON=[N+](N=O)[O-])N=O(366)
+    O=NON=NOON=[N+](N=O)[O-](367)
+    O=NON=[N+](O[N-][N+](=O)N=O)[O-](368)
+    O=NO[N][N]ON(ON=O)N=O(379)
+    O=NO[N]N(N(ON=O)N=O)[O](381)
+    O=N[N]ON(N(ON=O)N=O)[O](382)
+    O=NN(N(ON=O)N=O)ON=O(383)
+    O=NON=NON([N]ON=O)[O](390)
+    O=N[N]ON(ON=NON=O)[O](391)
+    O=NON(N(ON=O)[N][O])N=O(392)
+    O=NON=NON(ON=O)N=O(393)
+    O=NO[N-][N+](=O)O[N]O[N]N=O(394)
+    O=NO[N]N([N+](=O)[N-]ON=O)[O](395)
+    O=NO[N-][N+](=O)N(O[N]N=O)[O](396)
+    O=NO[N-][N+](=O)N(ON=O)N=O(397)
+    O=NON=NOON=NON=O(399)
+    O=NON=NO[N+](=O)[N-]ON=O(400)
+    O=NO[N-][N+](=O)[N+](=O)[N-]ON=O(401)
+Added 0 new core reactions
+Created 151 new edge reactions
+    NO2(30) + NNOJJ(244) <=> O=NO[N]N=O(59)
+    NO(7) + [N]ON=O(245) <=> O=NO[N]N=O(59)
+    O=NO[N]N=O(59) <=> [N]1ON1ON=O(246)
+    O=NO[N]N=O(59) <=> [O]N1ON1N=O(119)
+    O(T)(117) + [N]=NON=O(250) <=> O=NO[N]N=O(59)
+    O=NO[N]N=O(59) <=> [O]N1ON=NO1(252)
+    O=NO[N]N=O(59) <=> [O-][N+]1=NO[N]O1(253)
+    O=NO[N]N=O(59) <=> [N-]1ON([N+]1=O)[O](124)
+    NO2(30) + N2O(27) <=> O=NO[N]N=O(59)
+    O[N][N]ON=O(254) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    O[N]O[N]N=O(255) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    [O]N[N]ON=O(256) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    [O]NO[N]N=O(103) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    O=NONN=O(257) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    [O][N]NON=O(258) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    O=NON=NO(259) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    [O-][NH+]=NON=O(260) + CH3(32) <=> O=NO[N]N=O(59) + CH4(1)
+    H(33) + O[N][N]ON=O(254) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + O[N]O[N]N=O(255) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + [O]N[N]ON=O(256) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + [O]NO[N]N=O(103) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + O=NONN=O(257) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + [O][N]NON=O(258) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + O=NON=NO(259) <=> O=NO[N]N=O(59) + H2(2)
+    H(33) + [O-][NH+]=NON=O(260) <=> O=NO[N]N=O(59) + H2(2)
+    OH(D)(34) + O[N][N]ON=O(254) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + O[N]O[N]N=O(255) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + [O]N[N]ON=O(256) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + [O]NO[N]N=O(103) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + O=NONN=O(257) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + [O][N]NON=O(258) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + O=NON=NO(259) <=> O=NO[N]N=O(59) + H2O(3)
+    OH(D)(34) + [O-][NH+]=NON=O(260) <=> O=NO[N]N=O(59) + H2O(3)
+    N2(4) + O=NO[N]N=O(59) <=> O=NON(N=O)N=[N](265)
+    N2(4) + O=NO[N]N=O(59) <=> [N]=NON=NON=O(267)
+    N2(4) + O=NO[N]N=O(59) <=> O=NON=[N+](N=[N])[O-](268)
+    X(5) + X(5) + O=NO[N]N=O(59) <=> [Pt]N(O[Pt])[N]ON=O(269)
+    X(5) + X(5) + O=NO[N]N=O(59) <=> [Pt]N(O[Pt])O[N]N=O(270)
+    X(5) + O=NO[N]N=O(59) <=> O=NON(N=O)[Pt](70)
+    X(5) + X(5) + O=NO[N]N=O(59) <=> [O]N(N(ON=O)[Pt])[Pt](271)
+    X(5) + O=NO[N]N=O(59) <=> [Pt]ON=NON=O(272)
+    O2(6) + O=NO[N]N=O(59) <=> [O]OO[N][N]ON=O(273)
+    O2(6) + O=NO[N]N=O(59) <=> [O]N(O[O])[N]ON=O(275)
+    O2(6) + O=NO[N]N=O(59) <=> [O]N(O[O])O[N]N=O(276)
+    O2(6) + O=NO[N]N=O(59) <=> O=NON(N=O)O[O](277)
+    O2(6) + O=NO[N]N=O(59) <=> O=NON(O[O])[N][O](278)
+    O2(6) + O=NO[N]N=O(59) <=> [O]OON=NON=O(279)
+    O2(6) + O=NO[N]N=O(59) <=> [O-][N+](=NON=O)O[O](280)
+    NO(7) + O=NO[N]N=O(59) <=> O=NO[N][N]ON=O(281)
+    NO(7) + O=NO[N]N=O(59) <=> O=NO[N]O[N]N=O(282)
+    NO(7) + O=NO[N]N=O(59) <=> O=NO[N]N(N=O)[O](148)
+    NO(7) + O=NO[N]N=O(59) <=> O=N[N]ON(N=O)[O](65)
+    NO(7) + O=NO[N]N=O(59) <=> O=NON(N=O)N=O(149)
+    NO(7) + O=NO[N]N=O(59) <=> O=NO[N+](N=O)[N-][O](150)
+    NO(7) + O=NO[N]N=O(59) <=> O=NON=NON=O(283)
+    NO(7) + O=NO[N]N=O(59) <=> O=NO[N-][N+](=O)N=O(152)
+    NON[N]ON=O(284) <=> O=NO[N]N=O(59) + NH3(8)
+    NONO[N]N=O(285) <=> O=NO[N]N=O(59) + NH3(8)
+    NN([N]ON=O)O(286) <=> O=NO[N]N=O(59) + NH3(8)
+    NN(O[N]N=O)O(287) <=> O=NO[N]N=O(59) + NH3(8)
+    O[N][N]ON=O(254) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    O[N]O[N]N=O(255) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    [O]N[N]ON=O(256) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    [O]NO[N]N=O(103) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    O=NONN=O(257) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    [N-]([NH+](ON=O)N)[O](288) <=> O=NO[N]N=O(59) + NH3(8)
+    [N-]([NH+]([O])N)ON=O(289) <=> O=NO[N]N=O(59) + NH3(8)
+    NN(ON=O)N[O](290) <=> O=NO[N]N=O(59) + NH3(8)
+    NN(NON=O)[O](291) <=> O=NO[N]N=O(59) + NH3(8)
+    [O][N]NON=O(258) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    O=NON=NO(259) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    [O-][NH+]=NON=O(260) + NH2(D)(35) <=> O=NO[N]N=O(59) + NH3(8)
+    O=NO[N]N(N(N=O)[O])[O](292) <=> ONNO_cis(49) + O=NO[N]N=O(59)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=N[N]ON(ON=O)N=O(300)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=NON(N(N=O)[O])N=O(301)
+    O=NON(N(N=O)[O])[N][O](302) <=> ONNO_cis(49) + O=NO[N]N=O(59)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=N[N]OON=NON=O(304)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=NON=NON(N=O)[O](305)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=N[N]O[N+](=NON=O)[O-](306)
+    ONNO_cis(49) + O=NO[N]N=O(59) <=> O=NON=[N+](N(N=O)[O])[O-](307)
+    NH(T)(85) + O[N][N]ON=O(254) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    NH(T)(85) + O[N]O[N]N=O(255) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    NH(T)(85) + [O]N[N]ON=O(256) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    NH(T)(85) + [O]NO[N]N=O(103) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    NH(T)(85) + O=NONN=O(257) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NO[N][N]ON=O(308)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NO[N]O[N]N=O(309)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NN([N]ON=O)[O](310)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NN(O[N]N=O)[O](311)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> O=NON(N=O)N(312)
+    NH(T)(85) + [O][N]NON=O(258) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    NH(T)(85) + O=NON=NO(259) <=> O=NO[N]N=O(59) + NH2(D)(35)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NN(ON=O)[N][O](313)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NON=NON=O(314)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> NH(T)(85) + [O-][NH+]=NON=O(260)
+    O=NO[N]N=O(59) + NH2(D)(35) <=> [O-][N+](=NON=O)N(315)
+    [O]N(N[O])[N]ON=O(316) <=> O=NO[N]N=O(59) + HNO(40)
+    [O]N(O[N]N=O)N[O](317) <=> O=NO[N]N=O(59) + HNO(40)
+    [O]NO[N][N]ON=O(318) <=> O=NO[N]N=O(59) + HNO(40)
+    NO(7) + O[N][N]ON=O(254) <=> O=NO[N]N=O(59) + HNO(40)
+    NO(7) + O[N]O[N]N=O(255) <=> O=NO[N]N=O(59) + HNO(40)
+    NO(7) + [O]N[N]ON=O(256) <=> O=NO[N]N=O(59) + HNO(40)
+    NO(7) + [O]NO[N]N=O(103) <=> O=NO[N]N=O(59) + HNO(40)
+    O=NO[N]N=O(59) + HNO(40) <=> NO(7) + O=NONN=O(257)
+    O=NO[N]N=O(59) + HNO(40) <=> O=NON(N=O)O[NH](324)
+    O=NO[N]N=O(59) + HNO(40) <=> O=NON(N=O)N[O](325)
+    [O][N]N(ON=O)N[O](326) <=> O=NO[N]N=O(59) + HNO(40)
+    NO(7) + [O][N]NON=O(258) <=> O=NO[N]N=O(59) + HNO(40)
+    O=NO[N]N=O(59) + HNO(40) <=> NO(7) + O=NON=NO(259)
+    O=NO[N]N=O(59) + HNO(40) <=> [NH]OON=NON=O(328)
+    O=NO[N]N=O(59) + HNO(40) <=> [O]NON=NON=O(329)
+    O=NO[N]N=O(59) + HNO(40) <=> NO(7) + [O-][NH+]=NON=O(260)
+    O=NO[N]N=O(59) + HNO(40) <=> [O-][N+](=NON=O)O[NH](330)
+    O=NO[N]N=O(59) + HNO(40) <=> [O-][N+](=NON=O)N[O](331)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(O[N]N(N=O)[O])N=O(340)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(N(N(N=O)[O])[O])N=O(341)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N]N(ON(N=O)N=O)[O](344)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(ON(N=O)N=O)N=O(346)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=NON(N(N=O)[O])[O](350)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(ON(N=O)N=O)[N][O](351)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=NOON(N=O)N=O(352)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=[N+](O[N]N(N=O)[O])[O-](353)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=[N+](N(N(N=O)[O])[O])[O-](354)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=[N+](ON(N=O)N=O)[O-](355)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N][N]O[N+](N=O)(N=O)[O-](356)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NO[N]N([N+](N=O)(N=O)[O-])[O](358)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]ON([N+](N=O)(N=O)[O-])[O](359)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON([N+](N=O)(N=O)[O-])N=O(360)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON([N+](N=O)(N=O)[O-])[N][O](361)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=NO[N+](N=O)(N=O)[O-](362)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=[N+]([N+](N=O)(N=O)[O-])[O-](363)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=N[N]ON(ON=[N+](N=O)[O-])[O](365)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON(ON=[N+](N=O)[O-])N=O(366)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=NOON=[N+](N=O)[O-](367)
+    O=NN(N=O)[O](60) + O=NO[N]N=O(59) <=> O=NON=[N+](O[N-][N+](=O)N=O)[O-](368)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N][N]ON(ON=O)N=O(379)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N]N(N(ON=O)N=O)[O](381)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=N[N]ON(N(ON=O)N=O)[O](382)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NN(N(ON=O)N=O)ON=O(383)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NON([N]ON=O)[O](390)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=N[N]ON(ON=NON=O)[O](391)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON(N(ON=O)[N][O])N=O(392)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NON(ON=O)N=O(393)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NON([N]ON=O)[O](390)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N-][N+](=O)O[N]O[N]N=O(394)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N]N([N+](=O)[N-]ON=O)[O](395)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N-][N+](=O)N(O[N]N=O)[O](396)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N-][N+](=O)N(ON=O)N=O(397)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NOON=NON=O(399)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NON=NO[N+](=O)[N-]ON=O(400)
+    O=NO[N]N=O(59) + O=NO[N]N=O(59) <=> O=NO[N-][N+](=O)[N+](=O)[N-]ON=O(401)
+
+After model enlargement:
+    The model core has 23 species and 17 reactions
+    The model edge has 298 species and 494 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 5 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 5 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 347 reactions.
+Chemkin file contains 164 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 347 reactions.
+Chemkin file contains 164 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:40:57
+    Memory used: 839.20 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 4.9051e-30 s, species [O-][NH+](N=O)N(63) at rate ratio 1.1163204394282324e-11 was added to model core in model resurrection process
+
+
+Adding species [O-][NH+](N=O)N(63) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    [O-][NH+](N=O)N(63)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    [O-][NH+](N=O)N(63) <=> ONNO_cis(49) + NH3(8)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 24 species and 18 reactions
+    The model edge has 297 species and 493 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [O-][NH+]=NON renamed [N-]([NH+]DO)ON based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 1
+1 O u1 p1 c0 {4,T}
+2 O u0 p3 c-1 {3,S}
+3 N u0 p0 c+1 {2,S} {4,S} {5,S} {6,S}
+4 N u1 p0 c0 {1,T} {3,S}
+5 N u0 p1 c0 {3,S} {7,S} {8,S}
+6 H u0 p0 c0 {3,S}
+7 H u0 p0 c0 {5,S}
+8 H u0 p0 c0 {5,S}
+
+Error: Could not update atomtypes for this molecule:
+1 O u0 p1 c+1 {4,T}
+2 O u0 p3 c-1 {3,S}
+3 N u0 p0 c+1 {2,S} {4,S} {5,S} {6,S}
+4 N u0 p1 c-1 {1,T} {3,S}
+5 N u0 p1 c0 {3,S} {7,S} {8,S}
+6 H u0 p0 c0 {3,S}
+7 H u0 p0 c0 {5,S}
+8 H u0 p0 c0 {5,S}
+
+Species [O-][NH+]([Pt])N renamed NH2NHOJX based on thermo library name
+Removing species [O-][NH+]([N]OO[N]N(N=O)[O])N(448) with Gibbs energy 268056.5760057493 from edge because it's Gibbs number 0.5436127435361651 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O-][NH+]([N]OO[N][N]ON=O)N(472) with Gibbs energy 289597.1533042791 from edge because it's Gibbs number 0.594477555435131 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species O=N[N]O[N]OO[N][NH+](N)[O-](474) with Gibbs energy 322614.19803105504 from edge because it's Gibbs number 0.6724423075498216 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction O2(6) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OO[O])N(420), Ea raised from 258.2 to 264.7 kJ/mol to match endothermicity of reaction.
+For reaction O2(6) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[O])[O])N(421), Ea raised from 169.9 to 175.0 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + [O-][NH+](N=O)N(63) <=> [N-]([NH+]([O])N)ON=O(289), Ea raised from 217.7 to 226.2 kJ/mol to match endothermicity of reaction.
+For reaction NO(7) + [O-][NH+](N=O)N(63) <=> [O-]N([NH+]([O])N)N=O(156), Ea raised from 127.8 to 134.7 kJ/mol to match endothermicity of reaction.
+For reaction NO_X(25) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(N=O)O[Pt])N(431), Ea raised from 84.0 to 84.7 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=NN(OO[N][NH+](N)[O-])N=O(449), Ea raised from 146.4 to 152.6 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=NN(ON([NH+](N)[O-])[O])N=O(450), Ea raised from 57.6 to 63.1 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=N[N+](N=O)(O[N][NH+](N)[O-])[O-](453), Ea raised from 76.9 to 82.4 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OO[N-][N+](=O)N=O)N(455), Ea raised from 60.1 to 63.1 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N+](=O)O[N-]N(N=O)[O])N(456), Ea raised from 135.6 to 141.2 kJ/mol to match endothermicity of reaction.
+For reaction ONNO_cisXX(54) + [O-][NH+](N=O)N(63) <=> O=NN(OON([NH+](N)[O-])[Pt])[Pt](464), Ea raised from 126.7 to 134.5 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]ON(N=O)ON=O)N(475), Ea raised from 47.6 to 52.9 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OON=NON=O)N(483), Ea raised from 109.5 to 114.1 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N)[N-]O[N+](=NON=O)[O](487), Ea raised from 39.1 to 50.3 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 89 new edge species
+    [O-][N+](N[O])N(402)
+    [O-][NH+](N[O])[NH](403)
+    [O-][NH+]([N]O)[NH](404)
+    [O-][NH+](N=O)[NH](405)
+    [O-]ON=[NH+]N(406)
+    [N-]([NH+]DO)ON(407)
+    [O-][N+](=NO)N(408)
+    [O-][NH+]([N]O)N(409)
+    [O-][NH+](N[O])N(410)
+    [O-][NH+](N(N=[N])[O])N(411)
+    [O-][NH+]([N]ON=[N])N(412)
+    [O-][N+](=NON=N)N(413)
+    [O-][NH+](N(O[Pt])[Pt])N(414)
+    [O-][NH+](N=O)[Pt](415)
+    NH2NHOJX(416)
+    [O-][N+](N=O)([Pt])N(417)
+    [O-][NH+](N=O)N[Pt](418)
+    [O-][NH+](N=O)N.[Pt](419)
+    [O-][NH+]([N]OO[O])N(420)
+    [O-][NH+](N(O[O])[O])N(421)
+    NON[NH+](N)[O-](422)
+    [O-][NH+](N(O)N)N(423)
+    O=NN(N([NH+](N)[O-])[O])[O](424)
+    [O-][NH+]([N]ON(N=O)[O])N(425)
+    [O-][NH+](N(O[N]N=O)[O])N(426)
+    O=N[N]OO[N][NH+](N)[O-](427)
+    O=NNOON=[N+](N)[O-](428)
+    [O-][N+](=NON(N=O)O)N(429)
+    O=[NH+]N(O[N-][N+](=O)N)[O-](430)
+    [O-][NH+](N(N=O)O[Pt])N(431)
+    [O-][NH+](N(ON=O)[Pt])N(432)
+    [O-][NH+](NO[Pt])N(433)
+    [O-][NH+](N([Pt])O)N(434)
+    [O-][NH+](N(O[Pt])N)N(435)
+    NON([NH+](N)[O-])[Pt](436)
+    NO[N][NH+](N)[O-](437)
+    [O-][NH+](N([O])N)N(438)
+    [O-][NH+](N(N[O])[O])N(439)
+    [O-][NH+]([N]ON[O])N(440)
+    [NH]ON([NH+](N)[O-])[O](441)
+    [NH]OO[N][NH+](N)[O-](442)
+    NOON=[N+](N)[O-](443)
+    [O-][N+](=NONO)N(444)
+    O=NN(N(N([NH+](N)[O-])[O])[O])[O](445)
+    [O-][NH+]([N]ON(N(N=O)[O])[O])N(446)
+    O=NN([N]ON([NH+](N)[O-])[O])[O](447)
+    O=NN(OO[N][NH+](N)[O-])N=O(449)
+    O=NN(ON([NH+](N)[O-])[O])N=O(450)
+    [O-][N+](=NOONN(N=O)[O])N(451)
+    [O-][N+](=NON(N(N=O)[O])O)N(452)
+    O=N[N+](N=O)(O[N][NH+](N)[O-])[O-](453)
+    O=N[N+](N([NH+](N)[O-])[O])(N=O)[O-](454)
+    [O-][NH+]([N]OO[N-][N+](=O)N=O)N(455)
+    [O-][NH+]([N+](=O)O[N-]N(N=O)[O])N(456)
+    [O]N[N+](O[N-][N+](=O)N)(N=O)[O-](457)
+    [O-][NH+]([N+](=O)O[N-]N([O])N)N=O(458)
+    [O][N-][NH+](OO[N-][N+](=O)N)N=O(459)
+    [O][N-][N+](O[N-][N+](=O)N)(N=O)O(460)
+    [Pt]ON(N(N=O)O[Pt])[NH+](N)[O-](461)
+    [Pt]ON(ON([NH+](N)[O-])[Pt])N=O(462)
+    [Pt]ON([NH+](N)[O-])ON(N=O)[Pt](463)
+    O=NN(OON([NH+](N)[O-])[Pt])[Pt](464)
+    [Pt]ON(N([N+](=O)[Pt])[O-])[NH+](N)[O-](465)
+    [O-][NH+](N(ON([N+](=O)[Pt])[O-])[Pt])N(466)
+    [O-][NH+](N(N([N]ON=O)[O])[O])N(467)
+    [O-][NH+]([N]ON([N]ON=O)[O])N(468)
+    [O-][NH+](N(N(O[N]N=O)[O])[O])N(469)
+    O=N[N]ON(O[N][NH+](N)[O-])[O](470)
+    [O-][NH+](N(O[N][N]ON=O)[O])N(471)
+    O=N[N]O[N]ON([NH+](N)[O-])[O](473)
+    [O-][NH+]([N]ON(N=O)ON=O)N(475)
+    [O-][NH+](N(N(N=O)ON=O)[O])N(476)
+    [O-][N+](=NOON[N]ON=O)N(477)
+    O=N[N]ONOON=[N+](N)[O-](478)
+    [O-][N+](=NON([N]ON=O)O)N(479)
+    O=N[N]ON(ON=[N+](N)[O-])O(480)
+    O=NON(N([NH+](N)[O-])[O])[N][O](481)
+    O=NON(O[N][NH+](N)[O-])[N][O](482)
+    [O-][NH+]([N]OON=NON=O)N(483)
+    [O-][NH+](N(ON=NON=O)[O])N(484)
+    [O-][N+](=NON(ON=O)N[O])N(485)
+    [O-][N+](=NON(NON=O)[O])N(486)
+    [O-][NH+](N)[N-]O[N+](=NON=O)[O](487)
+    [O-][NH+](N([N+](=O)[N-]ON=O)[O])N(488)
+    [O]N(N([NH+](N)[O-])[O])[NH+](N)[O-](489)
+    [O-][NH+]([N]ON([NH+](N)[O-])[O])N(490)
+    [O-][NH+]([N]OO[N][NH+](N)[O-])N(491)
+    [O-][NH+](NOO[N-][N+](=O)N)N(492)
+    N[N+](=O)[N-]ON([NH+](N)[O-])O(493)
+Added 0 new core reactions
+Created 156 new edge reactions
+    [O-][N+](N[O])N(402) <=> [O-][NH+](N=O)N(63)
+    [O-][NH+](N[O])[NH](403) <=> [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]O)[NH](404) <=> [O-][NH+](N=O)N(63)
+    [N-]([NH+]DO)[O](51) + NH2(D)(35) <=> [O-][NH+](N=O)N(63)
+    NO(7) + NH2NHOJ(111) <=> [O-][NH+](N=O)N(63)
+    H(33) + [N-]([N+](DO)N)[O](89) <=> [O-][NH+](N=O)N(63)
+    H(33) + [O-][NH+](N=O)[NH](405) <=> [O-][NH+](N=O)N(63)
+    [O-]ON=[NH+]N(406) <=> [O-][NH+](N=O)N(63)
+    [N-]([NH+]DO)ON(407) <=> [O-][NH+](N=O)N(63)
+    [O-][N+](=NO)N(408) <=> [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]O)N(409) + CH3(32) <=> [O-][NH+](N=O)N(63) + CH4(1)
+    [O-][NH+](N[O])N(410) + CH3(32) <=> [O-][NH+](N=O)N(63) + CH4(1)
+    H(33) + [O-][NH+]([N]O)N(409) <=> H2(2) + [O-][NH+](N=O)N(63)
+    H(33) + [O-][NH+](N[O])N(410) <=> H2(2) + [O-][NH+](N=O)N(63)
+    OH(D)(34) + [O-][NH+]([N]O)N(409) <=> H2O(3) + [O-][NH+](N=O)N(63)
+    OH(D)(34) + [O-][NH+](N[O])N(410) <=> H2O(3) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N(N=[N])[O])N(411) <=> N2(4) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON=[N])N(412) <=> N2(4) + [O-][NH+](N=O)N(63)
+    NNHJ(36) + [N-]([N+](DO)N)[O](89) <=> N2(4) + [O-][NH+](N=O)N(63)
+    NNHJ(36) + [O-][NH+](N=O)[NH](405) <=> N2(4) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NON=N)N(413) <=> N2(4) + [O-][NH+](N=O)N(63)
+    X(5) + X(5) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[Pt])[Pt])N(414)
+    X(5) + X(5) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N=O)[Pt](415) + NH2_X(22)
+    X(5) + X(5) + [O-][NH+](N=O)N(63) <=> NO_X(25) + NH2NHOJX(416)
+    X(5) + X(5) + [O-][NH+](N=O)N(63) <=> HX(9) + [O-][N+](N=O)([Pt])N(417)
+    X(5) + X(5) + [O-][NH+](N=O)N(63) <=> HX(9) + [O-][NH+](N=O)N[Pt](418)
+    X(5) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N=O)N.[Pt](419)
+    HO2(38) + [N-]([N+](DO)N)[O](89) <=> O2(6) + [O-][NH+](N=O)N(63)
+    HO2(38) + [O-][NH+](N=O)[NH](405) <=> O2(6) + [O-][NH+](N=O)N(63)
+    O2(6) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OO[O])N(420)
+    O2(6) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[O])[O])N(421)
+    NOHJJ(39) + [N-]([N+](DO)N)[O](89) <=> NO(7) + [O-][NH+](N=O)N(63)
+    NOHJJ(39) + [O-][NH+](N=O)[NH](405) <=> NO(7) + [O-][NH+](N=O)N(63)
+    HNO(40) + [N-]([N+](DO)N)[O](89) <=> NO(7) + [O-][NH+](N=O)N(63)
+    HNO(40) + [O-][NH+](N=O)[NH](405) <=> NO(7) + [O-][NH+](N=O)N(63)
+    NO(7) + [O-][NH+](N=O)N(63) <=> [N-]([NH+]([O])N)ON=O(289)
+    NO(7) + [O-][NH+](N=O)N(63) <=> [O-]N([NH+]([O])N)N=O(156)
+    NON[NH+](N)[O-](422) <=> NH3(8) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N(O)N)N(423) <=> NH3(8) + [O-][NH+](N=O)N(63)
+    NH2(D)(35) + [O-][NH+]([N]O)N(409) <=> NH3(8) + [O-][NH+](N=O)N(63)
+    NH2(D)(35) + [O-][NH+](N[O])N(410) <=> NH3(8) + [O-][NH+](N=O)N(63)
+    O=NN(N([NH+](N)[O-])[O])[O](424) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON(N=O)[O])N(425) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N(O[N]N=O)[O])N(426) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    O=N[N]OO[N][NH+](N)[O-](427) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [N-]([N+]DO)O(50) + [N-]([N+](DO)N)[O](89) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [N-]([N+]DO)O(50) + [O-][NH+](N=O)[NH](405) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [N-]([NH+]DO)[O](51) + [N-]([N+](DO)N)[O](89) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [N-]([NH+]DO)[O](51) + [O-][NH+](N=O)[NH](405) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    O=NNOON=[N+](N)[O-](428) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NON(N=O)O)N(429) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    O=[NH+]N(O[N-][N+](=O)N)[O-](430) <=> ONNO_cis(49) + [O-][NH+](N=O)N(63)
+    NO_X(25) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(N=O)O[Pt])N(431)
+    NO_X(25) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(ON=O)[Pt])N(432)
+    HX(9) + [O-][NH+](N=O)N(63) <=> [O-][NH+](NO[Pt])N(433)
+    HX(9) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N([Pt])O)N(434)
+    NH2_X(22) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[Pt])N)N(435)
+    NH2_X(22) + [O-][NH+](N=O)N(63) <=> NON([NH+](N)[O-])[Pt](436)
+    NH(T)(85) + [O-][NH+]([N]O)N(409) <=> NH2(D)(35) + [O-][NH+](N=O)N(63)
+    NH(T)(85) + [O-][NH+](N[O])N(410) <=> NH2(D)(35) + [O-][NH+](N=O)N(63)
+    NH2(D)(35) + [O-][NH+](N=O)N(63) <=> [N-]([N+](DO)N)[O](89) + NH3(8)
+    NH2(D)(35) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N=O)[NH](405) + NH3(8)
+    NH2(D)(35) + [O-][NH+](N=O)N(63) <=> NO[N][NH+](N)[O-](437)
+    NH2(D)(35) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N([O])N)N(438)
+    [O-][NH+](N(N[O])[O])N(439) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON[O])N(440) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    [NH]ON([NH+](N)[O-])[O](441) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    [NH]OO[N][NH+](N)[O-](442) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    NO(7) + [O-][NH+]([N]O)N(409) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    NO(7) + [O-][NH+](N[O])N(410) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    HNOHJ(90) + [N-]([N+](DO)N)[O](89) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    HNOHJ(90) + [O-][NH+](N=O)[NH](405) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    NH2OJ(91) + [N-]([N+](DO)N)[O](89) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    NH2OJ(91) + [O-][NH+](N=O)[NH](405) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    NOON=[N+](N)[O-](443) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NONO)N(444) <=> HNO(40) + [O-][NH+](N=O)N(63)
+    O=NN(N(N([NH+](N)[O-])[O])[O])[O](445) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON(N(N=O)[O])[O])N(446) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN([N]ON([NH+](N)[O-])[O])[O](447) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O]N(N=O)[N]O(126) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O]N(N=O)[N]O(126) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O]N(N=O)N[O](101) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O]N(N=O)N[O](101) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN(N=O)O(127) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN(N=O)O(127) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=NN(OO[N][NH+](N)[O-])N=O(449)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=NN(ON([NH+](N)[O-])[O])N=O(450)
+    [O-][N+](=NOONN(N=O)[O])N(451) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NON(N(N=O)[O])O)N(452) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=N[NH+](N=O)[O-](131) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=N[NH+](N=O)[O-](131) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=N[N+](N=O)(O[N][NH+](N)[O-])[O-](453)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> O=N[N+](N([NH+](N)[O-])[O])(N=O)[O-](454)
+    [N-]([NH+](N=O)[O])[O](129) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [N-]([NH+](N=O)[O])[O](129) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [N-]([N+](=O)N=O)O(130) + [N-]([N+](DO)N)[O](89)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [N-]([N+](=O)N=O)O(130) + [O-][NH+](N=O)[NH](405)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OO[N-][N+](=O)N=O)N(455)
+    O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N+](=O)O[N-]N(N=O)[O])N(456)
+    [O]N[N+](O[N-][N+](=O)N)(N=O)[O-](457) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N+](=O)O[N-]N([O])N)N=O(458) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [N-]([N+](N=O)O)[O](128) + [N-]([N+](DO)N)[O](89) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [N-]([N+](N=O)O)[O](128) + [O-][NH+](N=O)[NH](405) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O][N-][NH+](OO[N-][N+](=O)N)N=O(459) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    [O][N-][N+](O[N-][N+](=O)N)(N=O)O(460) <=> O=NN(N=O)[O](60) + [O-][NH+](N=O)N(63)
+    ONNO_cisXX(54) + [O-][NH+](N=O)N(63) <=> [Pt]ON(N(N=O)O[Pt])[NH+](N)[O-](461)
+    ONNO_cisXX(54) + [O-][NH+](N=O)N(63) <=> [Pt]ON(ON([NH+](N)[O-])[Pt])N=O(462)
+    ONNO_cisXX(54) + [O-][NH+](N=O)N(63) <=> [Pt]ON([NH+](N)[O-])ON(N=O)[Pt](463)
+    ONNO_cisXX(54) + [O-][NH+](N=O)N(63) <=> O=NN(OON([NH+](N)[O-])[Pt])[Pt](464)
+    ONNO_cisXX(56) + [O-][NH+](N=O)N(63) <=> [Pt]ON(N([N+](=O)[Pt])[O-])[NH+](N)[O-](465)
+    ONNO_cisXX(56) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(ON([N+](=O)[Pt])[O-])[Pt])N(466)
+    [O-][NH+](N(N([N]ON=O)[O])[O])N(467) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON([N]ON=O)[O])N(468) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N(N(O[N]N=O)[O])[O])N(469) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=N[N]ON(O[N][NH+](N)[O-])[O](470) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N(O[N][N]ON=O)[O])N(471) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=N[N]O[N]ON([NH+](N)[O-])[O](473) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O[N][N]ON=O(254) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O[N][N]ON=O(254) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O[N]O[N]N=O(255) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O[N]O[N]N=O(255) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O]N[N]ON=O(256) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O]N[N]ON=O(256) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O]NO[N]N=O(103) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O]NO[N]N=O(103) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NONN=O(257) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NONN=O(257) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]ON(N=O)ON=O)N(475)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(N(N=O)ON=O)[O])N(476)
+    [O-][N+](=NOON[N]ON=O)N(477) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=N[N]ONOON=[N+](N)[O-](478) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NON([N]ON=O)O)N(479) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=N[N]ON(ON=[N+](N)[O-])O(480) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NON(N([NH+](N)[O-])[O])[N][O](481) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NON(O[N][NH+](N)[O-])[N][O](482) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O][N]NON=O(258) + [N-]([N+](DO)N)[O](89) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O][N]NON=O(258) + [O-][NH+](N=O)[NH](405) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> O=NON=NO(259) + [N-]([N+](DO)N)[O](89)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> O=NON=NO(259) + [O-][NH+](N=O)[NH](405)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]OON=NON=O)N(483)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(ON=NON=O)[O])N(484)
+    [O-][N+](=NON(ON=O)N[O])N(485) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    [O-][N+](=NON(NON=O)[O])N(486) <=> O=NO[N]N=O(59) + [O-][NH+](N=O)N(63)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]=NON=O(260) + [N-]([N+](DO)N)[O](89)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+]=NON=O(260) + [O-][NH+](N=O)[NH](405)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N)[N-]O[N+](=NON=O)[O](487)
+    O=NO[N]N=O(59) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N([N+](=O)[N-]ON=O)[O])N(488)
+    [O]N(N([NH+](N)[O-])[O])[NH+](N)[O-](489) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]ON([NH+](N)[O-])[O])N(490) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [O-][NH+]([N]OO[N][NH+](N)[O-])N(491) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [N-]([N+](DO)N)[O](89) + [O-][NH+]([N]O)N(409) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [N-]([N+](DO)N)[O](89) + [O-][NH+](N[O])N(410) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N=O)[NH](405) + [O-][NH+]([N]O)N(409) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [O-][NH+](N=O)[NH](405) + [O-][NH+](N[O])N(410) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    [O-][NH+](NOO[N-][N+](=O)N)N(492) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+    N[N+](=O)[N-]ON([NH+](N)[O-])O(493) <=> [O-][NH+](N=O)N(63) + [O-][NH+](N=O)N(63)
+
+After model enlargement:
+    The model core has 24 species and 18 reactions
+    The model edge has 386 species and 649 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 6 reactions.
+Chemkin file contains 12 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 6 reactions.
+Chemkin file contains 12 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 485 reactions.
+Chemkin file contains 182 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 485 reactions.
+Chemkin file contains 182 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:42:30
+    Memory used: 827.31 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.0106e-30 s, species [Pt]ON=[Pt](68) at rate ratio 4.265022603485209e-12 was added to model core in model resurrection process
+
+
+Adding species [Pt]ON=[Pt](68) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    [Pt]ON=[Pt](68)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    X(5) + NO_X(25) <=> [Pt]ON=[Pt](68)
+    X(5) + ONNO_cisXX(54) <=> NO_X(25) + [Pt]ON=[Pt](68)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 25 species and 20 reactions
+    The model edge has 385 species and 647 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species [Pt]N=[Pt] renamed NXX based on thermo library name
+Error: Could not update atomtypes for this molecule:
+multiplicity 1
+1 O u1 p1 c0 {2,T}
+2 N u1 p0 c0 {1,T} {3,S}
+3 N u0 p1 c0 {2,S} {4,S} {5,S}
+4 H u0 p0 c0 {3,S}
+5 H u0 p0 c0 {3,S}
+
+Error: Could not update atomtypes for this molecule:
+1 O u0 p1 c+1 {2,T}
+2 N u0 p1 c-1 {1,T} {3,S}
+3 N u0 p1 c0 {2,S} {4,S} {5,S}
+4 H u0 p0 c0 {3,S}
+5 H u0 p0 c0 {3,S}
+
+Species [Pt]ON([Pt])N renamed NH2NOXX based on thermo library name
+Removing species NXX(495) with Gibbs energy 299946.85176849604 from edge because it's Gibbs number 0.6189168013428692 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O-]N([N+](=[Pt])O[Pt])ON=[Pt](504) with Gibbs energy 396737.67587325105 from edge because it's Gibbs number 0.8474736776699624 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O-]N([N+](=[Pt])OON=[Pt])[Pt](506) with Gibbs energy 531083.9891411558 from edge because it's Gibbs number 1.1647121554965498 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [O-]N([N+](=O)N=[Pt])[Pt](509) with Gibbs energy 299362.1738309668 from edge because it's Gibbs number 0.6175361729176538 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [Pt]N(N=[Pt])O[Pt](512) with Gibbs energy 423917.4382468123 from edge because it's Gibbs number 0.9116545713122208 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Removing species [Pt]N(O[Pt])ON=[Pt](514) with Gibbs energy 325184.01505969523 from edge because it's Gibbs number 0.6785105413749877 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction [Pt]ON=[Pt](68) + N2(4) <=> [Pt]=NON=N[Pt](494), Ea raised from 346.0 to 347.3 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [Pt]=NON(N=O)O[Pt](214), Ea raised from 105.0 to 106.8 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [Pt]=NOON(N=O)[Pt](215), Ea raised from 190.5 to 192.7 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [O-]N([N+](=O)[Pt])ON=[Pt](228), Ea raised from 105.0 to 106.8 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + HNO(40) <=> [Pt]ONON=[Pt](498), Ea raised from 83.7 to 86.9 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + HNO(40) <=> [Pt]NOON=[Pt](499), Ea raised from 199.2 to 201.6 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [Pt]=NON(N=O)O[Pt](214), Ea raised from 183.5 to 184.7 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [Pt]=NOON(N=O)[Pt](215), Ea raised from 269.0 to 270.6 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> OX(10) + [Pt]ON(N=[Pt])N=O(507), Ea raised from 98.8 to 100.2 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> OX(10) + [Pt]=NON(N=O)[Pt](508), Ea raised from 108.1 to 108.4 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> N_X(24) + [Pt]N(N=O)OO[Pt](241), Ea raised from 209.1 to 210.8 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [O-]N([N+](=O)[Pt])ON=[Pt](228), Ea raised from 183.5 to 184.7 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> OX(10) + [O-]N([N+](=O)N=[Pt])[Pt](509), Ea raised from 235.1 to 236.0 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + ONNO_cis(55) <=> N_X(24) + [Pt]O[N+](=O)N([Pt])[O-](243), Ea raised from 96.2 to 97.0 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[Pt])ON=[Pt])N(510), Ea raised from 140.4 to 143.9 kJ/mol to match endothermicity of reaction.
+For reaction [Pt]ON=[Pt](68) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(OON=[Pt])[Pt])N(511), Ea raised from 225.9 to 229.8 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 15 new edge species
+    [Pt]=NON=N[Pt](494)
+    NH2NOXX(496)
+    [Pt]=NOON=[Pt](497)
+    [Pt]ONON=[Pt](498)
+    [Pt]NOON=[Pt](499)
+    [Pt]ON(N(N=O)[Pt])[Pt](500)
+    [Pt]ON(O[Pt])[Pt](501)
+    [Pt]ON(N(O[Pt])[Pt])N=O(502)
+    [Pt]ON(ON(N=O)[Pt])[Pt](503)
+    [Pt]ON(N([N+](=O)[Pt])[O-])[Pt](505)
+    [Pt]ON(N=[Pt])N=O(507)
+    [Pt]=NON(N=O)[Pt](508)
+    [O-][NH+](N(O[Pt])ON=[Pt])N(510)
+    [O-][NH+](N(OON=[Pt])[Pt])N(511)
+    [Pt]ON(N(O[Pt])[Pt])[Pt](513)
+Added 1 new core reactions
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> NO_X(25) + ONNO_cisXX(54)
+Created 31 new edge reactions
+    [Pt]ON=[Pt](68) <=> OX(10) + N_X(24)
+    [Pt]ON=[Pt](68) + N2(4) <=> [Pt]=NON=N[Pt](494)
+    X(5) + [Pt]ON=[Pt](68) <=> O(T)XX(207) + N_X(24)
+    [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [Pt]=NON(N=O)O[Pt](214)
+    [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [Pt]=NOON(N=O)[Pt](215)
+    [Pt]ON=[Pt](68) + ONNO_cis(49) <=> [O-]N([N+](=O)[Pt])ON=[Pt](228)
+    [Pt]ON=[Pt](68) + NH3_X(21) <=> HNOXX(94) + NH2_X(22)
+    [Pt]ON=[Pt](68) + NH3_X(21) <=> HX(9) + NH2NOXX(496)
+    NO_X(25) + [Pt]ON=[Pt](68) <=> X(5) + [Pt]=NOON=[Pt](497)
+    X(5) + HNOXX(94) <=> [Pt]ON=[Pt](68) + HX(9)
+    NH_X(23) + HNOXX(94) <=> [Pt]ON=[Pt](68) + NH2_X(22)
+    X(5) + NH2NOXX(496) <=> [Pt]ON=[Pt](68) + NH2_X(22)
+    [Pt]ON=[Pt](68) + HNO(40) <=> [Pt]ONON=[Pt](498)
+    [Pt]ON=[Pt](68) + HNO(40) <=> [Pt]NOON=[Pt](499)
+    OX(10) + [Pt]ON(N(N=O)[Pt])[Pt](500) <=> [Pt]ON=[Pt](68) + ONNO_cisXX(54)
+    [Pt]ON(O[Pt])[Pt](501) + N2O_X(26) <=> [Pt]ON=[Pt](68) + ONNO_cisXX(54)
+    X(5) + [Pt]ON(N(O[Pt])[Pt])N=O(502) <=> [Pt]ON=[Pt](68) + ONNO_cisXX(54)
+    X(5) + [Pt]ON(ON(N=O)[Pt])[Pt](503) <=> [Pt]ON=[Pt](68) + ONNO_cisXX(54)
+    X(5) + [Pt]ON(N([N+](=O)[Pt])[O-])[Pt](505) <=> [Pt]ON=[Pt](68) + ONNO_cisXX(56)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [Pt]=NON(N=O)O[Pt](214)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [Pt]=NOON(N=O)[Pt](215)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> OX(10) + [Pt]ON(N=[Pt])N=O(507)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> N_X(24) + [Pt]ON(N=O)O[Pt](240)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> OX(10) + [Pt]=NON(N=O)[Pt](508)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> N_X(24) + [Pt]N(N=O)OO[Pt](241)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> X(5) + [O-]N([N+](=O)[Pt])ON=[Pt](228)
+    [Pt]ON=[Pt](68) + ONNO_cis(55) <=> N_X(24) + [Pt]O[N+](=O)N([Pt])[O-](243)
+    [Pt]ON=[Pt](68) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(O[Pt])ON=[Pt])N(510)
+    [Pt]ON=[Pt](68) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N(OON=[Pt])[Pt])N(511)
+    N_X(24) + [Pt]ON(O[Pt])[Pt](501) <=> [Pt]ON=[Pt](68) + [Pt]ON=[Pt](68)
+    [Pt]ON(N(O[Pt])[Pt])[Pt](513) <=> [Pt]ON=[Pt](68) + [Pt]ON=[Pt](68)
+
+After model enlargement:
+    The model core has 25 species and 21 reactions
+    The model edge has 400 species and 678 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 6 reactions.
+Chemkin file contains 15 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 6 reactions.
+Chemkin file contains 15 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 485 reactions.
+Chemkin file contains 214 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 485 reactions.
+Chemkin file contains 214 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:42:37
+    Memory used: 831.55 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.1139e-30 s, species NOHJJ(39) at rate ratio 8.719330457729623e-13 was added to model core in model resurrection process
+
+
+Adding species NOHJJ(39) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    NOHJJ(39)
+Created 0 new edge species
+Moved 2 reactions from edge to core
+    NOHJJ(39) + NH2(D)(35) <=> NO(7) + NH3(8)
+    NO(7) + NOHJJ(39) <=> NO(7) + HNO(40)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 26 species and 23 reactions
+    The model edge has 399 species and 676 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Species N[N]O renamed N[N]O based on thermo library name
+Generating kinetics for new reactions...
+For reaction N2(4) + NOHJJ(39) <=> O[N]N=[N](516), Ea raised from 174.9 to 178.6 kJ/mol to match endothermicity of reaction.
+For reaction [N]=O(515) + O=NN(N=O)O(127) <=> O=NN(N=O)[O](60) + NOHJJ(39), Ea raised from -2.5 to 0.0 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + NOHJJ(39) <=> [O]N(N=O)[N]O[N]O(522), Ea raised from 29.9 to 30.9 kJ/mol to match endothermicity of reaction.
+For reaction O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N]O[N+](N=O)[N-][O](527), Ea raised from 29.9 to 30.9 kJ/mol to match endothermicity of reaction.
+For reaction O=NO[N]N=O(59) + NOHJJ(39) <=> O[N]O[N]O[N]N=O(530), Ea raised from 42.0 to 45.2 kJ/mol to match endothermicity of reaction.
+For reaction NOHJJ(39) + [O-][NH+](N=O)N(63) <=> HNOHJ(90) + [N-]([N+](DO)N)[O](89), Ea raised from 9.9 to 17.6 kJ/mol to match endothermicity of reaction.
+Warning: Marked reaction NOHJJ(39) + NH2(D)(35) <=> NO(7) + NH3(8) as duplicate of NOHJJ(39) + NH2(D)(35) <=> NO(7) + NH3(8) for saving to Chemkin file.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 23 new edge species
+    [N]=O(515)
+    O[N]N=[N](516)
+    [O]O[N]O(517)
+    N[N]O(518)
+    [NH]O[N]O(519)
+    O[N]N[O](520)
+    O[N]ON(N=O)N=O(521)
+    [O]N(N=O)[N]O[N]O(522)
+    O[N]N(N(N=O)[O])[O](523)
+    O[N][N+](N=O)(N=O)[O-](524)
+    [O-][N+](=NO[N]O)N=O(525)
+    O[N][N+](N=O)([N][O])[O-](526)
+    O[N]O[N+](N=O)[N-][O](527)
+    O=NON(N=O)[N]O(528)
+    O[N]O[N][N]ON=O(529)
+    O[N]O[N]O[N]N=O(530)
+    [O]N([N]O)[N]ON=O(531)
+    [O]N(O[N]N=O)[N]O(532)
+    O[N]ON=NON=O(533)
+    O[N]N(ON=O)[N][O](534)
+    [N-]([N+](=O)[N]O)ON=O(535)
+    [O-][NH+]([N]O[N]O)N(536)
+    [O-][NH+](N([N]O)[O])N(537)
+Added 1 new core reactions
+    NOHJJ(39) + NH2(D)(35) <=> NO(7) + NH3(8)
+Created 69 new edge reactions
+    [N]=O(515) + H(33) <=> NOHJJ(39)
+    HNOHJ(90) + CH3(32) <=> NOHJJ(39) + CH4(1)
+    H(33) + HNOHJ(90) <=> NOHJJ(39) + H2(2)
+    OH(D)(34) + HNOHJ(90) <=> NOHJJ(39) + H2O(3)
+    [N]=O(515) + NNHJ(36) <=> N2(4) + NOHJJ(39)
+    N2(4) + NOHJJ(39) <=> O[N]N=[N](516)
+    O2(6) + NOHJJ(39) <=> [O]O[N]O(517)
+    O2(6) + NOHJJ(39) <=> NO(7) + HO2(38)
+    [N]=O(515) + HO2(38) <=> O2(6) + NOHJJ(39)
+    NO(7) + NOHJJ(39) <=> [N-]([N+]DO)O(50)
+    [N]=O(515) + NOHJJ(39) <=> NO(7) + NOHJJ(39)
+    [N]=O(515) + HNO(40) <=> NO(7) + NOHJJ(39)
+    NOHJJ(39) + NH3(8) <=> NH2(D)(35) + HNOHJ(90)
+    [N]=O(515) + [N-]([N+]DO)O(50) <=> ONNO_cis(49) + NOHJJ(39)
+    [N]=O(515) + [N-]([NH+]DO)[O](51) <=> ONNO_cis(49) + NOHJJ(39)
+    ONNO_cis(49) + NOHJJ(39) <=> O[N]O[N]N=O(255)
+    ONNO_cis(49) + NOHJJ(39) <=> [O]N(N=O)[N]O(126)
+    NOHJJ(39) + NH2(D)(35) <=> N[N]O(518)
+    NH(T)(85) + HNOHJ(90) <=> NOHJJ(39) + NH2(D)(35)
+    [N]=O(515) + NH3(8) <=> NOHJJ(39) + NH2(D)(35)
+    [N]=O(515) + HNOHJ(90) <=> HNO(40) + NOHJJ(39)
+    [N]=O(515) + NH2OJ(91) <=> HNO(40) + NOHJJ(39)
+    HNO(40) + NOHJJ(39) <=> NO(7) + HNOHJ(90)
+    HNO(40) + NOHJJ(39) <=> [NH]O[N]O(519)
+    HNO(40) + NOHJJ(39) <=> O[N]N[O](520)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N]ON(N=O)N=O(521)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> NO(7) + O=NN(N=O)O(127)
+    [N]=O(515) + [O]N(N=O)[N]O(126) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    [N]=O(515) + [O]N(N=O)N[O](101) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    [N]=O(515) + O=NN(N=O)O(127) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> [O]N(N=O)[N]O[N]O(522)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N]N(N(N=O)[O])[O](523)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N][N+](N=O)(N=O)[O-](524)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> NO(7) + O=N[NH+](N=O)[O-](131)
+    [N]=O(515) + O=N[NH+](N=O)[O-](131) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> [O-][N+](=NO[N]O)N=O(525)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> NO(7) + [N-]([N+](=O)N=O)O(130)
+    [N]=O(515) + [N-]([NH+](N=O)[O])[O](129) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> [N]=O(515) + [N-]([N+](=O)N=O)O(130)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N][N+](N=O)([N][O])[O-](526)
+    [N]=O(515) + [N-]([N+](N=O)O)[O](128) <=> O=NN(N=O)[O](60) + NOHJJ(39)
+    O=NN(N=O)[O](60) + NOHJJ(39) <=> O[N]O[N+](N=O)[N-][O](527)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> O=NON(N=O)[N]O(528)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> NO(7) + O=NONN=O(257)
+    [N]=O(515) + O[N][N]ON=O(254) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    [N]=O(515) + O[N]O[N]N=O(255) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    [N]=O(515) + [O]N[N]ON=O(256) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    [N]=O(515) + [O]NO[N]N=O(103) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    [N]=O(515) + O=NONN=O(257) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> O[N]O[N][N]ON=O(529)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> O[N]O[N]O[N]N=O(530)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> [O]N([N]O)[N]ON=O(531)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> [O]N(O[N]N=O)[N]O(532)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> O[N]ON=NON=O(533)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> NO(7) + O=NON=NO(259)
+    [N]=O(515) + [O][N]NON=O(258) <=> O=NO[N]N=O(59) + NOHJJ(39)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> [N]=O(515) + O=NON=NO(259)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> O[N]N(ON=O)[N][O](534)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> [N-]([N+](=O)[N]O)ON=O(535)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> NO(7) + [O-][NH+]=NON=O(260)
+    O=NO[N]N=O(59) + NOHJJ(39) <=> [N]=O(515) + [O-][NH+]=NON=O(260)
+    [N]=O(515) + [O-][NH+]([N]O)N(409) <=> NOHJJ(39) + [O-][NH+](N=O)N(63)
+    [N]=O(515) + [O-][NH+](N[O])N(410) <=> NOHJJ(39) + [O-][NH+](N=O)N(63)
+    NOHJJ(39) + [O-][NH+](N=O)N(63) <=> HNOHJ(90) + [N-]([N+](DO)N)[O](89)
+    HNOHJ(90) + [O-][NH+](N=O)[NH](405) <=> NOHJJ(39) + [O-][NH+](N=O)N(63)
+    NOHJJ(39) + [O-][NH+](N=O)N(63) <=> [O-][NH+]([N]O[N]O)N(536)
+    NOHJJ(39) + [O-][NH+](N=O)N(63) <=> [O-][NH+](N([N]O)[O])N(537)
+    NOHJJ(39) + NOHJJ(39) <=> NO(7) + HNOHJ(90)
+    NOHJJ(39) + NOHJJ(39) <=> [N]=O(515) + HNOHJ(90)
+
+After model enlargement:
+    The model core has 26 species and 24 reactions
+    The model edge has 422 species and 745 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 9 reactions.
+Chemkin file contains 15 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 9 reactions.
+Chemkin file contains 15 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 555 reactions.
+Chemkin file contains 214 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 555 reactions.
+Chemkin file contains 214 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:42:49
+    Memory used: 836.37 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.2152e-30 s, species OX(10) at rate ratio 1.6990072356539442e-13 was added to model core in model resurrection process
+
+
+Adding species OX(10) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    OX(10)
+Created 0 new edge species
+Moved 1 reactions from edge to core
+    X(5) + X(5) + O2(6) <=> OX(10) + OX(10)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 27 species and 25 reactions
+    The model edge has 421 species and 744 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Generating kinetics for new reactions...
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 2 new edge species
+    [Pt]OO[Pt](538)
+    [Pt]OON=[Pt](539)
+Added 0 new core reactions
+Created 12 new edge reactions
+    OX(10) + NH3_X(21) <=> HX(9) + NO[Pt](106)
+    X(5) + NO[Pt](106) <=> OX(10) + NH2_X(22)
+    OX(10) + ONNO_cisXX(54) <=> [Pt]OO[Pt](538) + N2O_X(26)
+    OX(10) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + NO2_X(29)
+    X(5) + [Pt]ON(N=O)O[Pt](240) <=> OX(10) + ONNO_cisXX(54)
+    X(5) + [Pt]N(N=O)OO[Pt](241) <=> OX(10) + ONNO_cisXX(54)
+    X(5) + [Pt]O[N+](=O)N([Pt])[O-](243) <=> OX(10) + ONNO_cisXX(56)
+    OX(10) + ONNO_cis(55) <=> NO_X(25) + NO2_X(29)
+    [Pt]OO[Pt](538) + N_X(24) <=> OX(10) + [Pt]ON=[Pt](68)
+    [Pt]ON(O[Pt])[Pt](501) <=> OX(10) + [Pt]ON=[Pt](68)
+    X(5) + [Pt]OON=[Pt](539) <=> OX(10) + [Pt]ON=[Pt](68)
+    [Pt]OO[Pt](538) <=> OX(10) + OX(10)
+
+After model enlargement:
+    The model core has 27 species and 25 reactions
+    The model edge has 423 species and 756 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 9 reactions.
+Chemkin file contains 16 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 9 reactions.
+Chemkin file contains 16 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 555 reactions.
+Chemkin file contains 226 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 555 reactions.
+Chemkin file contains 226 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:42:54
+    Memory used: 848.72 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+Error: Trying to step from time 0.0 to 1e-12 resulted in a solver (DASPK) error: DASPK returned with an IDID = -6, Repeated error test failures occurred on the last attempted step in DDASPK.  A singularity in the solution may be present.  If you are absolutely certain you want to continue, you should restart the integration.  (Provide initial values of Y and YPRIME which are consistent.)
+Resurrecting Model...
+At time 5.3146e-30 s, species N_X(24) at rate ratio 1.731372186399266e-13 was added to model core in model resurrection process
+
+
+Adding species N_X(24) to model core
+
+Summary of Model Enlargement
+---------------------------------
+Added 1 new core species
+    N_X(24)
+Created 0 new edge species
+Moved 3 reactions from edge to core
+    N_X(24) + N_X(24) <=> X(5) + X(5) + N2(4)
+    OX(10) + N_X(24) <=> X(5) + NO_X(25)
+    [Pt]ON=[Pt](68) <=> OX(10) + N_X(24)
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 28 species and 28 reactions
+    The model edge has 422 species and 753 reactions
+
+
+For reaction generation 1 process is used.
+Generating thermo for new species...
+Error: Could not update atomtypes for this molecule:
+multiplicity 1
+1 O u0 p2 c0 {4,D}
+2 N u1 p0 c0 {3,T} {4,S}
+3 N u2 p0 c0 {2,T}
+4 N u0 p1 c0 {1,D} {2,S}
+
+Removing species [Pt]N(N=[Pt])O[Pt](543) with Gibbs energy 423917.4382468123 from edge because it's Gibbs number 0.8858412576999333 is greater than the thermo_tol_keep_spc_in_edge of 0.5 
+Generating kinetics for new reactions...
+For reaction [Pt]N=N[Pt](43) <=> N_X(24) + N_X(24), Ea raised from 0.0 to 182.6 kJ/mol to match endothermicity of reaction.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 4 new edge species
+    NN=[Pt](540)
+    O=NN(N=[Pt])[Pt](541)
+    [O-]N([N+](=O)[Pt])N=[Pt](542)
+    [Pt]=NON=[Pt](544)
+Added 0 new core reactions
+Created 14 new edge reactions
+    N_X(24) + NH3_X(21) <=> NH_X(23) + NH2_X(22)
+    N_X(24) + NH3_X(21) <=> HX(9) + NN=[Pt](540)
+    N_X(24) + NH2_X(22) <=> NH_X(23) + NH_X(23)
+    X(5) + NN=[Pt](540) <=> N_X(24) + NH2_X(22)
+    OX(10) + O=NN(N=[Pt])[Pt](541) <=> N_X(24) + ONNO_cisXX(54)
+    N_X(24) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + N2O_X(26)
+    N_X(24) + ONNO_cisXX(54) <=> [Pt]ON=[Pt](68) + N2O_X(26)
+    X(5) + [Pt]ON(N=[Pt])N=O(507) <=> N_X(24) + ONNO_cisXX(54)
+    X(5) + [Pt]=NON(N=O)[Pt](508) <=> N_X(24) + ONNO_cisXX(54)
+    X(5) + [O-]N([N+](=O)[Pt])N=[Pt](542) <=> N_X(24) + ONNO_cisXX(56)
+    N_X(24) + ONNO_cis(55) <=> NO_X(25) + N2O_X(26)
+    N_X(24) + [Pt]ON=[Pt](68) <=> OX(10) + [Pt]N=N[Pt](43)
+    X(5) + [Pt]=NON=[Pt](544) <=> N_X(24) + [Pt]ON=[Pt](68)
+    [Pt]N=N[Pt](43) <=> N_X(24) + N_X(24)
+
+After model enlargement:
+    The model core has 28 species and 28 reactions
+    The model edge has 426 species and 767 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 9 reactions.
+Chemkin file contains 19 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 9 reactions.
+Chemkin file contains 19 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 555 reactions.
+Chemkin file contains 240 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 555 reactions.
+Chemkin file contains 240 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:43:00
+    Memory used: 845.74 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Conducting simulation of reaction system 1...
+At time 5.4121e-30 s, reached target termination conversion: 0.800000 of N2(4)
+    N2(4) conversion: inf       
+
+
+For reaction generation 1 process is used.
+
+Summary of Secondary Model Edge Enlargement
+---------------------------------
+Added 0 new core species
+Created 0 new edge species
+Added 0 new core reactions
+Created 0 new edge reactions
+
+After model enlargement:
+    The model core has 28 species and 28 reactions
+    The model edge has 426 species and 767 reactions
+
+
+Saving current model core to Chemkin file...
+Chemkin file contains 9 reactions.
+Chemkin file contains 19 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 9 reactions.
+Chemkin file contains 19 reactions.
+Saving current model core and edge to Chemkin file...
+Chemkin file contains 555 reactions.
+Chemkin file contains 240 reactions.
+Saving annotated version of Chemkin files...
+Chemkin file contains 555 reactions.
+Chemkin file contains 240 reactions.
+Saving current model core to HTML file...
+Saving current model edge to HTML file...
+Updating RMG execution statistics...
+    Execution time (DD:HH:MM:SS): 00:01:43:02
+    Memory used: 851.26 MB
+Generating plots of execution statistics...
+
+Making seed mechanism...
+Performing final model checks...
+
+
+Warning: 1 CORE reactions violate the collision rate limit!
+See the 'collision_rate_violators.log' for details.
+
+
+
+MODEL GENERATION COMPLETED
+
+The final model core has 28 species and 28 reactions
+The final model edge has 426 species and 767 reactions
+
+RMG execution terminated at Sat Feb  6 20:16:19 2021
