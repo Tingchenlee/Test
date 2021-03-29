@@ -51,12 +51,18 @@ species(
 species(
     label='O2',
     reactive=True,
-    structure=adjacencyList(
-"""
-1 O u0 p2 c0 {2,D}
-2 O u0 p2 c0 {1,D}
-"""),
+    structure=SMILES('[O][O]'),
 )
+
+#species(
+#    label='O2',
+#    reactive=True,
+#    structure=adjacencyList(
+#"""
+#1 O u0 p2 c0 {2,D}
+#2 O u0 p2 c0 {1,D}
+#"""),
+#)
 
 
 surfaceReactor(  
