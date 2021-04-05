@@ -1,0 +1,130 @@
+Kinetics family Surface_Adsorption_Dissociative_Double: parent-child relationships are correct? ... ERROR:root:In Surface_Adsorption_Dissociative_Double family, group Adsorbate is not a proper parent of its child OO.
+ERROR:root:In Surface_Adsorption_Dissociative_Double family, group OC is not a proper parent of its child CO2.
+ERROR
+
+Kinetics family Surface_Adsorption_Dissociative_Double: Entry is accessible? ... ERROR:root:Group OO does not match its root node, Adsorbate
+ERROR:root:
+In group Surface_Adsorption_Dissociative_Double, a sample molecule made from node CO2 returns node Adsorbate when descending the tree.
+Sample molecule AdjList:
+1    O u0 p2 c0 {3,D}
+2 *2 O u0 p2 c0 {3,D}
+3 *3 C u0 p0 c0 {1,D} {2,D}
+
+
+Origin Group AdjList:
+multiplicity [1]
+1 *3 C u0 p0 c0 {2,D} {3,D}
+2    O u0 p2 c0 {1,D}
+3 *2 O u0 p2 c0 {1,D}
+
+
+Matched group AdjList:
+multiplicity [1]
+1 *2 R!H ux {2,[S,D,T]}
+2 *3 R!H ux {1,[S,D,T]}
+
+ERROR
+Kinetics family Surface_Adsorption_Dissociative_Double: Recipe applies to group entry? ... ERROR:root:Could not update atomtypes for this molecule:
+multiplicity -187
+1 *4 X u0 p0 c0 {2,D}
+2 *3 C u0 p0 c-1 {1,D} {3,S} {4,S} {5,S}
+3    H u0 p0 c0 {2,S}
+4    H u0 p0 c0 {2,S}
+5    H u0 p0 c0 {2,S}
+
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity -187
+1 *4 X u0 p0 c0 {2,D}
+2 *3 O u1 p2 c-1 {1,D}
+
+ERROR:root:Could not update atomtypes for this molecule:
+multiplicity -187
+1 *2 O u0 p1 c+2 {2,D}
+2 *1 X u0 p0 c0 {1,D}
+
+ERROR:root:Error in family Surface_Adsorption_Dissociative_Double when reacting CC + [Pt] + [Pt]. During apply_recipe had an <class 'rmgpy.exceptions.AtomTypeError'>: Unable to determine atom type for atom C-, which has 3 single bonds, 1 double bonds (0 to O, 0 to S, 1 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 0 lone pairs, and -1 charge.
+
+CC
+1 *2 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2 *3 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
+3    H u0 p0 c0 {1,S}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {2,S}
+7    H u0 p0 c0 {2,S}
+8    H u0 p0 c0 {2,S}
+
+[Pt]
+1 *1 X u0 p0 c0
+
+[Pt]
+1 *4 X u0 p0 c0
+
+ERROR:root:Error in family Surface_Adsorption_Dissociative_Double when reacting [O][O] + [Pt] + [Pt]. During apply_recipe had an <class 'rmgpy.exceptions.AtomTypeError'>: Unable to determine atom type for atom O.-, which has 0 single bonds, 1 double bonds (0 to O, 0 to S, 1 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 2 lone pairs, and -1 charge.
+
+[O][O]
+multiplicity 3
+1 *3 O u1 p2 c0 {2,S}
+2 *2 O u1 p2 c0 {1,S}
+
+[Pt]
+1 *1 X u0 p0 c0
+
+[Pt]
+1 *4 X u0 p0 c0
+
+ERROR:root:Error in family Surface_Adsorption_Dissociative_Double when reacting [C-]#[O+] + [Pt] + [Pt]. During apply_recipe had an <class 'rmgpy.exceptions.AtomTypeError'>: Unable to determine atom type for atom O++, which has 0 single bonds, 1 double bonds (0 to O, 0 to S, 1 others), 0 triple bonds, 0 quadruple bonds, 0 benzene bonds, 1 lone pairs, and +2 charge.
+
+[C-]#[O+]
+1 *2 O u0 p1 c+1 {2,T}
+2 *3 C u0 p1 c-1 {1,T}
+
+[Pt]
+1 *1 X u0 p0 c0
+
+[Pt]
+1 *4 X u0 p0 c0
+
+ERROR
+
+======================================================================
+ERROR: Kinetics family Surface_Adsorption_Dissociative_Double: parent-child relationships are correct?
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/lee.ting/Code/anaconda3/envs/rmg_env/lib/python3.7/site-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 98, in <lambda>
+    test = lambda x: self.kinetics_check_child_parent_relationships(family_name)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 654, in kinetics_check_child_parent_relationships
+    raise ValueError("Error occured in databaseTest. Please check log warnings for all error messages.")
+ValueError: Error occured in databaseTest. Please check log warnings for all error messages.
+
+======================================================================
+ERROR: Kinetics family Surface_Adsorption_Dissociative_Double: Entry is accessible?
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/lee.ting/Code/anaconda3/envs/rmg_env/lib/python3.7/site-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 149, in <lambda>
+    test = lambda x: self.kinetics_check_sample_descends_to_group(family_name)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 1290, in kinetics_check_sample_descends_to_group
+    raise ValueError("Error Occurred")
+ValueError: Error Occurred
+
+======================================================================
+ERROR: Kinetics family Surface_Adsorption_Dissociative_Double: Recipe applies to group entry?
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/lee.ting/Code/anaconda3/envs/rmg_env/lib/python3.7/site-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 155, in <lambda>
+    test = lambda x: self.kinetics_check_sample_can_react(family_name)
+  File "/Users/lee.ting/Code/RMG-Py/testing/databaseTest.py", line 1485, in kinetics_check_sample_can_react
+    raise ValueError("Error Occurred. See log for details.")
+ValueError: Error Occurred. See log for details.
+
+----------------------------------------------------------------------
+Ran 1477 tests in 282.928s
+
+FAILED (errors=3)
+make: *** [test-database] Error 1

@@ -66,11 +66,11 @@ surfaceReactor(
         "O2": 0.25,
     },
     initialSurfaceCoverages={
-        "X": 1.0,
+        "X": 0.5,
     },
     surfaceVolumeRatio=(1.e5, 'm^-1'),
     terminationConversion = { "N2":0.80,},
-    terminationTime=(0.1, 's'),
+    #terminationTime=(60, 's'),
 )
 
 simulator(
