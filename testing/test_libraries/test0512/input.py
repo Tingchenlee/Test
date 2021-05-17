@@ -1,10 +1,15 @@
 database(
-    thermoLibraries=['surfaceThermoPt', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran','primaryNS', 'CHON_G4', 'CHON'],
+    thermoLibraries=['surfaceThermoPt111', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran','primaryNS', 'CHON'],
     reactionLibraries = ['Surface/CPOX_Pt/Deutschmann2006'], 
-    seedMechanisms = ['Surface/Ammonia_Pt111_oxidation'],
+    seedMechanisms = ['Surface/Ralph_Pt111','Surface/Schneider_Pt111','Surface/Ryan_Pt111','Surface/Novell_Pt111','Surface/Offermans_Pt111'],
     kineticsDepositories = ['training'],
     kineticsFamilies = ['surface','default'],
     kineticsEstimator = 'rate rules',
+)
+
+generatedSpeciesConstraints(
+    allowed=['reaction libraries'],
+    maximumNitrogenAtoms=2,
 )
 
 catalystProperties(
@@ -53,22 +58,34 @@ species(
     structure=SMILES("[O][O]"),
 )
 
+species(
+    label='NH3',
+    reactive=True,
+    structure=adjacencyList(
+"""
+1 N u0 p1 c0 {2,S} {3,S} {4,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {1,S}
+"""),
+)
+
 
 surfaceReactor(  
     temperature=(723,'K'),
-    initialPressure=(50.0, 'bar'),
+    initialPressure=(10.0, 'bar'),
     initialGasMoleFractions={
-        "CH4": 0.0,
-        "H2": 0.25,
-        "H2O": 0.25, 
+        "NH3": 0.25,
+        "H2": 0.1,
+        "H2O": 0.15, 
         "N2": 0.25,
         "O2": 0.25,
     },
     initialSurfaceCoverages={
-        "X": 0.5,
+        "X": 1,
     },
     surfaceVolumeRatio=(1.e5, 'm^-1'),
-    terminationConversion = { "N2":0.80,},
+    terminationConversion = { "NH3":0.80,},
     #terminationTime=(60, 's'),
 )
 
@@ -95,6 +112,3 @@ options(
     saveEdgeSpecies=True,
     saveSimulationProfiles=True,
 )
-
-
-

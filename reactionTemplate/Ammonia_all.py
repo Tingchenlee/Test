@@ -12,6 +12,7 @@ entry(
     shortDesc = u"""R1""",
     longDesc = u"""H2 Surface_Adsorption_Dissociative""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -27,6 +28,7 @@ entry(
     shortDesc = u"""R2""",
     longDesc = u"""N2 Surface_Adsorption_Dissociative""",
     metal = "Cattype",
+    facet = "111",
 )
 
 
@@ -43,6 +45,7 @@ entry(
     shortDesc = u"""R3""",
     longDesc = u"""O2 Surface_Adsorption_Dissociative""",
 	metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -58,6 +61,7 @@ entry(
     shortDesc = u"""R4""",
     longDesc = u"""H2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -73,6 +77,7 @@ entry(
     shortDesc = u"""R5""",
     longDesc = u"""N2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -88,6 +93,7 @@ entry(
     shortDesc = u"""R6""",
     longDesc = u"""O2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -103,6 +109,7 @@ entry(
     shortDesc = u"""R7""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -118,6 +125,7 @@ entry(
     shortDesc = u"""R8""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -133,6 +141,7 @@ entry(
     shortDesc = u"""R9""",
     longDesc = u"""Surface_Dissociation?""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -148,6 +157,7 @@ entry(
     shortDesc = u"""R10""",
     longDesc = u"""Surface_Adsorption""",
 	metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -163,6 +173,7 @@ entry(
     shortDesc = u"""R11""",
     longDesc = u"""Surface_Adsorption_vdW """,
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -178,6 +189,7 @@ entry(
     shortDesc = u"""R12""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -193,6 +205,7 @@ entry(
     shortDesc = u"""R13""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -208,6 +221,7 @@ entry(
     shortDesc = u"""R14""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -223,6 +237,7 @@ entry(
     shortDesc = u"""R15""",
     longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -238,6 +253,7 @@ entry(
     shortDesc = u"""R16""",
     longDesc = u"""Surface_Abstraction""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -253,6 +269,7 @@ entry(
     shortDesc = u"""R17""",
     longDesc = u"""Surface_Abstraction""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -268,6 +285,7 @@ entry(
     shortDesc = u"""R18""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -283,6 +301,7 @@ entry(
     shortDesc = u"""R19""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -298,6 +317,7 @@ entry(
     shortDesc = u"""R20""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 
@@ -314,6 +334,7 @@ entry(
     shortDesc = u"""R21""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -329,6 +350,7 @@ entry(
     shortDesc = u"""R22""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -344,6 +366,7 @@ entry(
     shortDesc = u"""R23""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -359,6 +382,7 @@ entry(
     shortDesc = u"""R24""",
     longDesc = u"""Nitrogen/51""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -374,6 +398,7 @@ entry(
     shortDesc = u"""R25""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -387,8 +412,9 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""R26""",
-    longDesc = u"""Surface_Addition_Single_vdW""",
+    longDesc = u"""Surface_Dissociation_Double_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -404,6 +430,7 @@ entry(
     shortDesc = u"""R27""",
     longDesc = u"""Surface_Addition_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -419,6 +446,7 @@ entry(
     shortDesc = u"""R28""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -434,6 +462,7 @@ entry(
     shortDesc = u"""R30""",
     longDesc = u"""Surface_Adsorption_Single""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -449,6 +478,7 @@ entry(
     shortDesc = u"""R31""",
     longDesc = u"""Surface_Adsorption_Single""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -464,6 +494,7 @@ entry(
     shortDesc = u"""R31""",
     longDesc = u"""Surface_Adsorption_Double/Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -479,6 +510,7 @@ entry(
     shortDesc = u"""R32""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 #This reaction shows resonanceError
@@ -495,6 +527,7 @@ entry(
     shortDesc = u"""R33""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 entry(
     index = 34,
@@ -509,6 +542,7 @@ entry(
     shortDesc = u"""R34""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -524,6 +558,7 @@ entry(
     shortDesc = u"""R35""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -539,6 +574,7 @@ entry(
     shortDesc = u"""R36""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -554,6 +590,7 @@ entry(
     shortDesc = u"""R37""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -569,6 +606,7 @@ entry(
     shortDesc = u"""R38""",
     longDesc = u"""Surface_Dissociation_Beta""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -584,6 +622,7 @@ entry(
     shortDesc = u"""R39""",
     longDesc = u"""Surface_Addition_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -599,6 +638,7 @@ entry(
     shortDesc = u"""R40""",
     longDesc = u"""Surface_Dissociation_Beta """,
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -614,6 +654,7 @@ entry(
     shortDesc = u"""R41""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -629,6 +670,7 @@ entry(
     shortDesc = u"""R42""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -644,6 +686,7 @@ entry(
     shortDesc = u"""R43""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -659,6 +702,7 @@ entry(
     shortDesc = u"""R44""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -674,6 +718,7 @@ entry(
     shortDesc = u"""R45""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -689,6 +734,7 @@ entry(
     shortDesc = u"""R46""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 
@@ -705,6 +751,7 @@ entry(
     shortDesc = u"""R47""",
     longDesc = u"""adsoprtion""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -720,6 +767,7 @@ entry(
     shortDesc = u"""Reverse R1""",
     longDesc = u"""H2 Surface_Adsorption_Dissociative""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -735,6 +783,7 @@ entry(
     shortDesc = u"""Reverse R2""",
     longDesc = u"""N2 Surface_Adsorption_Dissociative""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -750,6 +799,7 @@ entry(
     shortDesc = u"""Reverse R3""",
     longDesc = u"""O2 Surface_Adsorption_Dissociative""",
 	metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -765,6 +815,7 @@ entry(
     shortDesc = u"""Reverse R4""",
     longDesc = u"""H2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -780,6 +831,7 @@ entry(
     shortDesc = u"""Reverse R5""",
     longDesc = u"""N2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -795,6 +847,7 @@ entry(
     shortDesc = u"""Reverse R6""",
     longDesc = u"""O2 Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -810,6 +863,7 @@ entry(
     shortDesc = u"""Reverse R7""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -825,6 +879,7 @@ entry(
     shortDesc = u"""Reverse R8""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -840,6 +895,7 @@ entry(
     shortDesc = u"""Reverse R9""",
     longDesc = u"""Surface_Dissociation?""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -855,6 +911,7 @@ entry(
     shortDesc = u"""Reverse R10""",
     longDesc = u"""Surface_Adsorption""",
 	metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -870,6 +927,7 @@ entry(
     shortDesc = u"""Reverse R11""",
     longDesc = u"""Surface_Adsorption_vdW """,
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -885,6 +943,7 @@ entry(
     shortDesc = u"""Reverse R12""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -900,6 +959,7 @@ entry(
     shortDesc = u"""Reverse R13""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -915,6 +975,7 @@ entry(
     shortDesc = u"""Reverse R14""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -930,6 +991,7 @@ entry(
     shortDesc = u"""Reverse R15""",
     longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -945,6 +1007,7 @@ entry(
     shortDesc = u"""Reverse R16""",
     longDesc = u"""Surface_Abstraction""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -960,6 +1023,7 @@ entry(
     shortDesc = u"""Reverse R17""",
     longDesc = u"""Surface_Abstraction""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -975,6 +1039,7 @@ entry(
     shortDesc = u"""Reverse R18""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -990,6 +1055,7 @@ entry(
     shortDesc = u"""Reverse R19""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1005,6 +1071,7 @@ entry(
     shortDesc = u"""Reverse R20""",
     longDesc = u"""Surface_Abstraction_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 
@@ -1021,6 +1088,7 @@ entry(
     shortDesc = u"""Reverse R21""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1036,6 +1104,7 @@ entry(
     shortDesc = u"""Reverse R22""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1051,6 +1120,7 @@ entry(
     shortDesc = u"""Reverse R23""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1066,6 +1136,7 @@ entry(
     shortDesc = u"""Reverse R24""",
     longDesc = u"""Nitrogen/51"""
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1081,6 +1152,7 @@ entry(
     shortDesc = u"""Reverse R25""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1094,8 +1166,9 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""Reverse R26""",
-    longDesc = u"""Surface_Addition_Single_vdW""",
+    longDesc = u"""Surface_Dissociation_Double_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1111,6 +1184,7 @@ entry(
     shortDesc = u"""Reverse R27""",
     longDesc = u"""Surface_Addition_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1126,6 +1200,7 @@ entry(
     shortDesc = u"""Reverse R28""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1141,6 +1216,7 @@ entry(
     shortDesc = u"""Reverse R29""",
     longDesc = u"""Surface_Adsorption_Single""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1156,6 +1232,7 @@ entry(
     shortDesc = u"""Reverse R30""",
     longDesc = u"""Surface_Adsorption_Single""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1171,6 +1248,7 @@ entry(
     shortDesc = u"""Reverse R31""",
     longDesc = u"""Surface_Adsorption_Double/Surface_Adsorption_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1186,6 +1264,7 @@ entry(
     shortDesc = u"""Reverse R32""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 #This reaction shows resonanceError
@@ -1202,6 +1281,7 @@ entry(
     shortDesc = u"""Reverse R33""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1217,6 +1297,7 @@ entry(
     shortDesc = u"""Reverse R34""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1232,6 +1313,7 @@ entry(
     shortDesc = u"""Reverse R35""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1247,6 +1329,7 @@ entry(
     shortDesc = u"""Reverse R36""",
     longDesc = u"""Surface_Dissociation_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1262,6 +1345,7 @@ entry(
     shortDesc = u"""Reverse R37""",
     longDesc = u"""Surface_Dissociation""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1277,6 +1361,7 @@ entry(
     shortDesc = u"""Reverse R38""",
     longDesc = u"""Surface_Dissociation_Beta""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1292,6 +1377,7 @@ entry(
     shortDesc = u"""Reverse R39""",
     longDesc = u"""Surface_Addition_Single_vdW""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1307,6 +1393,7 @@ entry(
     shortDesc = u"""Reverse R40""",
     longDesc = u"""Surface_Dissociation_Beta """,
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1322,6 +1409,7 @@ entry(
     shortDesc = u"""Reverse R41""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1337,6 +1425,7 @@ entry(
     shortDesc = u"""Reverse R42""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1352,6 +1441,7 @@ entry(
     shortDesc = u"""Reverse R43""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1367,6 +1457,7 @@ entry(
     shortDesc = u"""Reverse R44""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1382,6 +1473,7 @@ entry(
     shortDesc = u"""Reverse R45""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1397,6 +1489,7 @@ entry(
     shortDesc = u"""Reverse R46""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1412,6 +1505,7 @@ entry(
     shortDesc = u"""Reverse R47""",
     longDesc = u"""desorption""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1424,9 +1518,10 @@ entry(
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
     ),
-    shortDesc = u"""R95""",
+    shortDesc = u"""Surface_Abstraction_vdW""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1439,9 +1534,10 @@ entry(
         Tmin = (200, 'K'),
         Tmax = (3000, 'K'),
     ),
-    shortDesc = u"""Reverse R95""",
+    shortDesc = u"""Surface_Abstraction_vdW""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1457,6 +1553,7 @@ entry(
     shortDesc = u"""R97""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1472,6 +1569,7 @@ entry(
     shortDesc = u"""Reverse R97""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1487,6 +1585,7 @@ entry(
     shortDesc = u"""R99""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1502,6 +1601,7 @@ entry(
     shortDesc = u"""Reverse R99""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1517,6 +1617,7 @@ entry(
     shortDesc = u"""R101""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1532,6 +1633,7 @@ entry(
     shortDesc = u"""Reverse R101""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1547,6 +1649,7 @@ entry(
     shortDesc = u"""R103""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1562,6 +1665,7 @@ entry(
     shortDesc = u"""Reverse R103""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1577,6 +1681,7 @@ entry(
     shortDesc = u"""R105""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 entry(
@@ -1592,6 +1697,7 @@ entry(
     shortDesc = u"""Reverse R105""",
     longDesc = u"""""",
     metal = "Cattype",
+    facet = "111",
 )
 
 
@@ -1608,6 +1714,7 @@ entry(
 #    shortDesc = u"""R1""",
 #    longDesc = u"""H2 Surface_Adsorption_Dissociative""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1623,6 +1730,7 @@ entry(
 #    shortDesc = u"""R2""",
 #    longDesc = u"""N2 Surface_Adsorption_Dissociative""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 
@@ -1639,6 +1747,7 @@ entry(
 #    shortDesc = u"""R3""",
 #    longDesc = u"""O2 Surface_Adsorption_Dissociative""",
 #	metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1654,6 +1763,7 @@ entry(
 #    shortDesc = u"""R4""",
 #    longDesc = u"""H2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1669,6 +1779,7 @@ entry(
 #    shortDesc = u"""R5""",
 #    longDesc = u"""N2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1684,6 +1795,7 @@ entry(
 #    shortDesc = u"""R6""",
 #    longDesc = u"""O2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1699,6 +1811,7 @@ entry(
 #    shortDesc = u"""R7""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1714,6 +1827,7 @@ entry(
 #    shortDesc = u"""R8""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1729,6 +1843,7 @@ entry(
 #    shortDesc = u"""R9""",
 #    longDesc = u"""Surface_Dissociation?""",
 #    metal = "Cattype",
+#    facet = "111",
 #)
 
 #entry(
@@ -1744,6 +1859,7 @@ entry(
 #    shortDesc = u"""R10""",
 #    longDesc = u"""Surface_Adsorption""",
 #	metal = "Cattype",
+#    facet = "111",
 #)
 
 #entry(
@@ -1759,6 +1875,7 @@ entry(
 #    shortDesc = u"""R11""",
 #    longDesc = u"""Surface_Adsorption_vdW """,
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1774,6 +1891,7 @@ entry(
 #   shortDesc = u"""R12""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1789,6 +1907,7 @@ entry(
 #    shortDesc = u"""R13""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1804,6 +1923,7 @@ entry(
 #    shortDesc = u"""R14""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1819,6 +1939,7 @@ entry(
 #    shortDesc = u"""R15""",
 #    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1834,6 +1955,7 @@ entry(
 #    shortDesc = u"""R16""",
 #    longDesc = u"""Surface_Abstraction""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1849,6 +1971,7 @@ entry(
 #    shortDesc = u"""R17""",
 #    longDesc = u"""Surface_Abstraction""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1864,6 +1987,7 @@ entry(
 #    shortDesc = u"""R18""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1879,6 +2003,7 @@ entry(
 #    shortDesc = u"""R19""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1894,6 +2019,7 @@ entry(
 #    shortDesc = u"""R20""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 
@@ -1910,6 +2036,7 @@ entry(
 #    shortDesc = u"""R21""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1925,6 +2052,7 @@ entry(
 #    shortDesc = u"""R22""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1940,6 +2068,7 @@ entry(
 #    shortDesc = u"""R23""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1955,6 +2084,7 @@ entry(
 #    shortDesc = u"""R24""",
 #    longDesc = u"""Nitrogen/51"""
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1970,6 +2100,7 @@ entry(
 #    shortDesc = u"""R25""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -1983,8 +2114,9 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""R26""",
-#    longDesc = u"""Surface_Addition_Single_vdW""",
+#    longDesc = u"""Surface_Dissociation_Double_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2000,6 +2132,7 @@ entry(
 #    shortDesc = u"""R27""",
 #    longDesc = u"""Surface_Addition_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2015,6 +2148,7 @@ entry(
 #    shortDesc = u"""R28""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2030,6 +2164,7 @@ entry(
 #    shortDesc = u"""R30""",
 #    longDesc = u"""Surface_Adsorption_Single""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2045,6 +2180,7 @@ entry(
 #    shortDesc = u"""R31""",
 #    longDesc = u"""Surface_Adsorption_Single""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2060,6 +2196,7 @@ entry(
 #    shortDesc = u"""R31""",
 #    longDesc = u"""Surface_Adsorption_Double/Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2075,6 +2212,7 @@ entry(
 #    shortDesc = u"""R32""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #This reaction shows resonanceError
@@ -2091,6 +2229,7 @@ entry(
 #    shortDesc = u"""R33""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2106,6 +2245,7 @@ entry(
 #    shortDesc = u"""R34""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2121,6 +2261,7 @@ entry(
 #    shortDesc = u"""R35""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2136,6 +2277,7 @@ entry(
 #    shortDesc = u"""R36""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2151,6 +2293,7 @@ entry(
 #    shortDesc = u"""R37""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2166,6 +2309,7 @@ entry(
 #    shortDesc = u"""R38""",
 #    longDesc = u"""Surface_Dissociation_Beta""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2181,6 +2325,7 @@ entry(
 #    shortDesc = u"""R39""",
 #    longDesc = u"""Surface_Addition_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2196,6 +2341,7 @@ entry(
 #    shortDesc = u"""R40""",
 #    longDesc = u"""Surface_Dissociation_Beta """,
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2211,6 +2357,7 @@ entry(
 #    shortDesc = u"""R41""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2226,6 +2373,7 @@ entry(
 #    shortDesc = u"""R42""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2241,6 +2389,7 @@ entry(
 #    shortDesc = u"""R43""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2256,6 +2405,7 @@ entry(
 #    shortDesc = u"""R44""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2271,6 +2421,7 @@ entry(
 #    shortDesc = u"""R45""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2286,6 +2437,7 @@ entry(
 #    shortDesc = u"""R46""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2301,6 +2453,7 @@ entry(
 #    shortDesc = u"""R47""",
 #    longDesc = u"""adsoprtion""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2316,6 +2469,7 @@ entry(
 #    shortDesc = u"""Reverse R1""",
 #    longDesc = u"""H2 Surface_Adsorption_Dissociative""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2331,6 +2485,7 @@ entry(
 #    shortDesc = u"""Reverse R2""",
 #    longDesc = u"""N2 Surface_Adsorption_Dissociative""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2346,6 +2501,7 @@ entry(
 #    shortDesc = u"""Reverse R3""",
 #    longDesc = u"""O2 Surface_Adsorption_Dissociative""",
 #	metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2361,6 +2517,7 @@ entry(
 #    shortDesc = u"""Reverse R4""",
 #    longDesc = u"""H2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2376,6 +2533,7 @@ entry(
 #    shortDesc = u"""Reverse R5""",
 #    longDesc = u"""N2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2391,6 +2549,7 @@ entry(
 #    shortDesc = u"""Reverse R6""",
 #    longDesc = u"""O2 Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2406,6 +2565,7 @@ entry(
 #    shortDesc = u"""Reverse R7""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2421,6 +2581,7 @@ entry(
 #    shortDesc = u"""Reverse R8""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2436,6 +2597,7 @@ entry(
 #    shortDesc = u"""Reverse R9""",
 #    longDesc = u"""Surface_Dissociation?""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2451,6 +2613,7 @@ entry(
 #    shortDesc = u"""Reverse R10""",
 #    longDesc = u"""Surface_Adsorption""",
 #	metal = "Cattype",
+#    facet = "111",
 #)
 
 #entry(
@@ -2466,6 +2629,7 @@ entry(
 #    shortDesc = u"""Reverse R11""",
 #    longDesc = u"""Surface_Adsorption_vdW """,
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2481,6 +2645,7 @@ entry(
 #    shortDesc = u"""Reverse R12""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2496,6 +2661,7 @@ entry(
 #    shortDesc = u"""Reverse R13""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2511,6 +2677,7 @@ entry(
 #    shortDesc = u"""Reverse R14""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2526,6 +2693,7 @@ entry(
 #    shortDesc = u"""Reverse R15""",
 #    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2541,6 +2709,7 @@ entry(
 #    shortDesc = u"""Reverse R16""",
 #    longDesc = u"""Surface_Abstraction""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2556,6 +2725,7 @@ entry(
 #    shortDesc = u"""Reverse R17""",
 #    longDesc = u"""Surface_Abstraction""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2571,6 +2741,7 @@ entry(
 #    shortDesc = u"""Reverse R18""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2586,6 +2757,7 @@ entry(
 #    shortDesc = u"""Reverse R19""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2601,6 +2773,7 @@ entry(
 #    shortDesc = u"""Reverse R20""",
 #    longDesc = u"""Surface_Abstraction_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2616,6 +2789,7 @@ entry(
 #    shortDesc = u"""Reverse R21""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2631,6 +2805,7 @@ entry(
 #    shortDesc = u"""Reverse R22""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2646,6 +2821,7 @@ entry(
 #    shortDesc = u"""Reverse R23""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2661,6 +2837,7 @@ entry(
 #    shortDesc = u"""Reverse R24""",
 #    longDesc = u"""Nitrogen/51"""
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2676,6 +2853,7 @@ entry(
 #    shortDesc = u"""Reverse R25""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2689,8 +2867,9 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""Reverse R26""",
-#    longDesc = u"""Surface_Addition_Single_vdW""",
+#    longDesc = u"""Surface_Dissociation_Double_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2706,6 +2885,7 @@ entry(
 #    shortDesc = u"""Reverse R27""",
 #    longDesc = u"""Surface_Addition_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2721,6 +2901,7 @@ entry(
 #    shortDesc = u"""Reverse R28""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2736,6 +2917,7 @@ entry(
 #    shortDesc = u"""Reverse R30""",
 #    longDesc = u"""Surface_Adsorption_Single""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2751,6 +2933,7 @@ entry(
 #    shortDesc = u"""Reverse R31""",
 #    longDesc = u"""Surface_Adsorption_Single""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2766,6 +2949,7 @@ entry(
 #    shortDesc = u"""Reverse R31""",
 #    longDesc = u"""Surface_Adsorption_Double/Surface_Adsorption_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2781,6 +2965,7 @@ entry(
 #    shortDesc = u"""Reverse R32""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #This reaction shows resonanceError
@@ -2797,6 +2982,7 @@ entry(
 #    shortDesc = u"""Reverse R33""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2812,6 +2998,7 @@ entry(
 #    shortDesc = u"""Reverse R34""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2827,6 +3014,7 @@ entry(
 #    shortDesc = u"""Reverse R35""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2842,6 +3030,7 @@ entry(
 #    shortDesc = u"""Reverse R36""",
 #    longDesc = u"""Surface_Dissociation_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2857,6 +3046,7 @@ entry(
 #    shortDesc = u"""Reverse R37""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2872,6 +3062,7 @@ entry(
 #    shortDesc = u"""Reverse R38""",
 #    longDesc = u"""Surface_Dissociation_Beta""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2887,6 +3078,7 @@ entry(
 #    shortDesc = u"""Reverse R39""",
 #    longDesc = u"""Surface_Addition_Single_vdW""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2902,6 +3094,7 @@ entry(
 #    shortDesc = u"""Reverse R40""",
 #    longDesc = u"""Surface_Dissociation_Beta """,
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2917,6 +3110,7 @@ entry(
 #    shortDesc = u"""Reverse R41""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2932,6 +3126,7 @@ entry(
 #    shortDesc = u"""Reverse R42""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2947,6 +3142,7 @@ entry(
 #    shortDesc = u"""Reverse R43""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2962,6 +3158,7 @@ entry(
 #    shortDesc = u"""Reverse R44""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2977,6 +3174,7 @@ entry(
 #    shortDesc = u"""Reverse R45""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -2992,6 +3190,7 @@ entry(
 #    shortDesc = u"""Reverse R46""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3007,6 +3206,7 @@ entry(
 #    shortDesc = u"""Reverse R47""",
 #    longDesc = u"""desorption""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3022,6 +3222,7 @@ entry(
 #    shortDesc = u"""R95""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3037,6 +3238,7 @@ entry(
 #    shortDesc = u"""Reverse R95""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3052,6 +3254,7 @@ entry(
 #    shortDesc = u"""R97""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3067,6 +3270,7 @@ entry(
 #    shortDesc = u"""Reverse R97""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3082,6 +3286,7 @@ entry(
 #    shortDesc = u"""R99""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3097,6 +3302,7 @@ entry(
 #    shortDesc = u"""Reverse R99""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3112,6 +3318,7 @@ entry(
 #    shortDesc = u"""R101""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3127,6 +3334,7 @@ entry(
 #    shortDesc = u"""Reverse R101""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3142,6 +3350,7 @@ entry(
 #    shortDesc = u"""R103""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3157,6 +3366,7 @@ entry(
 #    shortDesc = u"""Reverse R103""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3172,6 +3382,7 @@ entry(
 #    shortDesc = u"""R105""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
 
 #entry(
@@ -3187,4 +3398,5 @@ entry(
 #    shortDesc = u"""Reverse R105""",
 #    longDesc = u"""""",
 #    metal = "Cattype",
+    facet = "111",
 #)
