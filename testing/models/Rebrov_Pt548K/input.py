@@ -100,12 +100,12 @@ species(
 
 #temperature from 523-673K 
 surfaceReactor(  
-    temperature=(523,'K'),
+    temperature=(548,'K'),
     initialPressure=(1.0, 'bar'),
     initialGasMoleFractions={
-        "NH3": 0.066,
+        "NH3": 0.12,
         "O2": 0.88,
-        "He": 0.054,
+        "He": 0.0,
         "H2O": 0.0, 
         "NO": 0.0,
         "N2": 0.0,
@@ -115,23 +115,24 @@ surfaceReactor(
         "X": 1.0,
     },
     surfaceVolumeRatio=(2.8571428e4, 'm^-1'), #A/V = 280µm*π*9mm/140µm*140µm*π*9mm = 2.8571428e4^m-1
-    terminationConversion = {"NH3":0.90,},
+    terminationConversion = {"NH3":0.99,},
     #terminationTime=(60, 's'),
 )
 
-simulator(
-    atol=1e-15,
-    rtol=1e-12,
+simulator( #default for surface reaction atol=1e-18,rtol=1e-12
+    atol=1e-18, #absolute tolerance are 1e-15 to 1e-25
+    rtol=1e-12, #relative tolerance is usually 1e-4 to 1e-8
 )
 
 model( 
-    toleranceKeepInEdge=0.01,
-    toleranceMoveToCore=0.001, 
-    toleranceInterruptSimulation=0.1,
-    maximumEdgeSpecies=100000,
-    minCoreSizeForPrune=100,
+    toleranceKeepInEdge=0.001, #recommend setting toleranceKeepInEdge to not be larger than 10% of toleranceMoveToCore
+    toleranceMoveToCore=0.01, 
+    toleranceInterruptSimulation=1e8, #This value should be set to be equal to toleranceMoveToCore unless the advanced pruning feature is desired
+    #to always enable pruning should be set as a high value, e.g. 1e8
+    maximumEdgeSpecies=50000, #set up less than 200000
+    minCoreSizeForPrune=50, #default value
     #toleranceThermoKeepSpeciesInEdge=0.5, 
-    #minSpeciesExistIterationsForPrune=4,
+    minSpeciesExistIterationsForPrune=2, #default value = 2 iteration
 )
 
 options(

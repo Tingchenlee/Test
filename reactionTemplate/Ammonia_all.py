@@ -299,7 +299,7 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""R19""",
-    longDesc = u"""Surface_Abstraction_Single_vdW""",
+    longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
     facet = "111",
 )
@@ -315,7 +315,7 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""R20""",
-    longDesc = u"""Surface_Abstraction_Single_vdW""",
+    longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
     facet = "111",
 )
@@ -806,7 +806,7 @@ entry(
     index = 51,
     label = "H2_X <=> H2 + X",
     kinetics = SurfaceArrhenius(
-        A = (, 'cm^2/(mol*s)'),  
+        A = (, '1/s'),  
         n = 0.0,
         Ea = (, 'J/mol'),  
         Tmin = (200, 'K'),
@@ -925,7 +925,7 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""Reverse R11""",
-    longDesc = u"""Surface_Adsorption_vdW """,
+    longDesc = u"""Surface_Adsorption_vdW""",
     metal = "Cattype",
     facet = "111",
 )
@@ -1053,7 +1053,7 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""Reverse R19""",
-    longDesc = u"""Surface_Abstraction_Single_vdW""",
+    longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
     facet = "111",
 )
@@ -1069,7 +1069,7 @@ entry(
         Tmax = (3000, 'K'),
     ),
     shortDesc = u"""Reverse R20""",
-    longDesc = u"""Surface_Abstraction_Single_vdW""",
+    longDesc = u"""Surface_Abstraction_vdW""",
     metal = "Cattype",
     facet = "111",
 )
@@ -2001,7 +2001,7 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""R19""",
-#    longDesc = u"""Surface_Abstraction_Single_vdW""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
     facet = "111",
 #)
@@ -2017,9 +2017,9 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""R20""",
-#    longDesc = u"""Surface_Abstraction_Single_vdW""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
-    facet = "111",
+#    facet = "111",
 #)
 
 
@@ -2508,7 +2508,7 @@ entry(
 #    index = 51,
 #    label = "H2_X <=> H2 + X",
 #    kinetics = SurfaceArrhenius(
-#        A = (, 'cm^2/(mol*s)'),  
+#        A = (, '1/s'),  
 #        n = 0.0,
 #        Ea = (, 'J/mol'),  
 #        Tmin = (200, 'K'),
@@ -2755,7 +2755,7 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""Reverse R19""",
-#    longDesc = u"""Surface_Abstraction_Single_vdW""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
     facet = "111",
 #)
@@ -2771,7 +2771,7 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""Reverse R20""",
-#    longDesc = u"""Surface_Abstraction_Single_vdW""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
     facet = "111",
 #)
@@ -2901,7 +2901,7 @@ entry(
 #    shortDesc = u"""Reverse R28""",
 #    longDesc = u"""Surface_Dissociation""",
 #    metal = "Cattype",
-    facet = "111",
+#    facet = "111",
 #)
 
 #entry(
@@ -2933,7 +2933,7 @@ entry(
 #    shortDesc = u"""Reverse R31""",
 #    longDesc = u"""Surface_Adsorption_Single""",
 #    metal = "Cattype",
-    facet = "111",
+#    facet = "111",
 #)
 
 #entry(
@@ -3220,7 +3220,7 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""R95""",
-#    longDesc = u"""""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
     facet = "111",
 #)
@@ -3236,7 +3236,7 @@ entry(
 #        Tmax = (3000, 'K'),
 #    ),
 #    shortDesc = u"""Reverse R95""",
-#    longDesc = u"""""",
+#    longDesc = u"""Surface_Abstraction_vdW""",
 #    metal = "Cattype",
     facet = "111",
 #)

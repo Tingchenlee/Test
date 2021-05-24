@@ -4,13 +4,17 @@
 # Chemical Engineering Journal 90 (2002) 61–76
 
 database(
-    thermoLibraries=['surfaceThermoPt111', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran', 'primaryNS', 'CHON'],
+    thermoLibraries=['surfaceThermoPt111', 'surfaceThermoNi111', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran', 'primaryNS', 'CHON'],
     reactionLibraries = ['Surface/CPOX_Pt/Deutschmann2006'], 
     seedMechanisms = [],
     kineticsDepositories = ['training'],
     kineticsFamilies = ['surface','default'],
     kineticsEstimator = 'rate rules',
 )
+
+# catalystProperties(
+#     metal = 'Pt111'
+# )
 
 catalystProperties(
     bindingEnergies = {  # default values for Pt(111)    
@@ -24,8 +28,9 @@ catalystProperties(
 #site density = 1.12e15cm-2/6.022e23 = 1.85984e-9 'mol/cm^2'
 
 generatedSpeciesConstraints(
-    allowed=['reaction libraries'],
+    allowed=['input species','seed mechanisms','reaction libraries'],
     maximumNitrogenAtoms=2,
+    maximumOxygenAtoms=3,
 )
 
 # List of species
@@ -38,7 +43,12 @@ species(
 species(
     label='O2',
     reactive=True,
-    structure=SMILES("[O][O]"),
+    structure=adjacencyList(
+"""
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+"""),
 )
 
 species(
@@ -100,38 +110,40 @@ species(
 
 #temperature from 523-673K 
 surfaceReactor(  
-    temperature=(673,'K'),
+    temperature=[(523,'K'),(673,'K')],
     initialPressure=(1.0, 'bar'),
+    nSims=12,
     initialGasMoleFractions={
-        "NH3": 0.066,
+        "NH3": 0.12,
         "O2": 0.88,
-        "He": 0.054,
-        "H2O": 0.0, 
-        "NO": 0.0,
-        "N2": 0.0,
-        "N2O": 0.0,
+        "He": 0.0,
+        "NO":0.0,
+        "H2O":0.0,
+        "N2O":0.0,
+        "N2":0.0,
     },
     initialSurfaceCoverages={
         "X": 1.0,
     },
     surfaceVolumeRatio=(2.8571428e4, 'm^-1'), #A/V = 280µm*π*9mm/140µm*140µm*π*9mm = 2.8571428e4^m-1
-    terminationConversion = {"NH3":0.90,},
-    #terminationTime=(60, 's'),
+    terminationConversion = {"NH3":0.95,},
+    #terminationTime=(10, 's'),
 )
 
-simulator(
-    atol=1e-15,
-    rtol=1e-12,
+simulator( #default for surface reaction atol=1e-18,rtol=1e-12
+    atol=1e-18, #absolute tolerance are 1e-15 to 1e-25
+    rtol=1e-12, #relative tolerance is usually 1e-4 to 1e-8
 )
 
 model( 
-    toleranceKeepInEdge=0.01,
-    toleranceMoveToCore=0.001, 
-    toleranceInterruptSimulation=0.1,
-    maximumEdgeSpecies=100000,
-    minCoreSizeForPrune=100,
+    toleranceKeepInEdge=0.001, #recommend setting toleranceKeepInEdge to not be larger than 10% of toleranceMoveToCore
+    toleranceMoveToCore=0.01, 
+    toleranceInterruptSimulation=1e8, #This value should be set to be equal to toleranceMoveToCore unless the advanced pruning feature is desired
+    #to always enable pruning should be set as a high value, e.g. 1e8
+    maximumEdgeSpecies=50000, #set up less than 200000
+    minCoreSizeForPrune=50, #default value
     #toleranceThermoKeepSpeciesInEdge=0.5, 
-    #minSpeciesExistIterationsForPrune=4,
+    minSpeciesExistIterationsForPrune=2, #default value = 2 iteration
 )
 
 options(

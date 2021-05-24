@@ -1,10 +1,10 @@
 # Microkinetic model for ammonia oxidation
-# Inspired by Grabow, Lars C. 
-# "Computational catalyst screening."
-# Computational Catalysis. RSC Publishing, 2013. 1-58.
+# E.V. Rebrov, M.H.J.M. de Croon, J.C. Schouten
+# Development of the kinetic model of platinum catalyzed ammonia oxidation in a microreactor
+# Chemical Engineering Journal 90 (2002) 61–76
 
 database(
-    thermoLibraries=['surfaceThermoPt111', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran', 'primaryNS', 'CHON'],
+    thermoLibraries=['surfaceThermoPt111', 'surfaceThermoNi111', 'primaryThermoLibrary', 'thermo_DFT_CCSDTF12_BAC','DFT_QCI_thermo', 'GRI-Mech3.0-N', 'NitrogenCurran', 'primaryNS', 'CHON'],
     reactionLibraries = ['Surface/CPOX_Pt/Deutschmann2006'], 
     seedMechanisms = [],
     kineticsDepositories = ['training'],
@@ -13,20 +13,24 @@ database(
 )
 
 catalystProperties(
-    bindingEnergies = {  # default values for Pt(111)    
-                          'H': (-2.754, 'eV/molecule'),
-                          'O': (-3.811, 'eV/molecule'),
-                          'C': (-7.025, 'eV/molecule'),
-                          'N': (-4.632, 'eV/molecule'),
-                      },
-    surfaceSiteDensity=(2.483e-9, 'mol/cm^2'), # Default for Pt(111)
+    metal = 'Pt111'
 )
-#CT = 1.467 * 10**19, m-2 sites per unit area on the Pt 211/111 surface
-#site density = 1.467e19/1e4/6.02214086e23 = 2.436e-9 'mol/cm^2'
+
+# catalystProperties(
+#     bindingEnergies = {  # default values for Pt(111)    
+#                           'H': (-2.754, 'eV/molecule'),
+#                           'O': (-3.811, 'eV/molecule'),
+#                           'C': (-7.025, 'eV/molecule'),
+#                           'N': (-4.632, 'eV/molecule'),
+#                       },
+#     surfaceSiteDensity=(1.860e-9, 'mol/cm^2'), #This is calculated based on the value from the paper# Default for Pt(111) =2.483e-9
+# )
+#site density = 1.12e15cm-2/6.022e23 = 1.85984e-9 'mol/cm^2'
 
 generatedSpeciesConstraints(
-    allowed=['reaction libraries'],
+    allowed=['input species','seed mechanisms','reaction libraries'],
     maximumNitrogenAtoms=2,
+    maximumOxygenAtoms=3,
 )
 
 # List of species
@@ -39,7 +43,12 @@ species(
 species(
     label='O2',
     reactive=True,
-    structure=SMILES("[O][O]"),
+    structure=adjacencyList(
+"""
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+"""),
 )
 
 species(
@@ -87,40 +96,54 @@ species(
 3 O u0 p2 c0 {2,D}
 """),
 )
-#-------------
 
-#temperature from 1200 to 400K 
-surfaceReactor(  
-    temperature=(1200,'K'),
-    initialPressure=(1.0, 'bar'),
-    initialGasMoleFractions={
-        "NH3": 0.001,
-        "O2": 0.02,
-        "H2O": 0.05, 
-        "NO": 0.0,
-        "N2": 0.0,
-        "N2O": 0.0,
-    },
-    initialSurfaceCoverages={
-        "X": 0.5,
-    },
-    surfaceVolumeRatio=(1.e3, 'm^-1'),
-    terminationConversion = { "NH3":0.80,},
+species(
+    label='He',
+    reactive=False,
+    structure=adjacencyList(
+"""
+1 He u0 p1 c0
+"""),
 )
 
-simulator(
-    atol=1e-15, # absolute tolerance from the tpaper
-    rtol=1e-12, # relative tolerance from the paper
+#-------------
+
+#temperature from 523-673K 
+surfaceReactor(  
+    temperature=(1000,'K'),
+    initialPressure=(9.036, 'bar'),
+    nSims=12,
+    initialGasMoleFractions={
+        "NH3": 0.9,
+        "O2": 1.701,
+        "He": 6.399,
+        "H2O": 0.036,
+        "NO":0.0,
+        "N2O":0.0,
+        "N2":0.0,
+    },
+    initialSurfaceCoverages={
+        "X": 1.0,
+    },
+    surfaceVolumeRatio=(2.8571428e5, 'm^-1'), #A/V = 280µm*π*9mm/140µm*140µm*π*9mm = 2.8571428e4^m-1
+    terminationConversion = {"NH3":0.99,},
+    #terminationTime=(10, 's'),
+)
+
+simulator( #default for surface reaction atol=1e-18,rtol=1e-12
+    atol=1e-18, #absolute tolerance are 1e-15 to 1e-25
+    rtol=1e-12, #relative tolerance is usually 1e-4 to 1e-8
 )
 
 model( 
-    toleranceKeepInEdge=0.01,
-    toleranceMoveToCore=0.001, 
-    toleranceInterruptSimulation=0.1,
-    maximumEdgeSpecies=100000,
-    minCoreSizeForPrune=100,
+    toleranceKeepInEdge=0.001, #recommend setting toleranceKeepInEdge to not be larger than 10% of toleranceMoveToCore
+    toleranceMoveToCore=0.01, 
+    toleranceInterruptSimulation=1e8, #This value should be set to be equal to toleranceMoveToCore unless the advanced pruning feature is desired
+    #to always enable pruning should be set as a high value, e.g. 1e8
+    maximumEdgeSpecies=50000, #set up less than 200000
+    minCoreSizeForPrune=50, #default value
     #toleranceThermoKeepSpeciesInEdge=0.5, 
-    #minSpeciesExistIterationsForPrune=4,
+    minSpeciesExistIterationsForPrune=2, #default value = 2 iteration
 )
 
 options(
