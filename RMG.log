@@ -1,0 +1,24 @@
+Global RMG Settings:
+   database.directory   = /Users/lee.ting/Code/RMG-database/input (Default, relative to RMG-Py source code)
+   test_data.directory  = /Users/lee.ting/Code/RMG-Py/rmgpy/test_data (Default, relative to RMG-Py source code)
+RMG execution initiated at Wed Jun  2 11:52:31 2021
+
+#########################################################
+# RMG-Py - Reaction Mechanism Generator in Python       #
+# Version: 3.1.0                                        #
+# Authors: RMG Developers (rmg_dev@mit.edu)             #
+# P.I.s:   William H. Green (whgreen@mit.edu)           #
+#          Richard H. West (r.west@neu.edu)             #
+# Website: http://reactionmechanismgenerator.github.io/ #
+#########################################################
+
+The current git HEAD for RMG-Py is:
+	b'd89ec085a1ff1df8180c5acda37a956abebce5e4'
+	b'Tue Jun 1 18:15:26 2021 -0400'
+
+The current git HEAD for RMG-database is:
+	b'ebc703bc8e06534163d435a36817499520e71876'
+	b'Tue Jun 1 18:37:14 2021 -0400'
+
+Error: The input file "/Users/lee.ting/Code/Test/input.py" could not be opened.
+Check that the file exists and that you have read access.
